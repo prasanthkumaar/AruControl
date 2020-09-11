@@ -1,6 +1,6 @@
 # Install
 
-- Make sure you have [node.js]() installed and set up on your computer
+- Make sure you have [node.js](https://nodejs.org/en/) installed and set up on your computer
 - Download the repository
 - Open this folder in a terminal
 - Run command `npm install`
