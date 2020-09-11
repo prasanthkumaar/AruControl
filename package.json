@@ -1,0 +1,44 @@
+{
+  "name": "beholder-electron-example",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "webpack",
+    "build:watch": "webpack --watch",
+    "rebuild": "electron-rebuild",
+    "dist": "electron-builder --dir",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/project-beholder/beholder-electron-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/project-beholder/beholder-electron-example/issues"
+  },
+  "homepage": "https://github.com/project-beholder/beholder-electron-example#readme",
+  "dependencies": {
+    "@nut-tree/nut-js": "^1.5.0",
+    "electron": "^8.5.1"
+  },
+  "devDependencies": {
+    "electron-builder": "^22.6.1",
+    "electron-rebuild": "^2.0.1"
+  },
+  "build": {
+    "appId": "beholder",
+    "mac": {
+      "category": "toolkit"
+    },
+    "files": [
+      "./app.js",
+      "./index.html",
+      "build/**/*",
+      "styles/**/*"
+    ]
+  }
+}
