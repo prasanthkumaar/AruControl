@@ -41,20 +41,16 @@ const DigitalAction = {
         },
 
 
-        sendZoomIn: function() {
-            console.log('ZOOM IN');
-            ipcRenderer.send('replicate-input', {type: 'KEY_DOWN'});
+        // sendZoomIn: function() {
+        //     console.log('ZOOM IN');
+        //     ipcRenderer.send('replicate-input', {type: 'KEY_DOWN'});
 
-        },
+        // },
 
-        sendZomOut: function() {
-            console.log('ZOOM OUT');
-            ipcRenderer.send('replicate-input', {type: 'KEY_UP'});
-        },
-
-
-
-        //
+        // sendZomOut: function() {
+        //     console.log('ZOOM OUT');
+        //     ipcRenderer.send('replicate-input', {type: 'KEY_UP'});
+        // },
         
         sendZoomIn: async function() {
             await keyboard.pressKey(Key.A);

@@ -81,7 +81,7 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
 
                 // Send a key down event to the main process
                 this.clockwiseAction();
-                console.log('key down');
+                console.log('clockwise action');
 
             } else {
 

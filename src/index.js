@@ -2,8 +2,6 @@
 let detectionIsOn = false;
 let arrayOfInterfaces = [];
 
-let keyboardKeyPress = new KeyboardKeyPress();
-
 // code written in here will be executed once when the page loads
 function setup() {
 
@@ -13,7 +11,7 @@ function mapInterfaceToActions() {
 
   //UI portion
   // let dPadInterface = new DPadLogic(DigitalAction.scroll);
-  let contSeq1 = new ContinuousSequenceMarkerLogic(DigitalAction.scroll, true, 3, 4, 5, 10)
+  let contSeq1 = new ContinuousSequenceMarkerLogic(DigitalAction.scroll, true, 3, 4, 5, 100)
   let contSeq2 = new ContinuousSequenceMarkerLogic(DigitalAction.zoom, true, 6, 7, 8)
 
   //arrayOfInterfaces.push(dPadInterface);
@@ -23,8 +21,6 @@ function mapInterfaceToActions() {
   for (let a of arrayOfInterfaces) {
       a.initialise()
   }
-
-  keyboardKeyPress.initialise(1);
 
 }
 
@@ -48,7 +44,6 @@ function update() {
         a.track();
     }
 
-    keyboardKeyPress.detect();
   }
 
 }
