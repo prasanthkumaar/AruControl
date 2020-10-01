@@ -1,72 +1,57 @@
-const ipcRenderer = require('electron').ipcRenderer;
 
-// Key event example objects
-const keyUp = {
-  type: 'KEY_UP',
-};
+let detectionIsOn = false;
+let arrayOfInterfaces = [];
 
-const keyDown = {
-  type: 'KEY_DOWN',
-};
-
-let wasMarkerPresent = false;
-const BUTTON_TIMEOUT = 100;
-let buttonTimer = BUTTON_TIMEOUT;
-let markerButton;
+let keyboardKeyPress = new KeyboardKeyPress();
 
 // code written in here will be executed once when the page loads
 function setup() {
-  setupAppCanvas();
-  markerButton = getMarker(0);
+
 }
 
-let lasttime = Date.now();
+function mapInterfaceToActions() {
+
+  //UI portion
+  // let dPadInterface = new DPadLogic(DigitalAction.scroll);
+  let contSeq1 = new ContinuousSequenceMarkerLogic(DigitalAction.scroll, true, 3, 4, 5, 10)
+  let contSeq2 = new ContinuousSequenceMarkerLogic(DigitalAction.zoom, true, 6, 7, 8)
+
+  //arrayOfInterfaces.push(dPadInterface);
+  arrayOfInterfaces.push(contSeq1)
+  arrayOfInterfaces.push(contSeq2)
+
+  for (let a of arrayOfInterfaces) {
+      a.initialise()
+  }
+
+  keyboardKeyPress.initialise(1);
+
+}
+
+function startDetection() {
+  if (detectionIsOn) {
+      detectionIsOn = false
+      console.log('Detection is turned off')
+  } else {
+      detectionIsOn = true
+      console.log('Detection is turned on')
+  }
+}
+
+
+
 // code written in here will be executed every frame
 function update() {
-  const currentTime = Date.now();
-  const delta = currentTime - lasttime;
-  lasttime = currentTime;
 
-  buttonTimer -= delta;
-
-  // This is the logic for a single key press using marker 0
-  if (markerButton.present) {
-    buttonTimer = BUTTON_TIMEOUT;
-    if (!wasMarkerPresent) {
-      wasMarkerPresent = true;
-
-      // Send a key down event to the main process
-      ipcRenderer.send('replicate-input', keyDown);
+  if (detectionIsOn) {
+    for (let a of arrayOfInterfaces) {
+        a.track();
     }
+
+    keyboardKeyPress.detect();
   }
 
-  if (wasMarkerPresent && !markerButton.present && buttonTimer <= 0) {
-    wasMarkerPresent = false;
-
-    // Send a key up event to the main process
-    ipcRenderer.send('replicate-input', keyUp);
-  }
 }
 
-// setupAppCanvas() function will initialize #app-canvas.
-// if you intend to use #app-canvas, call this function in setup()
-let canvas;
-let ctx;
-let dpr;
-let appWidth;
-let appHeight;
 
-function setupAppCanvas() {
-  canvas = document.querySelector("#app-canvas");
-  dpr = window.devicePixelRatio || 1;
-
-  appWidth = window.innerWidth * dpr;
-  appHeight = window.innerHeight * dpr;
-  console.log("appWidth =", appWidth, " appHeight =", appHeight);
-
-  canvas.width = appWidth;
-  canvas.height = appHeight;
-  
-  ctx = canvas.getContext("2d");
-}
 

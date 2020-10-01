@@ -21,3 +21,10 @@ The *app.js* file contains the electron specific code. This is also where you wi
 
 In the `src` directory the *index.js* file contains example code, almost exactly the same as the [glitch example](https://glitch.com/~diy-ar-beholder)
 
+
+# Packaging the application 
+
+Run `npx electron-builder build --win portable` to create a .exe file
+
+
+"# AruControl" 

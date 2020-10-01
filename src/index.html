@@ -7,11 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Beholder Electron Example</title>
-    <script src="./src/index.js"></script>
-    <script src="./src/detection/math.min.js"></script>
-    <script src="./src/detection/beholder.js"></script>
-    <script src="./src/detection/background.js"></script>
-    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <script src="./detection/math.min.js"></script>
+    <script src="./detection/beholder.js"></script>
+    <script src="./detection/background.js"></script>
+
+    <script src="./framework/DigitalAction.js"></script>
+
+    <script src="./framework/Actions.js"></script> 
+    <script src="./framework/MarkerLogic.js"></script> 
+    <script src="./framework/DPadLogic.js"></script> 
+    <script src="./framework/ContinuousSequenceMarkerLogic.js"></script> 
+
+    
+    <script src="./keyboard/keyboard_keyPress.js"></script>
+    <script src="./index.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../styles/main.css">
     
     <style></style>
   </head>
@@ -71,6 +82,11 @@
           <input id="IMAGE_GRAYSCALE" type="number" name="IMAGE_GRAYSCALE" min="0" max="100" value="0" step="1">
         </div>
       </div>
+
+          <button onclick="mapInterfaceToActions()">Map me</button>
+          <button onclick="startDetection()">Detect me</button>
+
+
     </div>
     
     
