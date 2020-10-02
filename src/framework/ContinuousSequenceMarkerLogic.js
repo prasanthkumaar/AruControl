@@ -1,7 +1,7 @@
 class ContinuousSequenceMarkerLogic extends MarkerLogic {
 
 
-    constructor(action, isDominant, marker1, marker2, marker3, value) {
+    constructor(action, isDominant, markerIdArray, value) {
         super(action);
         this.isDominant = isDominant;
         this.value = value;
@@ -10,11 +10,8 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
         this.clockwiseAction;
         this.antiClockwiseAction;
 
-        this.marker1 = getMarker(marker1);
-        this.marker2 = getMarker(marker2);
-        this.marker3 = getMarker(marker3);
-
-        this.markerArray = [this.marker1, this.marker2, this.marker3];
+        this.markerIdArray = markerIdArray;
+        this.markerArray = [];
         this.firstMarkerSeen = false;
 
         this.wasMarkerPresent = false;
@@ -33,33 +30,27 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
 
     }
 
+
+
     initialise() {
         super.initialise();
+
+        for (let m of this.markerIdArray) {
+            let markerToPush = getMarker(m)
+            this.markerArray.push(markerToPush)
+        }
 
         switch (this.action) {
             case DigitalAction.scroll: 
 
                 DigitalAction.scroll.value = this.value;
-
-                if (this.isDominant) {
-                    this.clockwiseAction = DigitalAction.scroll.sendScrollUp;
-                    this.antiClockwiseAction = DigitalAction.scroll.sendScrollDown;
-                }
-                else {
-                    this.clockwiseAction = DigitalAction.scroll.sendScrollDown;
-                    this.antiClockwiseAction = DigitalAction.scroll.sendScrollUp;
-                }
+                this.mapClockwiseAntiClockwiseFunctions(DigitalAction.scroll.sendScrollUp, DigitalAction.scroll.sendScrollDown);
                 
                 break;
             case DigitalAction.zoom:
 
-                if (this.isDominant) {
-                    this.clockwiseAction = DigitalAction.zoom.sendZoomIn;
-                    this.antiClockwiseAction = DigitalAction.zoom.sendZoomOut;
-                } else {
-                    this.clockwiseAction = DigitalAction.zoom.sendZoomOut;
-                    this.antiClockwiseAction = DigitalAction.zoom.sendZoomIn;
-                }
+                this.mapClockwiseAntiClockwiseFunctions(DigitalAction.zoom.sendZoomIn, DigitalAction.zoom.sendZoomOut);
+
                 break;
             default:
                 break;
@@ -70,7 +61,6 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
 
     track() {
 
-        console.log(this.firstMarkerSeen);
         if(!this.firstMarkerSeen) {
 
             for(let m of this.markerArray) {
@@ -83,15 +73,51 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
                     console.log('markers are not seen')
                 }
             }
+
         } else {
 
             //Check index 
+            let index = this.markerArray.indexOf(this.oldMarker)
+            console.log('old marker number is '+ index)
+
+            //++
+            let clockwiseIndex = index+1;
+            let antiClockwiseIndex = index-1;
+            let trueArrayLength = this.markerArray.length-1;
+
+            if (clockwiseIndex >  trueArrayLength) clockwiseIndex = 0;
+            if (antiClockwiseIndex < 0) antiClockwiseIndex = trueArrayLength;
+            let clockwiseMarker = this.markerArray[clockwiseIndex];
+            let antiClockwiseMarker = this.markerArray[antiClockwiseIndex];
+
+
+            if (clockwiseMarker.present) {
+                this.clockwiseAction();
+                console.log('clockwise action');
+                this.oldMarker = clockwiseMarker;
+
+            } else if (antiClockwiseMarker.present) {
+                this.antiClockwiseAction();
+                console.log('anticlockwise action');
+
+                this.oldMarker = antiClockwiseMarker;
+            } //else console.log('adj markers are not present')
+            
         }
         
     }
 
-    
+    mapClockwiseAntiClockwiseFunctions(function1, function2) {
 
+        if (this.isDominant) {
+            this.clockwiseAction = function1;
+            this.antiClockwiseAction = function2;
+        }
+        else {
+            this.clockwiseAction = function2;
+            this.antiClockwiseAction = function1;
+        }
+    };
 
 
 

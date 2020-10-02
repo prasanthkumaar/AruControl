@@ -86,4 +86,22 @@ ipcMain.on("ZOOM_OUT", async (event,arg) => {
   keyboard.releaseKey(Key.Minus)
 })
 
+ipcMain.on("UNDO", async (event,arg) => {
+  keyboard.pressKey(Key.LeftControl)
+  keyboard.pressKey(Key.Z)
+
+  keyboard.releaseKey(Key.LeftControl)
+  keyboard.releaseKey(Key.Z)
+})
+
+ipcMain.on("REDO", async (event,arg) => {
+  keyboard.pressKey(Key.LeftControl)
+  keyboard.pressKey(Key.LeftShift)
+  keyboard.pressKey(Key.Z)
+
+  keyboard.releaseKey(Key.LeftControl)
+  keyboard.pressKey(Key.LeftShift)
+  keyboard.releaseKey(Key.Z)
+})
+
 

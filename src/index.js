@@ -11,11 +11,11 @@ function mapInterfaceToActions() {
 
   //UI portion
   // let dPadInterface = new DPadLogic(DigitalAction.scroll);
-  let contSeq1 = new ContinuousSequenceMarkerLogic(DigitalAction.scroll, true, 3, 4, 5, 100)
-  let contSeq2 = new ContinuousSequenceMarkerLogic(DigitalAction.zoom, true, 6, 7, 8)
+  //let contSeq1 = new ContinuousSequenceMarkerLogic(DigitalAction.scroll, true, 3, 4, 5, 100)
+  let contSeq2 = new ContinuousSequenceMarkerLogic(DigitalAction.zoom, true, [11, 15, 3, 7])
 
   //arrayOfInterfaces.push(dPadInterface);
-  arrayOfInterfaces.push(contSeq1)
+  //arrayOfInterfaces.push(contSeq1)
   arrayOfInterfaces.push(contSeq2)
 
   for (let a of arrayOfInterfaces) {

@@ -10,25 +10,27 @@ let DigitalAction = {
         value: 30,
 
         sendScrollUp: async function() {
-            // ipcRenderer.send('replicate-input', this.scrollUp);
             await mouse.scrollUp(this.value);
-
         },
 
         sendScrollDown: async function() {
-            // ipcRenderer.send('replicate-input', this.scrollDown);
             await mouse.scrollDown(this.value);
-
         },
 
     },
 
     undoRedo: {
 
+        name: 'UndoRedo',
+
+        sendUndo: () => ipcRenderer.send("UNDO"),
+        sendRedo: () => ipcRenderer.send("REDO"),
         
     },
 
     zoom: {
+
+        name: 'Zoom',
 
         sendZoomIn: () => ipcRenderer.send("ZOOM_IN"),
         sendZoomOut: () => ipcRenderer.send("ZOOM_OUT"),
