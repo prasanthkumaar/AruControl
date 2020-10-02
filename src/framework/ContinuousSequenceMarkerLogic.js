@@ -60,6 +60,12 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
     }
 
     track() {
+        
+        if (this.marker1.present) {
+            
+            this.clockwiseAction();
+
+        }
 
         //Write marker logic
         //console.log(this.marker1.center);
@@ -72,47 +78,47 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
         //     }
         // }
 
-        if (this.marker1.present) {
+//         if (this.marker1.present) {
 
-            if (!this.wasMarkerPresent) {
+//             if (!this.wasMarkerPresent) {
 
-                // New detection of marker
-                this.wasMarkerPresent = true;
+//                 // New detection of marker
+//                 this.wasMarkerPresent = true;
 
-                // Send a key down event to the main process
-                this.clockwiseAction();
-                console.log('clockwise action');
+//                 // Send a key down event to the main process
+//                 this.clockwiseAction();
+//                 console.log('clockwise action');
 
-            } else {
+//             } else {
 
-                //Old detection of marker
-                this.count = 0;
+//                 //Old detection of marker
+//                 this.count = 0;
 
-            }
+//             }
 
-        }
+//         }
 
 
 
-        // When marker is lost from frame for x frames, 
-        // register that marker is no longer present
-        if (!this.marker1.present && this.wasMarkerPresent) {
+//         // When marker is lost from frame for x frames, 
+//         // register that marker is no longer present
+//         if (!this.marker1.present && this.wasMarkerPresent) {
             
-            this.count++;
-            console.log(this.count);
+//             this.count++;
+//             console.log(this.count);
 
-            if (this.count>this.BUTTON_TIMEOUT) {
+//             if (this.count>this.BUTTON_TIMEOUT) {
 
-            this.count = 0;
-            this.wasMarkerPresent = false;
+//             this.count = 0;
+//             this.wasMarkerPresent = false;
 
-            // Send a key up event to the main process
-            this.antiClockwiseAction();
-            console.log('key up');
+//             // Send a key up event to the main process
+//             this.antiClockwiseAction();
+//             console.log('key up');
 
-            }
+//             }
 
-        }
+//         }
 
 
 
