@@ -14,11 +14,20 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
         this.marker2 = getMarker(marker2);
         this.marker3 = getMarker(marker3);
 
+        this.markerArray = [this.marker1, this.marker2, this.marker3];
+        this.firstMarkerSeen = false;
+
         this.wasMarkerPresent = false;
         this.markerButton;
       
         this.count = 0;
         this.BUTTON_TIMEOUT = 10;
+
+        this.currentMarker;
+        this.oldMarker;
+
+        this.currentIndex;
+        this.oldIndex;
 
 
 
@@ -60,68 +69,24 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
     }
 
     track() {
-        
-        if (this.marker1.present) {
-            
-            this.clockwiseAction();
 
+        console.log(this.firstMarkerSeen);
+        if(!this.firstMarkerSeen) {
+
+            for(let m of this.markerArray) {
+                if (m.present) {
+                    this.firstMarkerSeen = true
+                    console.log(m + ' is seen')
+                    this.oldMarker = m
+                    break
+                } else {
+                    console.log('markers are not seen')
+                }
+            }
+        } else {
+
+            //Check index 
         }
-
-        //Write marker logic
-        //console.log(this.marker1.center);
-
-        // if (this.marker1.present) {
-        //     if (this.marker1.center.y < 150) {
-        //         this.clockwiseAction();
-        //     } else if (this.marker1.center.y > 300) {
-        //         this.antiClockwiseAction();
-        //     }
-        // }
-
-//         if (this.marker1.present) {
-
-//             if (!this.wasMarkerPresent) {
-
-//                 // New detection of marker
-//                 this.wasMarkerPresent = true;
-
-//                 // Send a key down event to the main process
-//                 this.clockwiseAction();
-//                 console.log('clockwise action');
-
-//             } else {
-
-//                 //Old detection of marker
-//                 this.count = 0;
-
-//             }
-
-//         }
-
-
-
-//         // When marker is lost from frame for x frames, 
-//         // register that marker is no longer present
-//         if (!this.marker1.present && this.wasMarkerPresent) {
-            
-//             this.count++;
-//             console.log(this.count);
-
-//             if (this.count>this.BUTTON_TIMEOUT) {
-
-//             this.count = 0;
-//             this.wasMarkerPresent = false;
-
-//             // Send a key up event to the main process
-//             this.antiClockwiseAction();
-//             console.log('key up');
-
-//             }
-
-//         }
-
-
-
         
     }
 

@@ -1,6 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 
-
 //The ipcMain module is an Event Emitter. When used in the main process, 
 //it handles asynchronous and synchronous messages sent from a renderer process (web page). 
 //Messages sent from a renderer will be emitted to this module.
@@ -70,37 +69,21 @@ app.on('activate', () => {
 // Example code for sending messages here from the main process
 const { keyboard, Key, mouse, left, right, up, down, screen } = require("@nut-tree/nut-js");
 // Attach listener in the main process with the given ID
-ipcMain.on('replicate-input', async (event, arg) => {
 
-  switch (arg.type) {
-    case 'KEY_DOWN':
-      keyboard.pressKey(Key.A);
-      screen.on
-      break;
-    case 'KEY_UP':
-      keyboard.releaseKey(Key.A);
-      break;
-    case 'MOUSE_MOVE_UP':
-      mouse.move(up(500));
-      break;
-    case 'MOUSE_MOVE_DOWN':
-      mouse.move(down(500));
-      break;
-    case 'MOUSE_MOVE_LEFT':
-      mouse.move(left(500));
-      break;
-    case 'MOUSE_MOVE_RIGHT':
-      mouse.move(right(500));
-      break;
-    case 'MOUSE_SCROLL_DOWN':
-      mouse.scrollDown(arg.value);
-      break;
-    case 'MOUSE_SCROLL_UP':
-      mouse.scrollUp(arg.value);
-      break;
-    default: 
-      break;
-  }
-});
+ipcMain.on("ZOOM_IN", async (event,arg) => {
+  keyboard.pressKey(Key.LeftControl)
+  keyboard.pressKey(Key.Equal)
+
+  keyboard.releaseKey(Key.LeftControl)
+  keyboard.releaseKey(Key.Equal)
+})
+
+ipcMain.on("ZOOM_OUT", async (event,arg) => {
+  keyboard.pressKey(Key.LeftControl)
+  keyboard.pressKey(Key.Minus)
+
+  keyboard.releaseKey(Key.LeftControl)
+  keyboard.releaseKey(Key.Minus)
+})
 
 
