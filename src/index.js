@@ -12,11 +12,23 @@ function mapInterfaceToActions() {
   //UI portion
   // let dPadInterface = new DPadLogic(DigitalAction.scroll);
   //let contSeq1 = new ContinuousSequenceMarkerLogic(DigitalAction.scroll, true, 3, 4, 5, 100)
-  let contSeq2 = new ContinuousSequenceMarkerLogic(DigitalAction.zoom, true, [11, 15, 3, 7])
+  // let contSeq2 = new ContinuousSequenceMarkerLogic(DigitalAction.zoom, true, [11, 15, 3, 7])
+  
+  //let accelerate = new SingleHoldMarkerLogic(DigitalAction.zKey, 20);
+  //let decelerate = new SingleHoldMarkerLogic(DigitalAction.xKey, 21);
+  //let turnLeft = new SingleHoldMarkerLogic(DigitalAction.leftKey, 22);
+  // let turnRight = new SingleHoldMarkerLogic(DigitalAction.rightKey, 23);
+  let superPower = new SingleRepeatMarkerLogic(DigitalAction.aKey, 24);
+  // let jump = new SingleTapMarkerLogic(DigitalAction.sKey, 25);
+
+
+  //For mario kart
+  // arrayOfInterfaces = [accelerate, decelerate, turnLeft, turnRight, superPower, jump];
+  arrayOfInterfaces = [superPower];
 
   //arrayOfInterfaces.push(dPadInterface);
   //arrayOfInterfaces.push(contSeq1)
-  arrayOfInterfaces.push(contSeq2)
+  // arrayOfInterfaces.push(contSeq2)
 
   for (let a of arrayOfInterfaces) {
       a.initialise()

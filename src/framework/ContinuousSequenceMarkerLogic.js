@@ -1,3 +1,6 @@
+/**
+ * Used to perform a repeated action
+ */
 class ContinuousSequenceMarkerLogic extends MarkerLogic {
 
 
@@ -30,8 +33,7 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
 
     }
 
-
-
+    
     initialise() {
         super.initialise();
 
@@ -40,22 +42,9 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
             this.markerArray.push(markerToPush)
         }
 
-        switch (this.action) {
-            case DigitalAction.scroll: 
+        if (this.action == DigitalAction.scroll) DigitalAction.scroll.value = this.value;
 
-                DigitalAction.scroll.value = this.value;
-                this.mapClockwiseAntiClockwiseFunctions(DigitalAction.scroll.sendScrollUp, DigitalAction.scroll.sendScrollDown);
-                
-                break;
-            case DigitalAction.zoom:
-
-                this.mapClockwiseAntiClockwiseFunctions(DigitalAction.zoom.sendZoomIn, DigitalAction.zoom.sendZoomOut);
-
-                break;
-            default:
-                break;
-        }
-
+        this.mapClockwiseAntiClockwiseFunctions(this.action.sendUp, this.sendDown);
 
     }
 

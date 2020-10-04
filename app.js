@@ -105,3 +105,56 @@ ipcMain.on("REDO", async (event,arg) => {
 })
 
 
+ipcMain.on("A_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.A)
+})
+ipcMain.on("A_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.A)
+})
+ipcMain.on("S_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.S)
+})
+ipcMain.on("S_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.S)
+})
+ipcMain.on("Z_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.Z)
+})
+ipcMain.on("Z_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.Z)
+})
+ipcMain.on("X_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.X)
+})
+ipcMain.on("X_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.X)
+})
+
+
+ipcMain.on("UP_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.Up)
+})
+ipcMain.on("UP_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.Up)
+})
+ipcMain.on("DOWN_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.Down)
+})
+ipcMain.on("DOWN_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.Down)
+})
+ipcMain.on("LEFT_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.Left)
+})
+ipcMain.on("LEFT_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.Left)
+})
+ipcMain.on("RIGHT_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.Right)
+})
+ipcMain.on("RIGHT_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.Right)
+})
+
+
+
