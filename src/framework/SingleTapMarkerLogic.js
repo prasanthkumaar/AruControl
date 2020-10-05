@@ -27,21 +27,6 @@ class SingleTapMarkerLogic extends MarkerLogic {
     }
 
     track() {
-      
-        // if (this.marker.present) {
-
-        //     if (this.count == 0) {
-
-        //         this.action.sendDown();
-        //         this.action.sendUp();
-
-        //     }
-
-        //     this.count++;
-            
-        // }
-
-        // if (this.count == this.BUTTON_RESTART) this.count=0
 
         if (this.marker.present) {
 
@@ -50,7 +35,7 @@ class SingleTapMarkerLogic extends MarkerLogic {
 
             
             if (!this.wasMarkerPresent) {
-                console.log('sending action!');
+                // console.log('sending action!');
                 this.wasMarkerPresent = true;
                 this.action.sendDown();
                 this.action.sendUp();

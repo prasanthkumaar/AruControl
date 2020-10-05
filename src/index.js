@@ -14,12 +14,15 @@ function mapInterfaceToActions() {
   //let contSeq1 = new ContinuousSequenceMarkerLogic(DigitalAction.scroll, true, 3, 4, 5, 100)
   // let contSeq2 = new ContinuousSequenceMarkerLogic(DigitalAction.zoom, true, [11, 15, 3, 7])
   
-  //let accelerate = new SingleHoldMarkerLogic(DigitalAction.zKey, 20);
-  //let decelerate = new SingleHoldMarkerLogic(DigitalAction.xKey, 21);
-  //let turnLeft = new SingleHoldMarkerLogic(DigitalAction.leftKey, 22);
-  // let turnRight = new SingleHoldMarkerLogic(DigitalAction.rightKey, 23);
-  let superPower = new SingleRepeatMarkerLogic(DigitalAction.aKey, 24);
-  // let jump = new SingleTapMarkerLogic(DigitalAction.sKey, 25);
+  let accelerate = new SingleHoldMarkerLogic(DigitalAction.zKey, 20);
+  let decelerate = new SingleHoldMarkerLogic(DigitalAction.xKey, 21);
+  let turnLeft = new SingleHoldMarkerLogic(DigitalAction.leftKey, 9);
+  let turnRight = new SingleHoldMarkerLogic(DigitalAction.rightKey, 14);
+  let superPower = new SingleTapMarkerLogic(DigitalAction.aKey, 0);
+  let jump = new SingleTapMarkerLogic(DigitalAction.sKey, 0);
+
+  // superPower = new ContinuousRotationMarkerLogic(DigitalAction.aKey, 0, true, 90, 30);
+
 
 
   //For mario kart

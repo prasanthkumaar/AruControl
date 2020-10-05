@@ -43,7 +43,6 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
         }
 
         if (this.action == DigitalAction.scroll) DigitalAction.scroll.value = this.value;
-
         this.mapClockwiseAntiClockwiseFunctions(this.action.sendUp, this.sendDown);
 
     }
@@ -69,7 +68,6 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
             let index = this.markerArray.indexOf(this.oldMarker)
             console.log('old marker number is '+ index)
 
-            //++
             let clockwiseIndex = index+1;
             let antiClockwiseIndex = index-1;
             let trueArrayLength = this.markerArray.length-1;
