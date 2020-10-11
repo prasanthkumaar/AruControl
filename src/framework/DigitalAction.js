@@ -77,6 +77,34 @@ let DigitalAction = {
 
     },
 
+    dKey: {
+        name: "'D' Key",
+
+        sendDown: () => {
+            ipcRenderer.send("D_KEY_DOWN")
+            console.log('D KEY DOWN')
+        },
+        sendUp: () => {
+            ipcRenderer.send("D_KEY_UP")
+            console.log('D KEY UP')
+        },
+
+    },
+
+    fKey: {
+        name: "'F' Key",
+
+        sendDown: () => {
+            ipcRenderer.send("F_KEY_DOWN")
+            console.log('F KEY DOWN')
+        },
+        sendUp: () => {
+            ipcRenderer.send("F_KEY_UP")
+            console.log('F KEY UP')
+        },
+
+    },
+
     zKey: {
         name: "'Z' Key",
 

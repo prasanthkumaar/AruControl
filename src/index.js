@@ -65,3 +65,46 @@ function update() {
 
 
 
+
+
+
+var keyCodes = [];
+
+function reset() {
+  keyCodes = [];
+  $("#in").val("");
+  $("#key-codes").html("var keyCodes = [ ];");
+  $("#key-names").html("var keyNames = [ ];");
+};
+
+window.addEventListener('keydown', addKey, false)
+
+function addKey(key) {
+  console.log(key.keyCode)
+  keyCodes.push(key.keyCode);
+  updateOutput();
+}
+function updateOutput() {
+  var kC = "var keyCodes = [ ";
+  var kN = "var keyNames = [ ";
+
+  var len = keyCodes.length;
+
+  for (var i = 0; i < len; i++) {
+    kC += keyCodes[i];
+    kN += "'"+keyboardMap[keyCodes[i]]+"'";
+    if (i !== (len - 1)) {
+      kC += ", ";
+      kN += ", ";
+    }
+  }
+
+  kC += " ];";
+  kN += " ];";
+
+  console.log(kC, kN)
+}
+
+
+
+
