@@ -33,7 +33,7 @@ class SingleHoldMarkerLogic extends MarkerLogic {
 
         //Marker logic runs every 15 frames to prevent clogging the system
 
-        if (this.count % 15 == 0) {
+        if (this.count % 30 == 0) {
             if (this.marker.present) {
                 
                 for (let a of this.actions) {

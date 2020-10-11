@@ -1,4 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+ 
+
 
 //The ipcMain module is an Event Emitter. When used in the main process, 
 //it handles asynchronous and synchronous messages sent from a renderer process (web page). 
@@ -71,31 +73,10 @@ const { keyboard, Key, mouse, left, right, up, down, screen } = require("@nut-tr
 // Attach listener in the main process with the given ID
 
 
-// ipcMain.on("ZOOM_IN", async (event,arg) => {
-//   keyboard.pressKey(Key.LeftControl)
-//   keyboard.pressKey(Key.Equal)
 
-//   keyboard.releaseKey(Key.LeftControl)
-//   keyboard.releaseKey(Key.Equal)
-// })
+ 
 
-// ipcMain.on("ZOOM_OUT", async (event,arg) => {
-//   keyboard.pressKey(Key.LeftControl)
-//   keyboard.pressKey(Key.Minus)
 
-//   keyboard.releaseKey(Key.LeftControl)
-//   keyboard.releaseKey(Key.Minus)
-// })
-
-// ipcMain.on("REDO", async (event,arg) => {
-//   keyboard.pressKey(Key.LeftControl)
-//   keyboard.pressKey(Key.LeftShift)
-//   keyboard.pressKey(Key.Z)
-
-//   keyboard.releaseKey(Key.LeftControl)
-//   keyboard.pressKey(Key.LeftShift)
-//   keyboard.releaseKey(Key.Z)
-// })
 
 ipcMain.on("LEFT_CONTROL_KEY_DOWN", async (event,arg) => {
   keyboard.pressKey(Key.LeftControl)

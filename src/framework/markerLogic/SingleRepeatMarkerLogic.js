@@ -9,9 +9,9 @@
 class SingleRepeatMarkerLogic extends MarkerLogic {
 
 
-    constructor(action, marker) {
-        super(action);
-        this.marker = getMarker(marker);
+    constructor(actions, markerId) {
+        super(actions);
+        this.marker = getMarker(markerId);
 
         this.count = 0;
         this.wasMarkerPresent = false;
@@ -32,11 +32,18 @@ class SingleRepeatMarkerLogic extends MarkerLogic {
         //Insert marker logic
         this.count++;
 
-        if (this.count % 30 == 0) {
+        if (this.count % 15 == 0) {
             if (this.marker.present) {
-                this.action.sendDown();
-                this.action.sendUp();
-                console.log(this.marker+ ' is present');
+
+                for (let a of this.actions) {
+                    a.sendDown();
+                } 
+
+                for (let a of this.actions) {
+                    a.sendUp();
+                } 
+                
+                //console.log(this.marker+ ' is present');
             }
         }
         

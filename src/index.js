@@ -1,3 +1,5 @@
+const loudness = require('loudness')
+
 
 let detectionIsOn = false;
 let arrayOfInterfaces = [];
@@ -5,7 +7,18 @@ let arrayOfInterfaces = [];
 
 // code written in here will be executed once when the page loads
 function setup() {
+
+  getVolume();
+
 }
+
+async function getVolume() {
+  //await loudness.setVolume(45)
+  const vol = await loudness.getVolume()
+  console.log(vol);
+}
+
+
 
 
 function mapInterfaceToActions() {
@@ -14,7 +27,8 @@ function mapInterfaceToActions() {
   let contRot = new ContinuousRotationMarkerLogic(shortcuts.zoomIn, shortcuts.zoomOut, 1, true, 45, 30);
   let contSeq = new ContinuousSequenceMarkerLogic([DigitalAction.aKey], [DigitalAction.sKey], true, [1, 2, 3, 4]);
   let singleHold = new SingleHoldMarkerLogic([DigitalAction.aKey], 1);
-  let singleTap = new SingleTapMarkerLogic([DigitalAction.zKey], 1);
+  let singleRepeat = new SingleRepeatMarkerLogic([DigitalAction.aKey], 1);
+  let singleTap = new SingleTapMarkerLogic(shortcuts.zoomIn, 1);
 
   arrayOfInterfaces = [singleHold];
 

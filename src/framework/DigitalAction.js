@@ -1,4 +1,5 @@
 const { keyboard, Key, mouse, left, right, up, down, screen } = require("@nut-tree/nut-js");
+
 const ipcRenderer = require('electron').ipcRenderer;
 
 let DigitalAction = {
@@ -19,35 +20,6 @@ let DigitalAction = {
 
     },
 
-    // undoRedo: {
-
-    //     name: 'UndoRedo',
-
-    //     sendDown: () => {
-    //         ipcRenderer.send("UNDO")
-    //         console.log('UNDO')
-    //     },
-    //     sendUp: () => {
-    //         ipcRenderer.send("REDO")
-    //         console.log('REDO')
-    //     }
-        
-    // },
-
-    // zoom: {
-
-    //     name: 'Zoom',
-
-    //     sendDown: () => {
-    //         ipcRenderer.send("ZOOM_IN")
-    //         console.log('ZOOM IN')
-    //     },
-    //     sendUp: () => {
-    //         ipcRenderer.send("ZOOM_OUT")
-    //         console.log('ZOOM OUT')
-    //     }
-
-    // },
 
     leftControlKey: {
         name: "'Left Control' Key",
