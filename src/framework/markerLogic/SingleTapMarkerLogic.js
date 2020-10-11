@@ -3,14 +3,15 @@
  * If marker is continually seen by camera, it does not repeat the action
  * Marker needs to be removed from view for at least 5 frames before it can pressed to activate the function again
  * 
- * markerId refers to marker id that is detected
- * action refers to the type of digital action to perform
+ * action - Main Actions Array
+ * markerIdArray - Id of the Marker to track
+ * 
  */
 class SingleTapMarkerLogic extends MarkerLogic {
 
 
-    constructor(action, markerId) {
-        super(action);
+    constructor(actions, markerId) {
+        super(actions);
         this.marker = getMarker(markerId);
         this.wasMarkerPresent = false;
 
@@ -37,15 +38,21 @@ class SingleTapMarkerLogic extends MarkerLogic {
             if (!this.wasMarkerPresent) {
                 // console.log('sending action!');
                 this.wasMarkerPresent = true;
-                this.action.sendDown();
-                this.action.sendUp();
+
+                for (let a of this.actions) {
+                    a.sendDown();
+                }
+
+                for (let a of this.actions) {
+                    a.sendUp();
+                }
             }
 
         } else {
 
             if (this.wasMarkerPresent) {
                 this.count++;
-                console.log(this.count);
+                //console.log(this.count);
             }
 
         }

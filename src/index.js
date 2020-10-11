@@ -2,36 +2,21 @@
 let detectionIsOn = false;
 let arrayOfInterfaces = [];
 
+
 // code written in here will be executed once when the page loads
 function setup() {
-
 }
+
 
 function mapInterfaceToActions() {
 
-  //UI portion
-  // let dPadInterface = new DPadLogic(DigitalAction.scroll);
-  //let contSeq1 = new ContinuousSequenceMarkerLogic(DigitalAction.scroll, true, 3, 4, 5, 100)
-  // let contSeq2 = new ContinuousSequenceMarkerLogic(DigitalAction.zoom, true, [11, 15, 3, 7])
-  
-  let accelerate = new SingleHoldMarkerLogic(DigitalAction.zKey, 20);
-  let decelerate = new SingleHoldMarkerLogic(DigitalAction.xKey, 21);
-  let turnLeft = new SingleHoldMarkerLogic(DigitalAction.leftKey, 9);
-  let turnRight = new SingleHoldMarkerLogic(DigitalAction.rightKey, 14);
-  let superPower = new SingleTapMarkerLogic(DigitalAction.aKey, 0);
-  let jump = new SingleTapMarkerLogic(DigitalAction.sKey, 0);
+  //UI portion  
+  let contRot = new ContinuousRotationMarkerLogic(shortcuts.zoomIn, shortcuts.zoomOut, 1, true, 45, 30);
+  let contSeq = new ContinuousSequenceMarkerLogic([DigitalAction.aKey], [DigitalAction.sKey], true, [1, 2, 3, 4]);
+  let singleHold = new SingleHoldMarkerLogic([DigitalAction.aKey], 1);
+  let singleTap = new SingleTapMarkerLogic([DigitalAction.zKey], 1);
 
-  // superPower = new ContinuousRotationMarkerLogic(DigitalAction.aKey, 0, true, 90, 30);
-
-
-
-  //For mario kart
-  // arrayOfInterfaces = [accelerate, decelerate, turnLeft, turnRight, superPower, jump];
-  arrayOfInterfaces = [superPower];
-
-  //arrayOfInterfaces.push(dPadInterface);
-  //arrayOfInterfaces.push(contSeq1)
-  // arrayOfInterfaces.push(contSeq2)
+  arrayOfInterfaces = [singleHold];
 
   for (let a of arrayOfInterfaces) {
       a.initialise()
@@ -71,16 +56,15 @@ function update() {
 var keyCodes = [];
 
 function reset() {
+
   keyCodes = [];
-  $("#in").val("");
-  $("#key-codes").html("var keyCodes = [ ];");
-  $("#key-names").html("var keyNames = [ ];");
+
 };
 
 window.addEventListener('keydown', addKey, false)
 
 function addKey(key) {
-  console.log(key.keyCode)
+  //console.log(key.keyCode)
   keyCodes.push(key.keyCode);
   updateOutput();
 }
@@ -92,7 +76,7 @@ function updateOutput() {
 
   for (var i = 0; i < len; i++) {
     kC += keyCodes[i];
-    kN += "'"+keyboardMap[keyCodes[i]]+"'";
+    kN += "'"+keycodeToDigitalAction[keyCodes[i]]+"'";
     if (i !== (len - 1)) {
       kC += ", ";
       kN += ", ";
@@ -102,7 +86,7 @@ function updateOutput() {
   kC += " ];";
   kN += " ];";
 
-  console.log(kC, kN)
+  //console.log(kC, kN)
 }
 
 

@@ -1,7 +1,7 @@
 // names of known key codes (0-255)
-//To delete later
+// let digitalAction = DigitalAction
 
-var keyboardMap = [
+var keycodeToDigitalAction = [
     "", // [0]
     "", // [1]
     "", // [2]
@@ -67,7 +67,7 @@ var keyboardMap = [
     "GREATER_THAN", // [62]
     "QUESTION_MARK", // [63]
     "AT", // [64]
-    "A", // [65]
+    DigitalAction.aKey, // [65]
     "B", // [66]
     "C", // [67]
     "D", // [68]
@@ -85,7 +85,7 @@ var keyboardMap = [
     "P", // [80]
     "Q", // [81]
     "R", // [82]
-    "S", // [83]
+    DigitalAction.sKey, // [83]
     "T", // [84]
     "U", // [85]
     "V", // [86]

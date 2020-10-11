@@ -19,34 +19,99 @@ let DigitalAction = {
 
     },
 
-    undoRedo: {
+    // undoRedo: {
 
-        name: 'UndoRedo',
+    //     name: 'UndoRedo',
+
+    //     sendDown: () => {
+    //         ipcRenderer.send("UNDO")
+    //         console.log('UNDO')
+    //     },
+    //     sendUp: () => {
+    //         ipcRenderer.send("REDO")
+    //         console.log('REDO')
+    //     }
+        
+    // },
+
+    // zoom: {
+
+    //     name: 'Zoom',
+
+    //     sendDown: () => {
+    //         ipcRenderer.send("ZOOM_IN")
+    //         console.log('ZOOM IN')
+    //     },
+    //     sendUp: () => {
+    //         ipcRenderer.send("ZOOM_OUT")
+    //         console.log('ZOOM OUT')
+    //     }
+
+    // },
+
+    leftControlKey: {
+        name: "'Left Control' Key",
 
         sendDown: () => {
-            ipcRenderer.send("UNDO")
-            console.log('UNDO')
+            ipcRenderer.send("LEFT_CONTROL_KEY_DOWN")
+            console.log('LEFT CONTROL KEY DOWN')
         },
         sendUp: () => {
-            ipcRenderer.send("REDO")
-            console.log('REDO')
-        }
-        
+            ipcRenderer.send("LEFT_CONTROL_KEY_UP")
+            console.log('LEFT CONTROL KEY UP')
+        },
     },
 
-    zoom: {
-
-        name: 'Zoom',
+    leftShiftKey: {
+        name: "'Left Shift' Key",
 
         sendDown: () => {
-            ipcRenderer.send("ZOOM_IN")
-            console.log('ZOOM IN')
+            ipcRenderer.send("LEFT_SHIFT_KEY_DOWN")
+            console.log('LEFT SHIFT KEY DOWN')
         },
         sendUp: () => {
-            ipcRenderer.send("ZOOM_OUT")
-            console.log('ZOOM OUT')
-        }
+            ipcRenderer.send("LEFT_SHIFT_KEY_UP")
+            console.log('LEFT SHIFT KEY UP')
+        },
+    },
 
+    rightControlKey: {
+        name: "'Right Control' Key",
+
+        sendDown: () => {
+            ipcRenderer.send("RIGHT_CONTROL_KEY_DOWN")
+            console.log('RIGHT CONTROL KEY DOWN')
+        },
+        sendUp: () => {
+            ipcRenderer.send("RIGHT_CONTROL_KEY_UP")
+            console.log('RIGHT CONTROL KEY UP')
+        },
+    },
+
+    equalKey: {
+        name: "'Equal' Key",
+
+        sendDown: () => {
+            ipcRenderer.send("EQUAL_KEY_DOWN")
+            console.log('EQUAL KEY DOWN')
+        },
+        sendUp: () => {
+            ipcRenderer.send("EQUAL_KEY_UP")
+            console.log('EQUAL KEY UP')
+        },
+    },
+
+    minusKey: {
+        name: "'Minus' Key",
+
+        sendDown: () => {
+            ipcRenderer.send("MINUS_KEY_DOWN")
+            console.log('MINUS KEY DOWN')
+        },
+        sendUp: () => {
+            ipcRenderer.send("MINUS_KEY_UP")
+            console.log('MINUS KEY UP')
+        },
     },
 
     aKey: {

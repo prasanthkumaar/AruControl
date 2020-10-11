@@ -1,11 +1,19 @@
 /**
- * Used to perform a repeated action
+ * Used to perform a repeated action when an adjacent marker is detected
+ * 
+ * action - Main Actions Array
+ * reverseActopms - Reverse Actions Array
+ * isDominant - True / False value toggles the forward or backward action
+ * markerIdArray - Id of the Markers to track (min 3)
+ * value - If scroll is chosen, how much to scroll by
+ * 
  */
 class ContinuousSequenceMarkerLogic extends MarkerLogic {
 
 
-    constructor(action, isDominant, markerIdArray, value) {
+    constructor(action, reverseActions, isDominant, markerIdArray, value) {
         super(action);
+        this.reverseActions = reverseActions;
         this.isDominant = isDominant;
         this.value = value;
 
@@ -33,9 +41,38 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
 
     }
 
+
+    function1() {
+        for (let a of this.actions) {
+            a.sendDown();
+        }
+        for (let a of this.actions) {
+            a.sendUp();
+        }
+    }
+
+    function2() {
+        for (let a of this.reverseActions) {
+            a.sendDown();
+        }
+        for (let a of this.reverseActions) {
+            a.sendUp();
+        }
+    }
+
+
     
     initialise() {
-        super.initialise();
+        let initialiseMsg = "Initialising " + this.constructor.name + " Interface with "
+        for (let a of this.actions) {
+            initialiseMsg += a.name
+        }
+        initialiseMsg += " and "
+        for (let a of this.reverseActions) {
+            initialiseMsg += a.name
+        }
+        console.log(initialiseMsg)
+
 
         for (let m of this.markerIdArray) {
             let markerToPush = getMarker(m)
@@ -43,7 +80,8 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
         }
 
         if (this.action == DigitalAction.scroll) DigitalAction.scroll.value = this.value;
-        this.mapClockwiseAntiClockwiseFunctions(this.action.sendUp, this.sendDown);
+        this.mapClockwiseAntiClockwiseFunctions();
+
 
     }
 
@@ -54,11 +92,11 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
             for(let m of this.markerArray) {
                 if (m.present) {
                     this.firstMarkerSeen = true
-                    console.log(m + ' is seen')
+                    //console.log(m + ' is seen')
                     this.oldMarker = m
                     break
                 } else {
-                    console.log('markers are not seen')
+                    //console.log('markers are not seen')
                 }
             }
 
@@ -66,7 +104,7 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
 
             //Check index 
             let index = this.markerArray.indexOf(this.oldMarker)
-            console.log('old marker number is '+ index)
+            //console.log('old marker number is '+ index)
 
             let clockwiseIndex = index+1;
             let antiClockwiseIndex = index-1;
@@ -80,12 +118,12 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
 
             if (clockwiseMarker.present) {
                 this.clockwiseAction();
-                console.log('clockwise action');
+                //console.log('clockwise action');
                 this.oldMarker = clockwiseMarker;
 
             } else if (antiClockwiseMarker.present) {
                 this.antiClockwiseAction();
-                console.log('anticlockwise action');
+                //console.log('anticlockwise action');
 
                 this.oldMarker = antiClockwiseMarker;
             } //else console.log('adj markers are not present')
@@ -94,17 +132,18 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
         
     }
 
-    mapClockwiseAntiClockwiseFunctions(function1, function2) {
+    mapClockwiseAntiClockwiseFunctions() {
 
         if (this.isDominant) {
-            this.clockwiseAction = function1;
-            this.antiClockwiseAction = function2;
+            this.clockwiseAction = this.function1;
+            this.antiClockwiseAction = this.function2;
         }
         else {
-            this.clockwiseAction = function2;
-            this.antiClockwiseAction = function1;
+            this.clockwiseAction = this.function2;
+            this.antiClockwiseAction = this.function1;
         }
     };
+
 
 
 

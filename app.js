@@ -70,38 +70,59 @@ app.on('activate', () => {
 const { keyboard, Key, mouse, left, right, up, down, screen } = require("@nut-tree/nut-js");
 // Attach listener in the main process with the given ID
 
-ipcMain.on("ZOOM_IN", async (event,arg) => {
-  keyboard.pressKey(Key.LeftControl)
-  keyboard.pressKey(Key.Equal)
 
+// ipcMain.on("ZOOM_IN", async (event,arg) => {
+//   keyboard.pressKey(Key.LeftControl)
+//   keyboard.pressKey(Key.Equal)
+
+//   keyboard.releaseKey(Key.LeftControl)
+//   keyboard.releaseKey(Key.Equal)
+// })
+
+// ipcMain.on("ZOOM_OUT", async (event,arg) => {
+//   keyboard.pressKey(Key.LeftControl)
+//   keyboard.pressKey(Key.Minus)
+
+//   keyboard.releaseKey(Key.LeftControl)
+//   keyboard.releaseKey(Key.Minus)
+// })
+
+// ipcMain.on("REDO", async (event,arg) => {
+//   keyboard.pressKey(Key.LeftControl)
+//   keyboard.pressKey(Key.LeftShift)
+//   keyboard.pressKey(Key.Z)
+
+//   keyboard.releaseKey(Key.LeftControl)
+//   keyboard.pressKey(Key.LeftShift)
+//   keyboard.releaseKey(Key.Z)
+// })
+
+ipcMain.on("LEFT_CONTROL_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.LeftControl)
+})
+ipcMain.on("LEFT_CONTROL_KEY_UP", async (event,arg) => {
   keyboard.releaseKey(Key.LeftControl)
+})
+
+ipcMain.on("LEFT_SHIFT_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.LeftShift)
+})
+ipcMain.on("LEFT_SHIFT_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.LeftShift)
+})
+
+ipcMain.on("EQUAL_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.Equal)
+})
+ipcMain.on("EQUAL_KEY_UP", async (event,arg) => {
   keyboard.releaseKey(Key.Equal)
 })
 
-ipcMain.on("ZOOM_OUT", async (event,arg) => {
-  keyboard.pressKey(Key.LeftControl)
+ipcMain.on("MINUS_KEY_DOWN", async (event,arg) => {
   keyboard.pressKey(Key.Minus)
-
-  keyboard.releaseKey(Key.LeftControl)
+})
+ipcMain.on("MINUS_KEY_UP", async (event,arg) => {
   keyboard.releaseKey(Key.Minus)
-})
-
-ipcMain.on("UNDO", async (event,arg) => {
-  keyboard.pressKey(Key.LeftControl)
-  keyboard.pressKey(Key.Z)
-
-  keyboard.releaseKey(Key.LeftControl)
-  keyboard.releaseKey(Key.Z)
-})
-
-ipcMain.on("REDO", async (event,arg) => {
-  keyboard.pressKey(Key.LeftControl)
-  keyboard.pressKey(Key.LeftShift)
-  keyboard.pressKey(Key.Z)
-
-  keyboard.releaseKey(Key.LeftControl)
-  keyboard.pressKey(Key.LeftShift)
-  keyboard.releaseKey(Key.Z)
 })
 
 

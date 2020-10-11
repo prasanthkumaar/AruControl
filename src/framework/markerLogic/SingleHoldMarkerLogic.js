@@ -2,14 +2,14 @@
  * Used for holding key presses when marker is detected by camera.
  * Key press is released when marker is no longer detected by camera.
  * 
- * markerId refers to marker id that is detected
- * action refers to the type of digital action to perform
+ * action - Main Actions Array
+ * markerIdArray - Id of the Marker to track
  */
 class SingleHoldMarkerLogic extends MarkerLogic {
 
 
-    constructor(action, markerId) {
-        super(action)
+    constructor(actions, markerId) {
+        super(actions)
         this.marker = getMarker(markerId)
         this.BUTTON_TIMEOUT = 300;
         this.count = 0;
@@ -33,15 +33,22 @@ class SingleHoldMarkerLogic extends MarkerLogic {
 
         //Marker logic runs every 15 frames to prevent clogging the system
 
-        if (this.count % 30 == 0) {
+        if (this.count % 15 == 0) {
             if (this.marker.present) {
-                this.action.sendDown();
-                console.log(this.marker+ ' is present'+Date.now());
+                
+                for (let a of this.actions) {
+                    a.sendDown();
+                }
+
+                //console.log(this.marker+ ' is present'+Date.now());
                 this.wasKeyPressed = true;
             } else {
                 if (this.wasKeyPressed == true) {
-                    this.action.sendUp();
-                    console.log(this.marker+ ' is NO LONGER present'+Date.now());
+
+                    for (let a of this.actions) {
+                        a.sendUp();
+                    }
+                    //console.log(this.marker+ ' is NO LONGER present'+Date.now());
                     this.wasKeyPressed = false;
                 }
             }
