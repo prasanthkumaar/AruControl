@@ -10,6 +10,10 @@ let shortcuts = {
 
     zoomIn: [DigitalAction.leftControlKey, DigitalAction.equalKey],
 
-    zoomOut: [DigitalAction.leftControlKey, DigitalAction.minusKey]
+    zoomOut: [DigitalAction.leftControlKey, DigitalAction.minusKey],
+
+    scrubRight: [DigitalAction.leftControlKey, DigitalAction.rightKey],
+
+    scrubLeft: [DigitalAction.leftControlKey, DigitalAction.leftKey]
 
 }

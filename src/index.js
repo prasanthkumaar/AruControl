@@ -8,7 +8,7 @@ let arrayOfInterfaces = [];
 // code written in here will be executed once when the page loads
 function setup() {
 
-  getVolume();
+  //getVolume();
 
 }
 
@@ -23,14 +23,31 @@ async function getVolume() {
 
 function mapInterfaceToActions() {
 
-  //UI portion  
-  let contRot = new ContinuousRotationMarkerLogic(shortcuts.zoomIn, shortcuts.zoomOut, 1, true, 45, 30);
-  let contSeq = new ContinuousSequenceMarkerLogic([DigitalAction.aKey], [DigitalAction.sKey], true, [1, 2, 3, 4]);
-  let singleHold = new SingleHoldMarkerLogic([DigitalAction.aKey], 1);
-  let singleRepeat = new SingleRepeatMarkerLogic([DigitalAction.aKey], 1);
-  let singleTap = new SingleTapMarkerLogic(shortcuts.zoomIn, 1);
+  console.log('yo');
 
-  arrayOfInterfaces = [singleHold];
+  //Test
+  // let contRot = new ContinuousRotationMarkerLogic(shortcuts.zoomIn, shortcuts.zoomOut, 1, true, 45, 30);
+  // let contSeq = new ContinuousSequenceMarkerLogic([DigitalAction.aKey], [DigitalAction.sKey], true, [1, 2, 3, 4]);
+  // let singleHold = new SingleHoldMarkerLogic([DigitalAction.aKey], 1);
+  // let singleRepeat = new SingleRepeatMarkerLogic([DigitalAction.aKey], 1);
+  // let singleTap = new SingleTapMarkerLogic(shortcuts.zoomIn, 1);
+
+  //OSU!
+  let dHold = new SingleHoldMarkerLogic([DigitalAction.dKey], 8);
+  let fHold = new SingleHoldMarkerLogic([DigitalAction.fKey], 12);
+  let jHold = new SingleHoldMarkerLogic([DigitalAction.jKey], 20);
+  let kHold = new SingleHoldMarkerLogic([DigitalAction.kKey], 4);
+  arrayOfInterfaces = [dHold, fHold, jHold, kHold];
+
+  //AE
+  // let pageDown = new SingleTapMarkerLogic([DigitalAction.pageDownKey], 5);
+  // let pageUp = new SingleTapMarkerLogic([DigitalAction.pageUpKey], 1);
+  // let f9 = new SingleTapMarkerLogic([DigitalAction.f9Key], 23);
+  // let undoRedo = new ContinuousSequenceMarkerLogic(shortcuts.undo, shortcuts.redo, true, [18, 16, 17]);
+  // let zoom = new ContinuousRotationMarkerLogic(shortcuts.zoomIn, shortcuts.zoomOut, 3, true, 45);
+  // let scrub = new ContinuousSequenceMarkerLogic(shortcuts.scrubRight, shortcuts.scrubLeft, true, [11, 7]);
+  // arrayOfInterfaces = [pageDown, pageUp, undoRedo, zoom, scrub];
+
 
   for (let a of arrayOfInterfaces) {
       a.initialise()
@@ -53,12 +70,13 @@ function startDetection() {
 // code written in here will be executed every frame
 function update() {
 
-  if (detectionIsOn) {
-    for (let a of arrayOfInterfaces) {
-        a.track();
-    }
+    if (detectionIsOn) {
+      for (let a of arrayOfInterfaces) {
+          a.track();
+      }
 
-  }
+    }
+  
 
 }
 

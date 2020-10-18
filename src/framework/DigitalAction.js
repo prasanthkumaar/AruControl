@@ -21,6 +21,21 @@ let DigitalAction = {
     },
 
 
+    f9key: {
+
+        name: "'F9' Key",
+
+        sendDown: () => {
+            ipcRenderer.send("F9_KEY_DOWN")
+            console.log('F9 KEY DOWN')
+        },
+        sendUp: () => {
+            ipcRenderer.send("F9_KEY_UP")
+            console.log('F9 KEY UP')
+        },
+    },
+
+
     leftControlKey: {
         name: "'Left Control' Key",
 
@@ -142,6 +157,62 @@ let DigitalAction = {
 
     },
 
+    dKey: {
+        name: "'D' Key",
+
+        sendDown: () => {
+            ipcRenderer.send("D_KEY_DOWN")
+            console.log('D KEY DOWN')
+        },
+        sendUp: () => {
+            ipcRenderer.send("D_KEY_UP")
+            console.log('D KEY UP')
+        },
+
+    },
+
+    fKey: {
+        name: "'F' Key",
+
+        sendDown: () => {
+            ipcRenderer.send("F_KEY_DOWN")
+            console.log('F KEY DOWN')
+        },
+        sendUp: () => {
+            ipcRenderer.send("F_KEY_UP")
+            console.log('F KEY UP')
+        },
+
+    },    
+    
+    jKey: {
+        name: "'J' Key",
+
+        sendDown: () => {
+            ipcRenderer.send("J_KEY_DOWN")
+            console.log('J KEY DOWN')
+        },
+        sendUp: () => {
+            ipcRenderer.send("J_KEY_UP")
+            console.log('J KEY UP')
+        },
+
+    },
+
+    kKey: {
+        name: "'K' Key",
+
+        sendDown: () => {
+            ipcRenderer.send("K_KEY_DOWN")
+            // console.log('K KEY DOWN')
+        },
+        sendUp: () => {
+            ipcRenderer.send("K_KEY_UP")
+            // console.log('K KEY UP')
+        },
+
+    },
+
     zKey: {
         name: "'Z' Key",
 
@@ -225,6 +296,33 @@ let DigitalAction = {
             console.log('RIGHT KEY UP')
         },
 
+    },
+
+
+    pageDownKey: {
+        name: "'Page Down' Key",
+
+        sendDown: () => {
+            ipcRenderer.send("PAGE_DOWN_KEY_DOWN")
+            console.log('PAGE DOWN KEY DOWN')
+        },
+        sendUp: () => {
+            ipcRenderer.send("PAGE_DOWN_KEY_UP")
+            console.log('PAgE DOWN KEY UP')
+        },
+    },
+
+    pageUpKey: {
+        name: "'Page Up' Key",
+
+        sendDown: () => {
+            ipcRenderer.send("PAGE_UP_KEY_DOWN")
+            console.log('PAGE UP KEY DOWN')
+        },
+        sendUp: () => {
+            ipcRenderer.send("PAGE_UP_KEY_UP")
+            console.log('PAgE UP KEY UP')
+        },
     },
 
 

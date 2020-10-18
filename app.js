@@ -69,12 +69,17 @@ app.on('activate', () => {
 });
 
 // Example code for sending messages here from the main process
-const { keyboard, Key, mouse, left, right, up, down, screen } = require("@nut-tree/nut-js");
+const {keyboard, Key, mouse, left, right, up, down, screen} = require("@nut-tree/nut-js");
+
 // Attach listener in the main process with the given ID
+keyboard.config.autoDelayMs = 1;
 
-
-
- 
+ipcMain.on("F9_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.F9)
+})
+ipcMain.on("F9_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.F9)
+})
 
 
 
@@ -119,6 +124,36 @@ ipcMain.on("S_KEY_DOWN", async (event,arg) => {
 ipcMain.on("S_KEY_UP", async (event,arg) => {
   keyboard.releaseKey(Key.S)
 })
+
+ipcMain.on("D_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.D)
+})
+ipcMain.on("D_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.D)
+})
+ipcMain.on("F_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.F)
+})
+ipcMain.on("F_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.F)
+})
+
+ipcMain.on("J_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.J)
+})
+ipcMain.on("J_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.J)
+})
+ipcMain.on("K_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.K)
+  console.log(keyboard.config)
+})
+ipcMain.on("K_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.K)
+})
+
+
+
 ipcMain.on("Z_KEY_DOWN", async (event,arg) => {
   keyboard.pressKey(Key.Z)
 })
@@ -159,4 +194,16 @@ ipcMain.on("RIGHT_KEY_UP", async (event,arg) => {
 })
 
 
+ipcMain.on("PAGE_DOWN_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.PageDown)
+})
+ipcMain.on("PAGE_DOWN_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.PageDown)
+})
 
+ipcMain.on("PAGE_UP_KEY_DOWN", async (event,arg) => {
+  keyboard.pressKey(Key.PageUp)
+})
+ipcMain.on("PAGE_UP_KEY_UP", async (event,arg) => {
+  keyboard.releaseKey(Key.PageUp)
+})
