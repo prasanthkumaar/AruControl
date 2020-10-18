@@ -9,6 +9,12 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
 
+const startPage = '/src/startPage.html'
+const cameraPage = '/src/cameraPage.html'
+
+let loadingPage = startPage
+
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -31,7 +37,7 @@ function createWindow() {
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, '/src/index.html'),
+    pathname: path.join(__dirname, loadingPage),
     protocol: 'file:',
     slashes: true,
   }));
@@ -68,9 +74,18 @@ app.on('activate', () => {
   }
 });
 
+ipcMain.on('load-page', (event, arg) => {
+  mainWindow.loadURL(url.format({
+    pathname: path.join(__dirname, arg),
+    protocol: 'file:',
+    slashes: true,
+  }));
+});
+
 // Example code for sending messages here from the main process
 const { keyboard, Key, mouse, left, right, up, down, screen } = require("@nut-tree/nut-js");
 
+// In keyboard.class.js, I have set the keyboard delay to 0 Ms
 // Attach listener in the main process with the given ID
 keyboard.config.autoDelayMs = 1;
 

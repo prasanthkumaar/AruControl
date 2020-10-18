@@ -22,9 +22,6 @@ async function getVolume() {
 
 
 function mapInterfaceToActions() {
-
-  console.log('yo');
-
   //Test
   // let contRot = new ContinuousRotationMarkerLogic(shortcuts.zoomIn, shortcuts.zoomOut, 1, true, 45, 30);
   // let contSeq = new ContinuousSequenceMarkerLogic([DigitalAction.aKey], [DigitalAction.sKey], true, [1, 2, 3, 4]);
@@ -37,6 +34,7 @@ function mapInterfaceToActions() {
   let fHold = new SingleHoldMarkerLogic([DigitalAction.fKey], 12);
   let jHold = new SingleHoldMarkerLogic([DigitalAction.jKey], 20);
   let kHold = new SingleHoldMarkerLogic([DigitalAction.kKey], 4);
+
   arrayOfInterfaces = [dHold, fHold, jHold, kHold];
 
   //AE
@@ -79,10 +77,6 @@ function update() {
   
 
 }
-
-
-
-
 
 
 var keyCodes = [];

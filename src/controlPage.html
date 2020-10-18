@@ -1,0 +1,126 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>AruControl</title>
+  <meta name="description" content="AruControl">
+  <meta name="author" content="Pras, Carina, Yuan Jie">
+ 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/4c364dc0ec.js" crossorigin="anonymous"></script>
+  <script src="./gsap/minified/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reefjs/dist/reef.min.js"></script>
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="../styles/keyboard.css">
+
+  
+  <script src="./bvselect/bvselect.js"></script>
+  <link rel="stylesheet" href="./bvselect/bvselect.css">
+
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+
+</head>
+
+<body class="main-body">
+    <div class="overlay" style="display: none">
+        <div class="custom-shortcut-menu" id="custom-shortcut-menu">
+            <!-- <div class="custom-shortcut-menu-title">
+                <div class="module-title"><h4>Create Custom Shortcut</h4></div>
+                <button class="clear-button module-cross" button-data="delete-module" id="delete=module">
+                    <span class="fas fa-times fa-1x icon" style="color: black;"></span>
+                </button>
+            </div>
+            <div class="custom-shortcut-menu-content">
+                <div class="custom-shortcut-menu-gif">gif here</div>
+                <div class="custom-shortcut-menu-form">
+                    <ul>
+                        <li><h4>Enter Keyboard Shortcut</h4></li>
+                        <li><a>Clockwise Direction</a></li>
+                        <li>
+                            <div><input id="" class="secondary-input h4" type="text" value="eg. ctrl + c"></input></div>
+                        </li>
+                        <li><a>Anti Clockwise Direction</a></li>
+                        <li>
+                            <div><input id="" class="secondary-input h4" type="text" value="eg. ctrl + c"></input></div>
+                        </li>
+                        <li><div><button button-data="save-custom-shortcut" class="main-button">Save</button></div></li>
+                        </ul>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="contain">
+        <div class="main-header" id="main-header">
+            <div class="logo top-left"><h2>AruControls</h2></div>
+            <div class="top-right" id="browse-templates">
+            </div>
+            <div class="bottom-left">
+                    <input id="titleField" class="input h1" type="text" value="Blender Template" onkeypress="this.style.width = ((this.value.length + 1) * 17) + 'px';">
+                        <button button-data="set-name"class="main-button"><span  class="fas fa-pencil-alt fa-1x icon"></span></button>
+                    </input>
+            </div>
+            <div class="bottom-right" id="add-module">
+                <button id="main-header-add-module" class="main-button" onclick="AddModuleDropdown()">Add Module</button>
+                <div class="module-select" id="module-select-dropdown">
+                    <ul>
+                        <li id="module-select-dropdown-0"></li>
+                        <li id="module-select-dropdown-1"></li>
+                        <li id="module-select-dropdown-2"></li>
+                        <li id="module-select-dropdown-3"></li>
+                        <li id="module-select-dropdown-4"></li>
+                        <li id="module-select-dropdown-5"></li>
+                        <!-- Invididual Modules Buttons-->
+                        <!--<li style="background-image: url(./img/preview.jpg)">
+                        <button class="full-button clear-button" button-data="add-module">
+                            <span><i class="fas fa-plus"></i></span>
+                        </button>
+                        </li>-->
+                        <!-- Individual Modules End-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <!-- Repeat Module Array -->
+
+        <div class="main-content main-module" id="main-module-container">
+            <div id="content-module-0"></div>
+            <div id="content-module-1"></div>
+            <div id="content-module-2"></div>
+            <div id="content-module-3"></div>
+            <div id="content-module-4"></div>
+            <div id="content-module-5"></div>
+                
+            <!-- Individual Modules -->
+                <!--<div class="content-module">
+                    <div class="content-module-img" style="background-image: url('./img/preview.jpg');">
+                            <div class="module-title"><h4>Button</h4></div>
+                            <button class="module-cross" button-data="delete-module" id="delete=module-${props.newNumber}">
+                                <span class="fas fa-times fa-1x icon" style="color: black;"></span>
+                            </button>
+                    </div>
+                    <div class="content-module-bottom">
+                        <div>
+                        <select module-number="${props.newNumber}" select-data="digital-action" class="custom-select" id="module-type-${props.newNumber}">
+                        </select>
+                        </div>
+                        <button class="clear-button">
+                            <span class="fas fa-ellipsis-v fa-1x icon fa-rotate-90" style="font-size: 15px; color: white;"></span>
+                        </button>
+                    </div>-->
+            <!-- end of individual module -->
+                </div>
+            <div id="bottom-content"></div>
+        <div id="main-footer" class="main-gap main-footer">
+            <button id="confirm-module" class="main-button" onclick="confirmModulesButton()">Confirm Modules</button>
+        </div>
+    </div>
+    </div>
+
+    <script src="./anim/anim.js"></script>
+    <script src="./controlPage.js"></script>
+    <script src="./reef/reefme.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+.main-keyboard-layout {
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:  "a b c";
+    grid-gap: 20px;
+    height: 200px;
+}
+
+.keyboard-base {
+    grid-area: a;
+    width: 100%;
+    position: relative;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(30, 15px);
+    grid-template-rows: repeat(5, 30px);
+    grid-gap: 5px;
+}
+
+.keyboard-base-right {
+    grid-area: b;
+    position: relative;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 5px;
+    grid-template-areas: "top" "bottom";
+}
+
+.keyboard-base-right-top {
+    grid-area: top;
+    width:  100%;
+    position: relative;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(6, 15px);
+    grid-template-rows: repeat(4, 30px);
+    grid-gap: 5px;
+}
+
+.keyboard-base-right-bottom {
+    grid-area: bottom;
+    width:  100%;
+    position: relative;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(6, 15px);
+    grid-template-rows: repeat(4, 30px);
+    grid-gap: 5px;
+}
+
+
+.keyboard-base-keypad {
+    grid-area: c;
+    width:  100%;
+    position: relative;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(8, 15px);
+    grid-template-rows: repeat(5, 30px);
+    grid-gap: 5px;
+}
+
+.key {
+    background-color: #E4E8F0;
+    border-radius: 5px;
+    grid-column: span 2;
+    font-size: 10px;
+    text-align: center;
+    padding-top: 10px;
+    color: #222431;
+}
+
+.key:hover {
+    border: 2px solid #3EE1D0;
+}
+
+.fake {
+    visibility: hidden;
+}
+
+.long {
+    grid-row: span 2;
+}
+
+.delete {
+    grid-column: span 4;
+}
+
+.tab {
+    grid-column: span 3;
+}
+
+.backslash {
+    grid-column: span 3;
+}
+
+.capslock {
+    grid-column: span 4;
+}
+
+.return {
+    grid-column: span 4;
+}
+
+.leftshift {
+    grid-column: span 5;
+}
+
+.rightshift {
+    grid-column: span 5;
+}
+
+.leftctrl {
+    grid-column: span 3;
+}
+
+.command {
+    grid-column: span 3;
+    font-size: 10px;
+}
+
+.space {
+    grid-column: span 13;
+}

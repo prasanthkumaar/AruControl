@@ -15,6 +15,8 @@ class SingleTapMarkerLogic extends MarkerLogic {
         this.marker = getMarker(markerId);
         this.wasMarkerPresent = false;
 
+        this.newVariable = 0
+
         this.count = 0;
         this.BUTTON_RESTART = 5;
 
@@ -28,6 +30,7 @@ class SingleTapMarkerLogic extends MarkerLogic {
     }
 
     track() {
+
 
         if (this.marker.present) {
 
