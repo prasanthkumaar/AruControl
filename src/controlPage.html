@@ -14,11 +14,11 @@
   <script src="https://cdn.jsdelivr.net/npm/reefjs/dist/reef.min.js"></script>
   <link rel="stylesheet" href="../styles/style.css">
   <link rel="stylesheet" href="../styles/keyboard.css">
-
+  <script src="./physical-modules/physicalModules.js"></script>
   <script src="./framework/DigitalAction.js"></script>
   <script src="./framework/shortcuts.js"></script>
 
-  <script src="./framework/keyboardMap.js"></script>
+  <script src="./framework/keycodeToString.js"></script>
   <script src="./framework/keycodeToDigitalAction.js"></script>
 
   
@@ -30,6 +30,9 @@
   <script src="./framework/markerLogic/SingleRepeatMarkerLogic.js"></script> 
   <script src="./framework/markerLogic/SingleTapMarkerLogic.js"></script> 
   
+  <script src="./cameraPage.js"></script> 
+
+
   <script src="./bvselect/bvselect.js"></script>
   <link rel="stylesheet" href="./bvselect/bvselect.css">
 
@@ -73,11 +76,11 @@
             </div>
             <div class="bottom-left">
                     <input id="titleField" class="input h1" type="text" value="Blender Template" onkeypress="this.style.width = ((this.value.length + 1) * 17) + 'px';">
-                        <button button-data="set-name"class="main-button"><span  class="fas fa-pencil-alt fa-1x icon"></span></button>
+                        <!-- <button button-data="set-name"class="main-button"><span  class="fas fa-pencil-alt fa-1x icon"></span></button> -->
                     </input>
             </div>
             <div class="bottom-right" id="add-module">
-                <button id="main-header-add-module" class="main-button" onclick="AddModuleDropdown()">Add Module</button>
+                <button id="main-header-add-module" class="main-button" onclick="showModulesList()">Add Module</button>
                 <div class="module-select" id="module-select-dropdown">
                     <ul>
                         <li id="module-select-dropdown-0"></li>

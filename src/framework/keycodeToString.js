@@ -1,7 +1,7 @@
 // names of known key codes (0-255)
 //To delete later
 
-var keyboardMap = [
+var keycodeToString = [
     "", // [0]
     "", // [1]
     "", // [2]

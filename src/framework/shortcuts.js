@@ -4,6 +4,11 @@
 
 let shortcuts = {
 
+    HoldA: {
+        name: 'Hold A',
+        action: [DigitalAction.aKey]
+        },
+
     undoRedo: {
         name: 'Undo & Redo',
         undoAction: [DigitalAction.leftControlKey, DigitalAction.zKey],
