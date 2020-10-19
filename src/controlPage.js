@@ -1,4 +1,3 @@
-const ipcRenderer = require('electron').ipcRenderer;
 const cameraPage = '/src/cameraPage.html'
 
 function confirmModulesButton() {
@@ -8,46 +7,46 @@ function confirmModulesButton() {
     ipcRenderer.send('load-page', cameraPage);
 } 
 
+
+
+
+
 /** BV Dropdown Menu */
 
+//Rewrite this part to enums? arrays of physical modules objects?
 var physicalModule = [
-    'Button',
-    'Launchpad',
-    'UFO',
-    'MOMOMO',
-    "fivefucks",
+    'ButtonTap',
+    'Button (Hold)',
+    'Toggle',
+    'Dial',
+    'Knob',
+    'Scroll',
+    'Slider',
 ];
 
-console.log(physicalModule)
-
 let moduleType;
-let digitalAction = [];
+let shortcutList = [];
 
-let findDigitalAction = (i) => {      
+function findshortcutList(i) {      
     switch (i) {
 
-        case "Button":
-            digitalAction = [
-                "Click",
-                "Rotate",
-                "Explode"
+        case 'ButtonTap':
+            shortcutList = [
+                
                 ]
         break;
 
-        case "Launchpad":
-            digitalAction = [
-                "Arrow Keys",
-                "dasdssa",
-                "Expldsadd"
+        case 'Button (Hold)':
+            shortcutList = [
+
                 ]
         break;
 
-        case "UFO":
-            digitalAction = [
-                "there are",
-                "aliens",
-                "here"
+        case 'Toggle':
+            shortcutList = [
+                shortcuts.undoRedo.name,
             ]
+            
         break;
 
         default: console.log('unknown module')
@@ -58,10 +57,10 @@ let findDigitalAction = (i) => {
 
 let customForm = [];
 
-let findDetectionLogic = (i) => {      
+function findDetectionLogic(i) {      
     switch (i) {
 
-        case "Launchpad":
+        case "Button (Tap)":
             customForm = [
                 "Clockwise Directiondsdsada",
                 "Anti-Clockwise Directiosdasdasn"
@@ -88,10 +87,10 @@ let findDetectionLogic = (i) => {
     }
 }
 
-var makeNewBV = (e, i) => {
+function makeNewBV(e, i) {
     
-    findDigitalAction(i)
-    console.log(digitalAction)
+    findshortcutList(i)
+    console.log(shortcutList)
 
     let selectModuleType = new BVSelect({
       selector: "#module-type-" + e,
@@ -106,16 +105,16 @@ var makeNewBV = (e, i) => {
         selectModuleType.Change({
             options : {
                 0: {
-                    inner_text: digitalAction[0],
-                    value: digitalAction[0],
+                    inner_text: shortcutList[0],
+                    value: shortcutList[0],
                 },
                 1: {
-                    inner_text: digitalAction[1],
-                    value: digitalAction[1],
+                    inner_text: shortcutList[1],
+                    value: shortcutList[1],
                 },
                 2: {
-                    inner_text: digitalAction[2],
-                    value: digitalAction[2],
+                    inner_text: shortcutList[2],
+                    value: shortcutList[2],
                 },
                 3: {
                     inner_text: "Custom Shortcut",
@@ -136,7 +135,7 @@ var makeNewBV = (e, i) => {
 
 
 
-let frontScreenSelect = () => {
+function frontScreenSelect() {
 
     let frontSelect = new BVSelect({
       selector: "#main-title-select",
@@ -184,7 +183,7 @@ let frontScreenSelect = () => {
 let AddModuleDropdownClicked = false;
 let customMenuDropdownClicked = false;
 
-let AddModuleDropdown = () => {
+function AddModuleDropdown() {
     AddModuleDropdownClicked = AddModuleDropdownClicked ? false : true;
     if (AddModuleDropdownClicked == true) {
         gsapDropdown("#module-select-dropdown", 350)
@@ -194,7 +193,7 @@ let AddModuleDropdown = () => {
     }
 }
 
-let customMenuDropdown = (e) => {
+function customMenuDropdown(e) {
     customMenuDropdownClicked = customMenuDropdownClicked ? false : true;
     if (customMenuDropdownClicked == true) {
         gsapDropdown("#custom-options-dropdown-"+ e, 200)
@@ -207,6 +206,7 @@ let customMenuDropdown = (e) => {
 /** Click outside to close menus */
 
 function hideOnClickOutside(element) {
+    
     const outsideClickListener = event => {
         if (!element.contains(event.target) && isVisible(element)) { // or use: event.target.closest(selector) === null
             gsapDropdownUp("#module-select-dropdown")

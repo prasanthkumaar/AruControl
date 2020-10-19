@@ -4,9 +4,12 @@
 
 let shortcuts = {
 
-    undo: [DigitalAction.leftControlKey, DigitalAction.zKey],
+    undoRedo: {
+        name: 'Undo & Redo',
+        undoAction: [DigitalAction.leftControlKey, DigitalAction.zKey],
+        redoAction: [DigitalAction.leftControlKey, DigitalAction.leftShiftKey, DigitalAction.zKey]
+    },
 
-    redo: [DigitalAction.leftControlKey, DigitalAction.leftShiftKey, DigitalAction.zKey],
 
     zoomIn: [DigitalAction.leftControlKey, DigitalAction.equalKey],
 

@@ -32,6 +32,7 @@ let gsapDropdownUp = (e) => {
 }
 
 let gsapOverlay = () => {
+  console.log('overlay change')
   gsap.to(".overlay", {
     opacity: 1,
     duration: 1,

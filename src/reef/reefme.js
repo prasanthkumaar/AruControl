@@ -1,16 +1,16 @@
 var titleField = document.querySelector('#titleField');
-var moduleNumber = 0;
-var moduleDropdownNumber = 0;
+let moduleNumber = 0;
+let moduleDropdownNumber = 0;
 
 // Generate List of modules available in the add module dropdown
+function viewModule() {
 
-var viewModule = function () {
-    for (i = 0; i < physicalModule.length; i++) {
+    for (let m of physicalModule) {
 
         let selector = '#module-select-dropdown-'+moduleDropdownNumber
-        let moduleType = physicalModule[i];
+        let moduleType = m;
         moduleDropdownNumber++;
-        console.log('Add module created for '+physicalModule[i])
+        //console.log('Add module created for '+m)
 
         // Create the module
         
@@ -34,10 +34,7 @@ var viewModule = function () {
 viewModule();
 
 // When user clicks on module, adds a div on html
-
-
-var addModule = function (i) {
-
+function addModule(i) {
     let moduleType = i;
     
     let selector = '#content-module-'+moduleNumber
@@ -94,7 +91,7 @@ var addModule = function (i) {
 
 // Checks and generates appropriate custom shortcuts
 
-var addCustomShortcutWindow = function (i) {
+function addCustomShortcutWindow(i) {
 
         findDetectionLogic(i)
         console.log('Showing custom menu for '+ i)
@@ -252,7 +249,7 @@ var addCustomShortcutWindow = function (i) {
 
 // Clicking Events
 
-var clickHandler = function (event) {
+function clickHandler(event) {
 
     var action = event.target.getAttribute('button-data');
     if (!action) return;
@@ -295,7 +292,7 @@ var clickHandler = function (event) {
 
 // Save Custom Settings
 
-let saveSettings = (e, i) => {
+function saveSettings(e, i) {
     let markerSequence = document.querySelector('#markerNumberField-'+ e).value
     console.log(i + e + " is using " + markerSequence)
     
@@ -306,7 +303,7 @@ let saveSettings = (e, i) => {
 
 // Select Digital Action
 
-let setDigitalAction = (e, i) => {
+function setDigitalAction(e, i) {
     let newDigitalAction = document.querySelector('#module-type-'+ e).value
     console.log(i + e + " is performing " + newDigitalAction)
 

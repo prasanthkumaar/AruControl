@@ -14,12 +14,9 @@ class SingleTapMarkerLogic extends MarkerLogic {
         super(actions);
         this.marker = getMarker(markerId);
         this.wasMarkerPresent = false;
-
         this.newVariable = 0
-
         this.count = 0;
         this.BUTTON_RESTART = 5;
-
     }
 
 
