@@ -54,6 +54,9 @@ function mapInterfaceToActions() {
 }
 
 function startDetection() {
+
+  console.log(arrayOfInterfaces)
+
   if (detectionIsOn) {
       detectionIsOn = false
       console.log('Detection is turned off')

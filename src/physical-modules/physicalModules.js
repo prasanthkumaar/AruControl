@@ -36,8 +36,8 @@ class ButtonHoldModule extends PhysicalModule {
 
     map() {
 
-        singleHold = new SingleHoldMarkerLogic([DigitalAction.fKey], 12);
-        return singleHold
+        return new SingleHoldMarkerLogic(this.selectedActions, this.selectedMarkerId);
+        
 
     }
 

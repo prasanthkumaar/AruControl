@@ -154,16 +154,16 @@ function clickHandler(event) {
 
 function confirmModulesButton() {
 
-    //Map digital actions
+    // Map digital actions
 
-    // for (let module of selectedPhysicalModules) {
-    //     arrayOfInterfaces.push(module.map())
-    // }
+    for (let module of selectedPhysicalModules) {
+        arrayOfInterfaces.push(module.map())
+    }
 
     
-    // for (let a of arrayOfInterfaces) {
-    //     a.initialise()
-    // }
+    for (let a of arrayOfInterfaces) {
+        a.initialise()
+    }
 
     ipcRenderer.send('load-page', '/src/cameraPage.html');
 } 
