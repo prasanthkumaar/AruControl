@@ -421,14 +421,14 @@ button {
     justify-content: start;
     text-align: left;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
     grid-template-areas:
-      "a"
-      "b"
-      "c"
-      "d"
-      "e";
+      "a b"
+      "c d"
+      "e f"
+      "g h";
     position: absolute;
 }
 
@@ -440,6 +440,10 @@ button {
 .custom-options-menu::-webkit-scrollbar-thumb {
     background-color: #404357;
     border-radius: 15px;
+}
+
+.advanced-controls {
+    width: 30px;
 }
 
 /** Custom Shortcut Overlay **/

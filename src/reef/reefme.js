@@ -65,14 +65,16 @@ function addModuleToHtml(newModule) {
                                     </button>
                                     
                                     <div class="custom-options-menu" id="custom-options-dropdown-${props.module.id}">
+                                        <strong>Advanced Controls</strong>
                                         <ul>
-                                        <li><strong>Advanced Controls</strong></li>
-                                        <li>
-                                            <div>Marker Numbers</div>
-                                            <div><input id="markerNumberField-${props.module.id}" class="secondary-input h4" type="text" value="24,56"></input></div>
-                                        </li>
+                                        <div id="aruco-marker-here-${props.module.id}-0"></div>
+                                        <div id="advanced-controls-${props.module.id}-0"></div>
+                                        <div id="aruco-marker-here-${props.module.id}-1"></div>
+                                        <div id="advanced-controls-${props.module.id}-1"></div>
+                                        <div id="aruco-marker-here-${props.module.id}-2"></div>
+                                        <div id="advanced-controls-${props.module.id}-2"></div>
                                         <li><div><button class="main-button" onclick="saveAdvancedControls(${props.module.id})">Save</button></div></li>
-                                        <li><div><button class="main-button">Detection Logic</button></div></li>
+                                        <div><button class="main-button">Detection Logic</button></div>
                                         </ul>
                                     </div>
                                 </div>
@@ -90,31 +92,49 @@ function addModuleToHtml(newModule) {
 
 
 function generateListOfShortcuts(module) {
-    
+
+    let shortcutList = {}
+      
+    switch(module.type) {
+        case 'ButtonHold': shortcutList = module.appShortcuts.holdButton
+        break;
+        case 'ButtonTap': shortcutList = module.appShortcuts.tapButton
+        break;
+        case 'Switch': shortcutList = module.appShortcuts.switchButton
+        break;
+        case 'ContinuousRotation': shortcutList = module.appShortcuts.continuousRotation
+        break;
+        case 'ContinuousSequence': shortcutList = module.appShortcuts.continuousSequence
+        break;
+
+        default:
+    }
 
     let selectModuleType = new BVSelect({
       selector: "#module-type-" + module.id,
       width: "auto",
       searchbox: false,
       offset: false,
-      placeholder: module.type,
+      placeholder: "Select shortcut",
       breakpoint: 450
     });
+
+    console.log(shortcutList)
 
     let ammendSelectBox = () => {
         selectModuleType.Change({
             options : {
                 0: {
-                    inner_text: module.shortcutList[0].name,
-                    value: module.shortcutList[0].name,
+                    inner_text: Object.values(shortcutList)[0].name,
+                    value: Object.values(shortcutList)[0].type,
                 },
                 1: {
-                    inner_text: module.shortcutList[1],
-                    value: module.shortcutList[1],
+                    inner_text:  Object.values(shortcutList)[1].name,
+                    value:  Object.values(shortcutList)[1].type,
                 },
                 2: {
-                    inner_text: module.shortcutList[2],
-                    value: module.shortcutList[2],
+                    inner_text: Object.values(shortcutList)[2].name,
+                    value: Object.values(shortcutList)[2].type,
                 },
                 3: {
                     inner_text: "Custom Shortcut",
@@ -279,6 +299,72 @@ function showCustomShortcutWindow(module) {
         }).render();
 };
 
+function generateAdvancedControls(moduleID) {
+
+    let selectedModule = selectedPhysicalModules[moduleID];
+    let appendDiv;
+
+    for (i = 0; i < selectedModule.numberOfMarkers; i++) {
+
+        generateArucoNumber(1, moduleID, i)
+        appendDiv++;
+
+        let selector = '#advanced-controls-' + moduleID + '-' + i
+
+
+        // Create the module
+        
+        new Reef(selector, {
+            data: {
+                module: selectedModule,
+                index: selectedModule.id + "-" + i
+            },
+            template: function (props) {
+                return `
+                    <li>
+                        <div>
+                            <input onchange="changeAruco(${props.module.id})" id="markerNumberField-${props.index}" class="secondary-input h4 advanced-controls" type="number" value="1">
+                            </input>
+                        </div>
+                    </li>
+                    `;
+            }
+        }).render();
+
+        const input = document.querySelector("#markerNumberField-" + selectedModule.id + "-" + i);
+
+        input.addEventListener('focus', () => {
+
+            input.style.backgroundColor = "yellow";
+        })
+
+        input.addEventListener('focusout', () => {
+
+            
+
+            input.style.backgroundColor = "white";
+
+            if (Array.isArray(selectedModule.selectedMarkerId)) {
+
+                let str = input.id;
+                let index = Number(str.charAt(str.length-1));                
+                selectedModule.selectedMarkerId[index] = Number(input.value)
+                console.log(selectedModule.selectedMarkerId)
+
+
+            } else {
+                selectedModule.selectedMarkerId = Number(input.value)
+                console.log(selectedModule.selectedMarkerId)
+
+            }
+
+
+
+        });
+
+    }
+};
+
 // When user clicks on module, adds a div on html
 function addCustomQuestion(module) {
 
@@ -332,13 +418,49 @@ function addCustomQuestion(module) {
             document.removeEventListener('keydown', handler, true);
 
             //parse keycodearr elements into digitalActions
-            module.selectedActions = []
 
-            for (let keycode of keycodeArr) {
-                module.selectedActions.push(keycodeToDigitalAction[keycode])
+            //console.log(module)
+            if (module.customInput.length == 1) {
+
+                module.selectedActions = []
+
+                for (let keycode of keycodeArr) {
+                    module.selectedActions.push(keycodeToDigitalAction[keycode])
+                }
+    
+                console.log(module.selectedActions)
+    
+
+            } else {
+
+
+                if (module.customInput.indexOf(item) == 0) {
+
+                    for (let keycode of keycodeArr) {
+
+                        module.selectedClockwiseActions = []
+                        module.selectedClockwiseActions.push(keycodeToDigitalAction[keycode])
+                    }
+        
+                    console.log(module.selectedClockwiseActions)
+
+                } else {
+
+                    
+                    for (let keycode of keycodeArr) {
+
+                        module.selectedAnticlockwiseActions = []
+                        module.selectedAnticlockwiseActions.push(keycodeToDigitalAction[keycode])
+                    }
+        
+                    console.log(module.selectedAnticlockwiseActions)
+
+                }
+
+
+
             }
 
-            console.log(module.selectedActions)
 
             
         });
@@ -361,10 +483,28 @@ function addCustomQuestion(module) {
 
 function saveAdvancedControls(moduleId) {
 
-    let module = selectedPhysicalModules[moduleId];
-    let markerId = document.querySelector('#markerNumberField-'+ module.id).value
-    console.log(module.type +"-"+ module.id + " is using marker " + markerId)
-    module.selectedMarkerId = Number(markerId)
+    let selectedModule = selectedPhysicalModules[moduleId];
+
+    let message = module.type +"-"+ module.id + " is using marker "
+
+
+
+    if (Array.isArray(selectedModule.selectedMarkerId)) {
+
+        for (let a of selectedModule.selectedMarkerId) {
+            message += a + ", " 
+        }
+
+    } else {
+
+        message += selectedModule.selectedMarkerId
+
+    }
+
+    console.log(message)
+
+
+
 
     return;
 }
@@ -373,10 +513,9 @@ function saveAdvancedControls(moduleId) {
 
 function selectShortcut(moduleId) {
 
-    let module = selectedPhysicalModules[moduleId];
+    console.log(moduleId);
 
-    // let selector = '#module-type-' + moduleId
-    // console.log(moduleId)
+    let module = selectedPhysicalModules[moduleId];
 
     let newShortcutSelected = document.querySelector('#module-type-' + module.id).value
     console.log(module.type + module.id + " is performing " + newShortcutSelected)
@@ -389,6 +528,49 @@ function selectShortcut(moduleId) {
         showCustomShortcutWindow(module)
         addCustomQuestion(module);
         gsapOverlay();
+
+    } else {
+
+
+        //check what module it is and go to its specfic shortcuts
+
+        let shortcutList = {}
+
+        switch(module.type) {
+            case 'ButtonHold': shortcutList = module.appShortcuts.holdButton
+            break;
+            case 'ButtonTap': shortcutList = module.appShortcuts.tapButton
+            break;
+            case 'Switch': shortcutList = module.appShortcuts.switchButton
+            break;
+            case 'ContinuousRotation': shortcutList = module.appShortcuts.continuousRotation
+            break;
+            case 'ContinuousSequence': shortcutList = module.appShortcuts.continuousSequence
+            break;
+
+            default:
+        }
+
+
+        console.log(newShortcutSelected)
+
+
+        for (let x in shortcutList) {
+
+            let shortcut = shortcutList[x]
+            if (newShortcutSelected == shortcut.type) {
+                
+                if (module.customInput.length == 1) {
+                    module.selectedActions = shortcut.action
+
+                } else {
+                    module.selectedClockwiseActions = shortcut.clockwiseAction
+                    module.selectedAnticlockwiseActions = shortcut.anticlockwiseAction
+                }
+
+                break;
+            }
+        } 
 
     }
     

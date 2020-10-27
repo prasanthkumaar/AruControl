@@ -10,8 +10,9 @@ class SingleHoldMarkerLogic extends MarkerLogic {
 
     constructor(actions, markerId) {
         super(actions)
+        this.markerId = markerId
         this.marker = getMarker(markerId)
-        this.BUTTON_TIMEOUT = 300;
+        this.BUTTON_TIMEOUT = 1;
         this.count = 0;
 
         this.wasKeyPressed = false;
@@ -22,6 +23,7 @@ class SingleHoldMarkerLogic extends MarkerLogic {
 
     initialise() {
         super.initialise();
+        console.log("with marker "+ this.markerId);
         this.marker.timeout = this.BUTTON_TIMEOUT;
 
     }

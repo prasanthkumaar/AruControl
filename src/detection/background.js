@@ -229,13 +229,7 @@ window.onload = function() {
     beholder.setVideoSize(e.target.value);
   });
 
-  document.querySelector("#toggleScreen").addEventListener("click", e => {
-    appMode = !appMode;
-    document.querySelector("#toggleScreen").classList.toggle("active");
-    document.querySelector("#detectionDiv").classList.toggle("active");
-  });
-
-  setup(); //defined in index.js
+  // setup(); //defined in index.js
 
   updateDetection();
 };

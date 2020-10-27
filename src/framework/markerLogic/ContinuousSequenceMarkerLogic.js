@@ -71,7 +71,14 @@ class ContinuousSequenceMarkerLogic extends MarkerLogic {
         for (let a of this.reverseActions) {
             initialiseMsg += a.name
         }
+
+        initialiseMsg += " with markers " 
+        for (let a of this.markerIdArray) {
+            initialiseMsg += a + ", "
+        }
+
         console.log(initialiseMsg)
+
 
 
         for (let m of this.markerIdArray) {

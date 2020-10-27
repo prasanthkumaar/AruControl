@@ -30,10 +30,10 @@ function mapInterfaceToActions() {
   // let singleTap = new SingleTapMarkerLogic(shortcuts.zoomIn, 1);
 
   //OSU!
-  let dHold = new SingleHoldMarkerLogic([DigitalAction.dKey], 8);
-  let fHold = new SingleHoldMarkerLogic([DigitalAction.fKey], 12);
-  let jHold = new SingleHoldMarkerLogic([DigitalAction.jKey], 20);
-  let kHold = new SingleHoldMarkerLogic([DigitalAction.kKey], 4);
+  let dHold = new SingleHoldMarkerLogic([DigitalAction.dKey], 23);
+  let fHold = new SingleHoldMarkerLogic([DigitalAction.fKey], 14);
+  let jHold = new SingleHoldMarkerLogic([DigitalAction.jKey], 19);
+  let kHold = new SingleHoldMarkerLogic([DigitalAction.kKey], 15);
 
   arrayOfInterfaces = [dHold, fHold, jHold, kHold];
 

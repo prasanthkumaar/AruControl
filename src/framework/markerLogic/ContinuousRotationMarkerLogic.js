@@ -20,6 +20,7 @@ class ContinuousRotationMarkerLogic extends MarkerLogic {
     constructor(actions, reverseActions, markerId, isDominant, freedomInDegrees, value) {
         super(actions);
         this.reverseActions = reverseActions;
+        this.markerId = markerId
         this.marker = getMarker(markerId);
 
         this.value = value;
@@ -70,6 +71,9 @@ class ContinuousRotationMarkerLogic extends MarkerLogic {
         for (let a of this.reverseActions) {
             initialiseMsg += a.name
         }
+
+        initialiseMsg += "with marker " + this.markerId
+
         console.log(initialiseMsg)
 
 
