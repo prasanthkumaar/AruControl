@@ -4,7 +4,7 @@
  * Marker needs to be rotated past the degree of freedom to activate the function again
  * 
  * action - Main Actions Array
- * reverseActopms - Reverse Actions Array
+ * reverseActions - Reverse Actions Array
  * markerId - Id of the Marker to track
  * isDominant - True / False value toggles the forward or backward action
  * freedomInDegrees - How much can the user rotate before the next action is performed
@@ -18,6 +18,7 @@ class ContinuousRotationMarkerLogic extends MarkerLogic {
 
 
     constructor(actions, reverseActions, markerId, isDominant, freedomInDegrees, value) {
+
         super(actions);
         this.reverseActions = reverseActions;
         this.marker = getMarker(markerId);
@@ -35,8 +36,6 @@ class ContinuousRotationMarkerLogic extends MarkerLogic {
 
         this.clockwiseAction;
         this.antiClockwiseAction;
-
-        
 
     }
 
