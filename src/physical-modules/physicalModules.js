@@ -147,27 +147,65 @@ class ContinuousRotationModule extends PhysicalModule {
         newContinuousRotationModule.id = id
         newContinuousRotationModule.appShortcuts = appShortcuts
 
-
         return newContinuousRotationModule
     }
 
     map() {
 
-        return new ContinuousRotationMarkerLogic(this.selectedClockwiseActions, this.selectedAnticlockwiseActions, this.selectedMarkerId, true, 90);
+        return new ToggleRotationMarkerLogic(this.selectedClockwiseActions, this.selectedAnticlockwiseActions, this.selectedMarkerId, true, 25);
 
     }
 
 }
 
 
-class ContinuousSequenceModule extends PhysicalModule {
+class ContinuousSequenceScrollModule extends PhysicalModule {
 
     constructor() {
         super()
 
         //For UI
         this.id = 0
-        this.type = 'ContinuousSequence'
+        this.type = 'ContinuousSequenceScroll'
+        this.name = 'Scroll'
+        this.appShortcuts = null
+        this.customInput = ['Clockwise Action: ', 'Acticlockwise Action:']
+        this.numberOfMarkers = 3
+
+        //For mapping
+        this.selectedMarkerId = [1, 2, 3]
+        this.selectedClockwiseActions = []
+        this.selectedAnticlockwiseActions = []
+
+    }
+
+    createNew(id, appShortcuts) {
+
+        let newContinuousSequenceScrollModule = new ContinuousSequenceScrollModule();
+        newContinuousSequenceScrollModule.id = id
+        newContinuousSequenceScrollModule.appShortcuts = appShortcuts
+
+
+        return newContinuousSequenceScrollModule
+    }
+
+    map() {
+
+        return new ContinuousSequenceMarkerLogic(this.selectedClockwiseActions, this.selectedAnticlockwiseActions, true, this.selectedMarkerId);
+        
+    }
+
+}
+
+
+class ContinuousSequenceDialModule extends PhysicalModule {
+
+    constructor() {
+        super()
+
+        //For UI
+        this.id = 0
+        this.type = 'ContinuousSequenceDial'
         this.name = 'Dial'
         this.appShortcuts = null
         this.customInput = ['Clockwise Action: ', 'Acticlockwise Action:']
@@ -182,12 +220,12 @@ class ContinuousSequenceModule extends PhysicalModule {
 
     createNew(id, appShortcuts) {
 
-        let newContinuousSequenceModule = new ContinuousSequenceModule();
-        newContinuousSequenceModule.id = id
-        newContinuousSequenceModule.appShortcuts = appShortcuts
+        let newContinuousSequenceDialModule = new ContinuousSequenceDialModule();
+        newContinuousSequenceDialModule.id = id
+        newContinuousSequenceDialModule.appShortcuts = appShortcuts
 
 
-        return newContinuousSequenceModule
+        return newContinuousSequenceDialModule
     }
 
     map() {
