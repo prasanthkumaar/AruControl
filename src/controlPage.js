@@ -93,23 +93,48 @@ let isAdvancedControlsShown = false;
 
 let generateArucoNumber = (markerNumber, moduleID, appendDiv) => {
 
-    let canvas = makeMarker(markerNumber,20,20)
-    ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'red';
+    
 
+    // let canvas = makeMarker(markerNumber,20,20)
+    // ctx = canvas.getContext('2d');
+    // ctx.fillStyle = 'red';
 
-    //document.querySelector('#aruco-marker-here-'+ moduleID + '-' + appendDiv).appendChild(canvas);
+    // let selector = document.querySelector('#aruco-marker-here-'+ moduleID + '-' + appendDiv);
+
+    // let parentDiv = selector.parentNode;
+
+    // parentDiv.replaceChild(canvas, selector)
 }
 
 let changeAruco = (moduleID) => {
-    // let markerNumberInput = document.getElementById('markerNumberField-'+ moduleID).value;
+    // let markerNumberInput = document.querySelector('#markerNumberField-'+ moduleID).value;
+    // console.log(markerNumberInput)
     // generateArucoNumber(markerNumberInput, moduleID);
+}
+
+function showMarkerDetectionLogic(moduleID) {
+    let selectedModule = selectedPhysicalModules[moduleID];
+    console.log(selectedModule)
+
+    let selectedGif = selectedModule.detectionLogic;
+
+    gsapOverlayMDL();
+    document.querySelector('.overlayMarkerDetection').style.display = 'block';
+
+    let selectedGifDiv = document.querySelector('#detection-logic-gif-image')
+    console.log(selectedGif)
+    selectedGifDiv.src=selectedGif
+}
+
+function hideMarkerDetectionLogic() {
+    gsapOverlayMDLClose();
+    document.querySelector('.overlayMarkerDetection').style.display = 'none';
 }
 
 function showAdvancedControls(e) {
     isAdvancedControlsShown = isAdvancedControlsShown ? false : true;
     if (isAdvancedControlsShown == true) {
-        gsapDropdown("#custom-options-dropdown-"+ e, 300)
+        gsapDropdown("#custom-options-dropdown-"+ e, 250)
         console.log(e)
         generateAdvancedControls(e)
         return;

@@ -19,6 +19,8 @@ class ButtonHoldModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Keypress: ']
         this.numberOfMarkers = 1
+        this.detectionLogic = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*"
+        this.headerImagePng = "https://art.pixilart.com/fea52b34f00350e.gif"
 
         //For mapping
         this.selectedMarkerId = 1

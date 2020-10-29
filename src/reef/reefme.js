@@ -10,17 +10,18 @@ function generateListOfModules() {
         let selector = '#module-select-dropdown-'+moduleDropdownNumber
         let moduleType = module.type;
         moduleDropdownNumber++;
+
         //console.log('Add module created for '+m)
 
         // Create the module
         
         new Reef(selector, {
             data: {
-                module: module
+                module: module,
             },
             template: function (props) {
                 return `
-                    <div id="button-${props.module.type}" class="full-button" style="background-image: url(./img/preview.jpg)">
+                    <div id="button-${props.module.type}" class="full-button" style="background-image: url(${props.module.headerImagePng})">
                         <button button-data="add-module-${props.module.type}" class="full-button clear-button">
                         <span>${props.module.name}<i class="fas fa-plus"></i></span>
                         </button>
@@ -67,15 +68,28 @@ function addModuleToHtml(newModule) {
                                     <div class="custom-options-menu" id="custom-options-dropdown-${props.module.id}">
                                         <strong>Advanced Controls</strong>
                                         <ul>
-                                        <div id="aruco-marker-here-${props.module.id}-0"></div>
-                                        <div id="advanced-controls-${props.module.id}-0"></div>
-                                        <div id="aruco-marker-here-${props.module.id}-1"></div>
-                                        <div id="advanced-controls-${props.module.id}-1"></div>
-                                        <div id="aruco-marker-here-${props.module.id}-2"></div>
-                                        <div id="advanced-controls-${props.module.id}-2"></div>
-                                        <li><div><button class="main-button" onclick="saveAdvancedControls(${props.module.id})">Save</button></div></li>
-                                        <div><button class="main-button">Detection Logic</button></div>
+                                        <li>
+                                            <div id="aruco-marker-here-${props.module.id}-0"></div>
+                                            <div id="advanced-controls-${props.module.id}-0"></div>
+                                        </li>
+                                        <li>
+                                            <div id="aruco-marker-here-${props.module.id}-1"></div>
+                                            <div id="advanced-controls-${props.module.id}-1"></div>
+                                        </li>
+                                        <li>
+                                            <div id="aruco-marker-here-${props.module.id}-2"></div>
+                                            <div id="advanced-controls-${props.module.id}-2"></div>
+                                        </li>
                                         </ul>
+                                        <span>
+                                        <div>
+                                                <button class="main-button" onclick="saveAdvancedControls(${props.module.id})">Save</button>
+                                        </div>
+                                        </span>
+                                        <span>
+                                        <div><button class="main-button" button-data="show-detection-logic" onclick="showMarkerDetectionLogic(${props.module.id})">Detection Logic</button></div>
+                                        </span>
+                                        
                                     </div>
                                 </div>
                         </div>                        
@@ -302,12 +316,10 @@ function showCustomShortcutWindow(module) {
 function generateAdvancedControls(moduleID) {
 
     let selectedModule = selectedPhysicalModules[moduleID];
-    let appendDiv;
 
     for (i = 0; i < selectedModule.numberOfMarkers; i++) {
 
         generateArucoNumber(1, moduleID, i)
-        appendDiv++;
 
         let selector = '#advanced-controls-' + moduleID + '-' + i
 
@@ -323,7 +335,7 @@ function generateAdvancedControls(moduleID) {
                 return `
                     <li>
                         <div>
-                            <input onchange="changeAruco(${props.module.id})" id="markerNumberField-${props.index}" class="secondary-input h4 advanced-controls" type="number" value="1">
+                            <input onchange="changeAruco(${props.module.id}, ${props.index})" id="markerNumberField-${props.index}" class="secondary-input h4 advanced-controls" type="number" value="1">
                             </input>
                         </div>
                     </li>

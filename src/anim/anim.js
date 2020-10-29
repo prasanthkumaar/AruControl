@@ -33,7 +33,7 @@ let gsapDropdownUp = (e) => {
 
 let gsapOverlay = () => {
   console.log('overlay change')
-  gsap.to(".overlay", {
+  gsap.to(".overlayCustomShortcutMenu", {
     opacity: 1,
     duration: 1,
     repeat: 0
@@ -41,8 +41,25 @@ let gsapOverlay = () => {
 }
 
 let gsapOverlayClose = () => {
-  gsap.to(".overlay", {
+  gsap.to(".overlayCustomShortcutMenu", {
     opacity: 0,
+    duration: 1,
+    repeat: 0
+  })
+}
+
+let gsapOverlayMDLClose = () => {
+  gsap.to(".overlayMarkerDetection", {
+    opacity: 0,
+    duration: 1,
+    repeat: 0
+  })
+}
+
+let gsapOverlayMDL = () => {
+  console.log('overlay change')
+  gsap.to(".overlayMarkerDetection", {
+    opacity: 1,
     duration: 1,
     repeat: 0
   })
