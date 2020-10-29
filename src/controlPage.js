@@ -1,8 +1,32 @@
 document.addEventListener('click', clickHandler, false);
 
+/** Tippy Tooltips */
+tippy('#titleField', {
+    content: 'Click to rename your board!',
+});
 
-holdButton = new ButtonHoldModule() 
-let listOfPhysicalModules = [holdButton]
+let controlSection = document.getElementById("controlPage");
+let detectionSection = document.getElementById("detectionDiv");
+let confirmModuleButton = document.getElementById("confirm-module");
+detectionSection.style.display = "none"
+controlSection.style.display = "block"
+
+let appChosen = apps.afterEffects
+
+
+
+let arrayOfInterfaces = []
+let detectionIsOn = false;
+
+
+let listOfPhysicalModules = [
+    new ButtonTapModule(), 
+    new ButtonHoldModule(), 
+    new SwitchModule(), 
+    new ContinuousRotationModule(), 
+    new ContinuousSequenceModule()
+]
+
 let selectedPhysicalModules = []
 
 
@@ -67,15 +91,34 @@ function showModulesList() {
 
 let isAdvancedControlsShown = false;
 
+let generateArucoNumber = (markerNumber, moduleID, appendDiv) => {
+
+    let canvas = makeMarker(markerNumber,20,20)
+    ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'red';
+
+
+    //document.querySelector('#aruco-marker-here-'+ moduleID + '-' + appendDiv).appendChild(canvas);
+}
+
+let changeAruco = (moduleID) => {
+    // let markerNumberInput = document.getElementById('markerNumberField-'+ moduleID).value;
+    // generateArucoNumber(markerNumberInput, moduleID);
+}
+
 function showAdvancedControls(e) {
     isAdvancedControlsShown = isAdvancedControlsShown ? false : true;
     if (isAdvancedControlsShown == true) {
-        gsapDropdown("#custom-options-dropdown-"+ e, 200)
+        gsapDropdown("#custom-options-dropdown-"+ e, 300)
+        console.log(e)
+        generateAdvancedControls(e)
         return;
     } else {
         gsapDropdownUp("#custom-options-dropdown-"+ e)
     }
 }
+
+
 
 /** Click outside to close menus */
 
@@ -96,11 +139,7 @@ function showAdvancedControls(e) {
 // }
 
 
-/** Tippy Tooltips */
 
-tippy('#titleField', {
-    content: 'Click to rename your board!',
-});
 
 
 // Clicking Events
@@ -116,7 +155,7 @@ function clickHandler(event) {
         if (action === 'add-module-'+ module.type) {
             console.log('Adding Module '+ module.name)
 
-            let newModule = module.createNew(selectedPhysicalModules.length)
+            let newModule = module.createNew(selectedPhysicalModules.length, appChosen)
             selectedPhysicalModules.push(newModule)
             addModuleToHtml(newModule);
             generateListOfShortcuts(newModule);
@@ -154,16 +193,88 @@ function clickHandler(event) {
 
 function confirmModulesButton() {
 
-    // Map digital actions
 
-    for (let module of selectedPhysicalModules) {
-        arrayOfInterfaces.push(module.map())
+
+
+    //If control section is present
+    if (controlSection.style.display == "block") {
+
+        arrayOfInterfaces = []
+
+         // Map digital actions
+        for (let module of selectedPhysicalModules) {
+
+            let interface = module.map()
+
+            if (Array.isArray(interface)) {
+
+                for (let i of interface) {
+                    arrayOfInterfaces.push(i)
+                }
+
+            } else {
+                arrayOfInterfaces.push(interface)
+            }
+        }
+
+        // let dHold = new SingleHoldMarkerLogic([DigitalAction.dKey], 8);
+        // let fHold = new SingleHoldMarkerLogic([DigitalAction.fKey], 12);
+        // let jHold = new SingleHoldMarkerLogic([DigitalAction.jKey], 20);
+        // let kHold = new SingleHoldMarkerLogic([DigitalAction.kKey], 4);
+        // arrayOfInterfaces = [dHold, fHold, jHold, kHold]
+
+        console.log("List of interfaces: ")
+        console.log(arrayOfInterfaces)
+
+        // let contSeq = new ContinuousSequenceMarkerLogic([DigitalAction.aKey], [DigitalAction.sKey], true, [1, 2, 3, 4]);
+        // arrayOfInterfaces = [contSeq]
+
+        for (let a of arrayOfInterfaces) {
+            a.initialise()
+        }
+
+        confirmModuleButton.childNodes[0].nodeValue = "Back To Control Page";
+        controlSection.style.display = "none"
+        detectionSection.style.display = "block";
+
+        
+
+
+    } else { 
+
+        confirmModuleButton.childNodes[0].nodeValue = "Confirm Modules";
+        controlSection.style.display = "block"
+        detectionSection.style.display = "none";
+
+
     }
+   
 
-    
-    for (let a of arrayOfInterfaces) {
-        a.initialise()
+
+
+}
+
+function startDetection() {
+
+    console.log(arrayOfInterfaces)
+  
+    if (detectionIsOn) {
+        detectionIsOn = false
+        console.log('Detection is turned off')
+    } else {
+        detectionIsOn = true
+        console.log('Detection is turned on')
     }
+}
 
-    ipcRenderer.send('load-page', '/src/cameraPage.html');
-} 
+
+// Code written in here will be executed every frame
+function update() {
+
+    if (detectionIsOn) {
+      for (let a of arrayOfInterfaces) {
+          a.track();
+      }
+
+    }
+}

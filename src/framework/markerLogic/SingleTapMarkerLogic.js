@@ -12,6 +12,7 @@ class SingleTapMarkerLogic extends MarkerLogic {
 
     constructor(actions, markerId) {
         super(actions);
+        this.markerId = markerId
         this.marker = getMarker(markerId);
         this.wasMarkerPresent = false;
         this.newVariable = 0
@@ -23,6 +24,8 @@ class SingleTapMarkerLogic extends MarkerLogic {
 
     initialise() {
         super.initialise();
+        console.log("with marker "+ this.markerId);
+
 
     }
 
