@@ -21,8 +21,6 @@ class ToggleRotationMarkerLogic extends MarkerLogic {
         this.reverseActions = reverseActions;
         this.marker = getMarker(markerId);
 
-        this.value = value;
-
         this.isDominant = isDominant;
 
         this.clockwiseAction;
@@ -42,18 +40,18 @@ class ToggleRotationMarkerLogic extends MarkerLogic {
         for (let a of this.actions) {
             a.sendDown();
         }
-        for (let a of this.actions) {
-            a.sendUp();
-        }
+        // for (let a of this.actions) {
+        //     a.sendUp();
+        // }
     }
 
     function2() {
         for (let a of this.reverseActions) {
             a.sendDown();
         }
-        for (let a of this.reverseActions) {
-            a.sendUp();
-        }
+        // for (let a of this.reverseActions) {
+        //     a.sendUp();
+        // }
     }
 
 
@@ -71,18 +69,22 @@ class ToggleRotationMarkerLogic extends MarkerLogic {
         console.log(initialiseMsg)
 
         this.antiClockwiseLimit = 0 - this.allowanceInRadians
-        this.antiClockwiseLimit = 0 + this.allowanceInRadians
+        this.clockwiseLimit = 0 + this.allowanceInRadians
 
         this.mapClockwiseAntiClockwiseFunctions();
         
         this.marker.timeout = 500;
 
+        console.log(this.allowanceInRadians* 180/Math.PI)
+        console.log(this.antiClockwiseLimit * 180/Math.PI);
+        console.log(this.clockwiseLimit * 180/Math.PI);
 
 
     }
 
     track() {
 
+        console.log(this.marker.rotation * 180/Math.PI);
         // If current rotation passes either limits, perform the clockwise / anticlockwise actions respectively
         if (this.marker.rotation < this.antiClockwiseLimit) {
             this.antiClockwiseAction();

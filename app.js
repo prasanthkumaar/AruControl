@@ -12,7 +12,7 @@ const url = require('url');
 const startPage = '/src/startPage.html'
 const cameraPage = '/src/cameraPage.html'
 
-let loadingPage = startPage
+let loadingPage = '/src/controlPage.html'
 
 
 
@@ -25,6 +25,8 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1200, // Set these to whatever is convenient
     height: 600,
+
+
 
     // Needed to include communication between render and main processes
     webPreferences: {
@@ -81,6 +83,12 @@ ipcMain.on('load-page', (event, arg) => {
     slashes: true,
   }));
 });
+
+ipcMain.on("ALERT", async (event,arg) => {
+  console.log("TESTEST")
+  alert(arg)
+}) 
+
 
 // Example code for sending messages here from the main process
 const { keyboard, Key, mouse, left, right, up, down, screen } = require("@nut-tree/nut-js");

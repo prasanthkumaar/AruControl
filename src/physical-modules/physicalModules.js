@@ -20,10 +20,10 @@ class ButtonHoldModule extends PhysicalModule {
         this.customInput = ['Keypress: ']
         this.numberOfMarkers = 1
         this.detectionLogic = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*"
-        this.headerImagePng = "https://art.pixilart.com/fea52b34f00350e.gif"
+        this.headerImagePng = "../src/img/modules_png/button.png"
 
         //For mapping
-        this.selectedMarkerId = 1
+        this.selectedMarkerId = 10
         this.selectedActions = []
 
     }
@@ -59,6 +59,7 @@ class ButtonTapModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Keypress: ']
         this.numberOfMarkers = 1
+        this.headerImagePng = "../src/img/modules_png/button.png"
 
         //For mapping
         this.selectedMarkerId = 5
@@ -96,6 +97,8 @@ class SwitchModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Left Action: ', 'Right Action:']
         this.numberOfMarkers = 2
+        this.headerImagePng = "../src/img/modules_png/toggle.png"
+
 
         //For mapping
         this.selectedMarkerId = [1,2]
@@ -123,18 +126,20 @@ class SwitchModule extends PhysicalModule {
 }
 
 
-class ContinuousRotationModule extends PhysicalModule {
+class ToggleRotationModule extends PhysicalModule {
 
     constructor() {
         super()
 
         //For UI
         this.id = 0
-        this.type = 'ContinuousRotation'
+        this.type = 'ToggleRotation'
         this.name = 'Knob'
         this.appShortcuts = null
         this.customInput = ['Clockwise Action: ', 'Acticlockwise Action:']
         this.numberOfMarkers = 1
+        this.headerImagePng = "../src/img/modules_png/knob.png"
+
 
         //For mapping
         this.selectedMarkerId = 2
@@ -145,11 +150,11 @@ class ContinuousRotationModule extends PhysicalModule {
 
     createNew(id, appShortcuts) {
 
-        let newContinuousRotationModule = new ContinuousRotationModule();
-        newContinuousRotationModule.id = id
-        newContinuousRotationModule.appShortcuts = appShortcuts
+        let newToggleRotationModule = new ToggleRotationModule();
+        newToggleRotationModule.id = id
+        newToggleRotationModule.appShortcuts = appShortcuts
 
-        return newContinuousRotationModule
+        return newToggleRotationModule
     }
 
     map() {
@@ -173,6 +178,8 @@ class ContinuousSequenceScrollModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Clockwise Action: ', 'Acticlockwise Action:']
         this.numberOfMarkers = 3
+        this.headerImagePng = "../src/img/modules_png/scroll.png"
+
 
         //For mapping
         this.selectedMarkerId = [1, 2, 3]
@@ -212,6 +219,8 @@ class ContinuousSequenceDialModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Clockwise Action: ', 'Acticlockwise Action:']
         this.numberOfMarkers = 3
+        this.headerImagePng = "../src/img/modules_png/dial.png"
+
 
         //For mapping
         this.selectedMarkerId = [1, 2, 3]
@@ -233,6 +242,43 @@ class ContinuousSequenceDialModule extends PhysicalModule {
     map() {
 
         return new ContinuousSequenceMarkerLogic(this.selectedClockwiseActions, this.selectedAnticlockwiseActions, true, this.selectedMarkerId);
+        
+    }
+
+}
+
+class SliderModule extends PhysicalModule {
+
+    constructor() {
+        super()
+
+        //For UI
+        this.id = 0
+        this.type = 'Slider'
+        this.name = 'Slider'
+        this.appShortcuts = null
+        this.customInput = []
+        this.numberOfMarkers = 2
+        this.headerImagePng = "../src/img/modules_png/slider.png"
+
+
+        //For mapping
+        this.selectedMarkerId = [1, 2]
+    }
+
+    createNew(id, appShortcuts) {
+
+        let newSliderModule = new SliderModule();
+        newSliderModule.id = id
+        newSliderModule.appShortcuts = appShortcuts
+
+
+        return newSliderModule
+    }
+
+    map() {
+
+        return new SliderMarkerLogic("Volume", [1, 2]);
         
     }
 

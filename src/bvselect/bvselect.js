@@ -163,7 +163,9 @@ class BVSelect {
         this.CriarDivBase = function() {
 
             document.getElementById(this.selector).insertAdjacentHTML('afterend', '<div id="bv_' + randomID + '" data-search="' + this.searchbox + '" class="bv_mainselect"></div>');
-            document.getElementById("bv_" + randomID).insertAdjacentHTML('afterbegin', '<div id="main_' + randomID + '" style="width:' + this.width + ';" class="bv_atual bv_background"></div><ul id="ul_' + randomID + '" class="bv_ul_inner bv_background"></ul>');
+            document.getElementById("bv_" + randomID).insertAdjacentHTML('afterbegin', '<div id="main_' + randomID + '" style="width:' + this.width + ';" class="bv_atual"></div><ul id="ul_' + randomID + '" class="bv_ul_inner bv_background"></ul>');
+            //Original Code:
+            //document.getElementById("bv_" + randomID).insertAdjacentHTML('afterbegin', '<div id="main_' + randomID + '" style="width:' + this.width + ';" class="bv_atual bv_background"></div><ul id="ul_' + randomID + '" class="bv_ul_inner bv_background"></ul>');
 
             var element_ul = document.getElementById('ul_' + randomID);
             var element_bv = document.getElementById('bv_' + randomID);

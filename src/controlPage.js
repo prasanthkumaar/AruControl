@@ -5,13 +5,19 @@ tippy('#titleField', {
     content: 'Click to rename your board!',
 });
 
+let addModuleButton = document.getElementById("main-header-add-module")
+
 let controlSection = document.getElementById("controlPage");
 let detectionSection = document.getElementById("detectionDiv");
 let confirmModuleButton = document.getElementById("confirm-module");
+let mainPage = document.getElementById("mainPage");
+
+mainPage.style.display = "none"
 detectionSection.style.display = "none"
 controlSection.style.display = "block"
+confirmModuleButton.style.display = "none"
 
-let appChosen = apps.afterEffects
+let appChosen = apps.default
 
 
 
@@ -23,8 +29,12 @@ let listOfPhysicalModules = [
     new ButtonTapModule(), 
     new ButtonHoldModule(), 
     new SwitchModule(), 
-    new ContinuousRotationModule(), 
-    new ContinuousSequenceModule()
+    new ToggleRotationModule(), 
+    new ContinuousSequenceScrollModule(),
+    new ContinuousSequenceDialModule(),
+    new SliderModule()
+
+
 ]
 
 let selectedPhysicalModules = []
@@ -81,35 +91,64 @@ let isModuleListShown = false;
 
 function showModulesList() {
     isModuleListShown = isModuleListShown ? false : true;
+
     if (isModuleListShown == true) {
         gsapDropdown("#module-select-dropdown", 350)
+        addModuleButton.innerHTML = "Close";
         return;
     } else {
         gsapDropdownUp("#module-select-dropdown")
+        addModuleButton.innerHTML = "Add Module";
+
     }
 }
 
 let isAdvancedControlsShown = false;
 
-let generateArucoNumber = (markerNumber, moduleID, appendDiv) => {
+let generateArucoNumber = (markerNumber, moduleID, index) => {
 
-    
+    oldDivId = 'aruco-marker-here-'+ moduleID + '-' + index
+    let oldDiv = document.querySelector("#"+oldDivId);
+    console.log("olddiv")
+    console.log(oldDiv);
 
-    // let canvas = makeMarker(markerNumber,20,20)
-    // ctx = canvas.getContext('2d');
-    // ctx.fillStyle = 'red';
 
-    // let selector = document.querySelector('#aruco-marker-here-'+ moduleID + '-' + appendDiv);
+    // Create an empty element node
+    // without an ID, any attributes, or any content
+    let newDiv = document.createElement("div");
 
-    // let parentDiv = selector.parentNode;
+    // Give it an id attribute called 'newSpan'
+    newDiv.id = oldDivId;
 
-    // parentDiv.replaceChild(canvas, selector)
+    // Append new canvas to div
+    let canvas = makeMarker(markerNumber,20,20)
+    ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'red';
+    newDiv.appendChild(canvas)
+
+    console.log("newdiv");
+    console.log(newDiv);
+
+
+    let parentDiv = oldDiv.parentNode;
+
+    parentDiv.replaceChild(newDiv, oldDiv)
 }
 
-let changeAruco = (moduleID) => {
-    // let markerNumberInput = document.querySelector('#markerNumberField-'+ moduleID).value;
-    // console.log(markerNumberInput)
-    // generateArucoNumber(markerNumberInput, moduleID);
+let changeAruco = (moduleId, index) => {
+
+    console.log("moduleId: "+moduleId)
+    console.log("index: "+index)
+
+
+    //Get current input and its value
+    markerInputId = moduleId + "-" + index
+    console.log("marker input: " +markerInputId);
+
+    let markerInputValue = document.querySelector('#markerNumberField-'+ markerInputId).value;
+
+
+    generateArucoNumber(markerInputValue, moduleId, index);
 }
 
 function showMarkerDetectionLogic(moduleID) {
@@ -178,12 +217,43 @@ function clickHandler(event) {
 
 
         if (action === 'add-module-'+ module.type) {
-            console.log('Adding Module '+ module.name)
 
-            let newModule = module.createNew(selectedPhysicalModules.length, appChosen)
-            selectedPhysicalModules.push(newModule)
-            addModuleToHtml(newModule);
-            generateListOfShortcuts(newModule);
+            if (selectedPhysicalModules.length < 6) {
+
+                console.log('Adding Module '+ module.name)
+
+                let newModule = module.createNew(selectedPhysicalModules.length, appChosen)
+                selectedPhysicalModules.push(newModule)
+                addModuleToHtml(newModule)
+
+                generateListOfShortcuts(newModule)
+                gsapDropdownUp("#module-select-dropdown")
+
+
+                addModuleButton.innerHTML = "Add Module";
+
+                isModuleListShown = false
+
+                if (selectedPhysicalModules.length == 1) {
+
+                    gsap.to(".box.selected", {
+                        boxShadow: " 0 0 0 99999px rgba(0, 0, 0, 0)",
+                        duration:1.5
+                    })
+
+                    confirmModuleButton.style.display = "block"
+                    gsap.to(".confirm-modules-btn",  {duration: 1, opacity:1});
+
+
+                }
+
+                
+            } else {
+
+                alert("Beta version of AruControl only allows for 6 modules at a time");
+
+            }
+
             return;
         }
     }
@@ -222,7 +292,7 @@ function confirmModulesButton() {
 
 
     //If control section is present
-    if (controlSection.style.display == "block") {
+    if (confirmModuleButton.childNodes[0].nodeValue == "Confirm Modules") {
 
         arrayOfInterfaces = []
 
@@ -248,28 +318,39 @@ function confirmModulesButton() {
         // let kHold = new SingleHoldMarkerLogic([DigitalAction.kKey], 4);
         // arrayOfInterfaces = [dHold, fHold, jHold, kHold]
 
-        console.log("List of interfaces: ")
-        console.log(arrayOfInterfaces)
+        // arrayOfInterfaces =[new ToggleRotationMarkerLogic([DigitalAction.aKey], [DigitalAction.sKey], 2, true, 25)];
 
         // let contSeq = new ContinuousSequenceMarkerLogic([DigitalAction.aKey], [DigitalAction.sKey], true, [1, 2, 3, 4]);
         // arrayOfInterfaces = [contSeq]
+
+        console.log("List of interfaces: ")
+        console.log(arrayOfInterfaces)
 
         for (let a of arrayOfInterfaces) {
             a.initialise()
         }
 
         confirmModuleButton.childNodes[0].nodeValue = "Back To Control Page";
-        controlSection.style.display = "none"
+        gsap.to(".add-modules-fade",  {duration: 1, opacity:0});
+        gsap.to(".control-fade",  {duration: 1, opacity:0, height:0});
+        gsap.to(".camera-fade",  {duration: 1, opacity:1, height:"fit-content", delay:0});
         detectionSection.style.display = "block";
+        controlSection.style.display = "none";
+
 
         
 
 
     } else { 
 
+
         confirmModuleButton.childNodes[0].nodeValue = "Confirm Modules";
+        gsap.to(".control-fade",   {duration: 1, opacity:1, height:"40vh", delay:0});
+        gsap.to(".add-modules-fade",   {duration: 1, opacity:1, delay:0});
+        gsap.to(".camera-fade", {duration: 1, opacity:0, height:0,delay:1});
         controlSection.style.display = "block"
         detectionSection.style.display = "none";
+
 
 
     }
@@ -302,4 +383,28 @@ function update() {
       }
 
     }
+}
+
+function getStarted() {
+
+    gsap.to(".fade-out-1",  {duration: .3, ease: "power4.out", opacity: 0});
+    gsap.to(".aruco-logo",  {duration: 2, ease: CustomEase.create("custom", "M0,0 C0.66,0 0.358,0.984 1,1 "), top:100, width:250, delay:.5}); //left:200
+    gsap.to(".startPage",  {duration: .3, height:150});
+
+    mainPage.style.display = "block"
+
+    gsap.to(".mainPage",  {duration: 1, opacity:1, delay:2});
+
+    gsap.to(".bg-burst", {
+        y: "random(-600, -400, 5)",
+        x: "random(100, -100, 5)",
+        ease: CustomEase.create("custom", "M0,0 C0.66,0 0.358,0.984 1,1 "),
+        opacity: 0,
+        duration:2,
+        delay: .5,
+        height:0
+      })
+
+
+
 }

@@ -74,21 +74,6 @@ let DigitalAction = {
     },
 
 
-    f9key: {
-
-        name: "'F9' Key",
-
-        sendDown: () => {
-            ipcRenderer.send("F9_KEY_DOWN")
-            console.log('F9 KEY DOWN')
-        },
-        sendUp: () => {
-            ipcRenderer.send("F9_KEY_UP")
-            console.log('F9 KEY UP')
-        },
-    },
-
-
     leftControlKey: {
         name: "'Left Control' Key",
 

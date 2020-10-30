@@ -16,7 +16,7 @@ export * from "./ScrollTrigger.js";
 export * from "./TextPlugin.js"; 
 
 //BONUS EXPORTS
-//export * from "./CustomEase.js";
+export * from "./CustomEase.js";
 //export * from "./DrawSVGPlugin.js";
 //export * from "./Physics2DPlugin.js";
 //export * from "./PhysicsPropsPlugin.js";

@@ -1,5 +1,13 @@
 /*CSS Reset*/
 
+body {
+
+    min-width:1000px;        /* Suppose you want minimum width of 1000px */
+    width: auto !important;  /* Firefox will set width as auto */
+    width:1000px;            /* As IE6 ignores !important it will set width as 1000px; */
+    
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,6 +28,14 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 
+:root {
+    --primary: #01A0C6;
+    --secondary: #FFF3E6;
+    --accent: #222431;
+    --accent2: #464b66;
+
+  }
+
 *:focus {
     outline: none;
 }
@@ -29,7 +45,8 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+    line-height: 1;
+
 }
 ol, ul {
 	list-style: none;
@@ -51,19 +68,26 @@ table {
 
 h1 { 
     font-size: 24px; 
-    color: white; 
+    color: var(--accent); 
 }
 h2 { font-size: 18px; line-height: normal;}
-h3 { font-size: 18px; line-height: normal; color: white}
+h3 { font-size: 18px; line-height: normal; color: var(--accent)}
 h4 { font-size: 1rem; line-height: normal;}
 h5 { font-size: 35px; line-height: normal;}
 h6 { font-size: 11px; line-height: normal;}
 
 .h1 {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: bold;
     font-size: 24px;
-    color: white;
+    line-height: 31px;
+    display: flex;
+    align-items: center;
     text-decoration: underline;
 }
+
+
 
 .center-align {
     display: grid;
@@ -86,22 +110,22 @@ h6 { font-size: 11px; line-height: normal;}
 }
 
 .main-body {
-    background-color: #222431;
+    background-color: var(--secondary);
     font-family: 'Poppins', sans-serif;
-    color: #3EE1D0;
+    color: var(--primary);
     z-index: 1;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
 .contain {
-    margin: 5em 5em 0 5em;
+    margin: 0 5em 0 5em;
 }
 
 .main-header {
     display: grid;
     grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
     gap: 1em 0px;
     grid-template-areas:
       "a b"
@@ -181,23 +205,23 @@ h6 { font-size: 11px; line-height: normal;}
     height: auto;
     align-content: flex-start;
     overflow-x: hidden;
-    height: 30vh;
+    height: 40vh;
     
 }
 
 .main-module::-webkit-scrollbar {
-    background-color: rgba(1, 1, 1, 0.1);
+    background-color: var(--accent2);
     border-radius: 10px;
 }
 
 .main-module::-webkit-scrollbar-thumb {
-    background-color: #404357;
+    background-color:var(--accent);
     border-radius: 10px;
 }
 
 .content-module {
     border-radius: 15px;
-    background: #404357;
+    background: var(--accent);
     width: 300px;
     height: auto;
     position: relative;
@@ -206,11 +230,11 @@ h6 { font-size: 11px; line-height: normal;}
     margin: 0 20px 20px 0;
     transition: all 0.3s ease;
 
-    color: #222431;
+    color: var(--accent);
 }
 
 .content-module:hover {
-    background: #6b7091;
+    background: var(--accent2);
     transition: all 0.3s ease;
 }
 
@@ -218,6 +242,17 @@ h6 { font-size: 11px; line-height: normal;}
     position: absolute;
     left: 20px;
     top: 20px;
+}
+
+.custom-shortcuts-title {
+
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    height: fit-content;
+    width: 100%;
+    text-align: center;
+
 }
 
 .module-cross {
@@ -281,21 +316,40 @@ button {
     padding: 10px;
     background-color: white;
     border-radius: 5px;
-    border: 2px solid #39F0E5;
-    color: #aeb3cf;
+    border: 2px solid var(--accent);
+
+    color: var(--accent2);
 }
 
+
+
 .secondary-input:focus {
-    color: #222431;
+    color: var(--accent);
 }
 
 .main-button {
     padding: 10px 45px 10px 45px;
     border-radius: 5px;
-    border-color: #3EE1D0;
+    border-color: var(--primary);
+    color: var(--primary);
     border-width: 2px;
     background: transparent;
     border-style: solid;
+}
+
+.button-1 {
+    padding: 10px 45px 10px 45px;
+    border-radius: 5px;
+    border-color: var(--accent);
+    color: var(--accent);
+    border-width: 2px;
+    background: transparent;
+    border-style: solid;
+}
+
+.button-1:hover {
+    background-color: var(--accent);
+    color: var(--secondary);
 }
 
 .cross-button {
@@ -326,7 +380,7 @@ button {
 .select-arrow {
     margin: 0;
     border-color: transparent;
-    background: #3A3C4E;
+    background: red;
     border-style: solid;
     font-size: inherit;
 }
@@ -336,8 +390,8 @@ button {
 }
 
 .main-button:hover {
-    background-color: #3EE1D0;
-    color: #222431;
+    background-color: var(--primary);
+    color: var(--secondary);
 }
 
 .main-title-select {
@@ -391,8 +445,8 @@ button {
     display: inline-block;
     width: 250px;
     height: 140px;
-    background-color: #EBE9E8;
-    color: #222431;
+    background-color: red;
+    color: var(--accent);
     text-align: left;
     background-size: cover;
     background-position: center;
@@ -400,12 +454,12 @@ button {
 }
 
 .module-select::-webkit-scrollbar {
-    background-color: rgba(1, 1, 1, 0.1);
+    background-color: var(--accent2);
     border-radius: 15px;
 }
 
 .module-select::-webkit-scrollbar-thumb {
-    background-color: #404357;
+    background-color: var(--accent);
     border-radius: 15px;
 }
 
@@ -413,14 +467,16 @@ button {
 .custom-options-menu {
     z-index: 99;
     position: absolute;
-    margin-top: 10px;
+    margin-top: -272px;
+    margin-left: -248px;
+    display: block;
     padding: 20px;
     border-radius: 10px;
     background: white;
-    height: auto;
+    height: 0px;
     opacity: 0;
     width: 280px;
-    color: #222431;
+    color: var(--secondary);
     overflow: hidden;
 }
 
@@ -448,7 +504,7 @@ button {
 }
 
 .custom-options-menu::-webkit-scrollbar-thumb {
-    background-color: #404357;
+    background-color: #ff0000;
     border-radius: 15px;
 }
 
@@ -490,7 +546,7 @@ button {
     min-height: 400px;
     height: 60vh;
     width: 90vw;
-    background-color: #222431;
+    background-color: var(--accent);
     border-radius: 15px;
     color: white;
     overflow-y: scroll;
@@ -504,7 +560,7 @@ button {
     vertical-align: middle;
     height: auto;
     width: auto;
-    background-color: #222431;
+    background-color: var(--secondary);
     border-radius: 15px;
     color: white;
     overflow-y: none;
@@ -530,7 +586,7 @@ button {
 }
 
 .custom-shortcut-menu-gif {
-    background-color: grey;
+    background-color: red;
     border-radius: 10px;
     height: 100%;
     background-size: cover;
@@ -538,7 +594,10 @@ button {
 }
 
 .custom-shortcut-menu-form {
-    margin-left: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    margin-top: 100px;
 }
 
 .custom-shortcut-menu-form ul {
@@ -555,11 +614,227 @@ button {
 
 /** Animated BG Elements **/
 
+.bg-burst {
+    top: 50%;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .bg-animations {
     position: absolute;
     display: block;
     z-index: -1;
-    opacity: 0.3;
+    opacity: 0.4;
     top: 100vh;
     left: 50vh;
 }
+
+
+
+/** PRAS **/
+
+
+.aruco-logo {
+    
+    width: 600px;
+    position: absolute;
+    left: 50%;
+    transform:translateX(-50%);
+
+
+}
+
+.start-button {
+    padding: 10px 45px 10px 45px;
+    border-radius: 5px;
+    border-color: var(--accent);
+    border-width: 2px;
+    background: var(--accent);
+    color: var(--secondary);
+    border-style: solid;
+    width: 30%;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    transform:translateY(100px);
+
+
+
+
+} 
+
+.start-button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+} 
+
+.start-button:active {
+    /* background-color: var(--accent);
+    box-shadow: 0 5px rgba(0,0,0,0.24);
+    transform: translateY(.001px); */
+}
+
+.mainPage {
+    opacity: 0;
+}
+
+.fill-width {
+    width: 100%;
+    display: block;
+    margin-left: 0px;
+    margin-right: 0px;
+
+}
+
+.top-margin {
+    margin-top:5px;
+}
+
+.align-bottom-container {
+    position: relative;
+}
+
+.align-bottom {
+    position: relative;
+    bottom: 0;
+    margin-top: 30px;
+
+}
+
+.markerNumberInputs {
+
+    width: 100%;
+    display: block;
+    height: 100px;
+
+}
+
+.shortcut-content {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.confirm-modules-btn {
+    opacity: 0;
+}
+
+.camera-fade {
+    opacity: 0;
+    height:0;
+}
+
+
+/** Clement's styles **/
+
+
+/* #detectionDiv {
+    position: absolute;
+    top: 0;
+    left: -110vw;
+    transition: all 500ms ease-in-out;
+    z-index: 999;
+  }
+  
+  #detectionDiv.active {
+    top: 0;
+    left: 0;
+  } */
+
+    
+  /* #detectionDiv #detection-canvas {
+    position: relative;
+    float: left;
+    clear: both;
+    border-radius: 0 0 0.5em 0;
+    border-bottom: 4px solid #FFF;
+  }
+
+  
+  #detectionDiv #detection-canvas-overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    border-radius: 0 0 0.5em 0;
+  }*/
+  
+  #detectionDiv #parametersMenu {
+    position: relative;
+    float: left;
+    clear: both;
+    margin: 1em 0 1em 0em;
+    padding: 1em 1.5em 1em 1.5em;
+    background: var(--accent);
+    border-radius: 10px 10px 10px 10px;
+    border-bottom: 4px solid #FFF;
+  }
+  
+   #detectionDiv #parametersMenu .parameterItem {
+    position: relative;
+    float: left;
+    clear: both;
+    margin: 0.25em 0 0.25em 0;
+    color: white;
+  }  
+  #detectionDiv #parametersMenu .parameterItem span {
+    position: relative;
+    float: left;
+    width: 18em;
+    font-weight: 600;
+    color: white;
+  }  
+
+
+  .cameraContainer {
+    position: relative;
+  }
+  .detection-canvas {
+    position: absolute;
+  }
+  .detection-canvas-overlay {
+  }
+
+  .add-modules-container{
+    position: relative;
+
+  }
+
+  .add-modules-overlay{
+    position:absolute;top:0px;left:0px;
+
+  }
+
+
+
+
+.shortcut-test {
+    padding: 70px 0;
+    width: 100%;
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    margin-top: 20px;
+}
+
+.flex-child {
+    flex: .33;
+    background: var(--accent);
+}  
+
+/* .flex-child:first-child {
+    margin-right: 20px;
+}  */
+
+.box{
+    display:inline-block; 
+    width:fit-content; 
+    height:fit-content; 
+    text-align:center; 
+}
+
+.box.selected {
+    box-shadow: 0 0 0 99999px rgba(0, 0, 0, .67);
+}
+

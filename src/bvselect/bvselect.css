@@ -18,7 +18,7 @@ Developed by: Bruno Vieira
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
-	background-color: #6A7093;
+	background-color: var(--accent2);
 }
 .bv_disabled {
 	background-color: #e6e6e6!important;
@@ -31,7 +31,7 @@ Developed by: Bruno Vieira
 	background-color:transparent!important;
 }
 .bv_background {
-	background-color: #6A7093;
+	background-color: white;
 	z-index: -1;
 }
 .arrow {
@@ -95,7 +95,7 @@ Developed by: Bruno Vieira
 	padding: 0;
 	display: none;
 	border: none;
-	border-radius: 0px 0px 10px 10px;
+	border-radius: 10px 10px 10px 10px;
 	display: none;
 	z-index: 100;
 	max-height: 400px;
@@ -105,7 +105,7 @@ Developed by: Bruno Vieira
 .bv_ul_inner li {
     cursor: pointer;
     list-style: none;
-    color: white;
+    color: var(--accent);
     padding: 5px 0 5px 9px;
     font-family: inherit;
     font-size: 10pt;
@@ -145,7 +145,7 @@ Developed by: Bruno Vieira
 	font-weight: bold;
 }
 .bv_ul_inner li:hover {
-	background-color: #D5D7E1;
+	background-color: #35D6C5;
 	color: #222431;
 }
 .nofocus

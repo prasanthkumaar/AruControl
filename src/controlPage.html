@@ -11,6 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/4c364dc0ec.js" crossorigin="anonymous"></script>
   <script src="./gsap/minified/gsap.min.js"></script>
+  <script src="./gsap/minified/CustomEase.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/reefjs/dist/reef.min.js"></script>
   <link rel="stylesheet" href="../styles/style.css">
   <link rel="stylesheet" href="../styles/keyboard.css">
@@ -34,6 +36,10 @@
   <script src="./framework/markerLogic/SingleHoldMarkerLogic.js"></script> 
   <script src="./framework/markerLogic/SingleRepeatMarkerLogic.js"></script> 
   <script src="./framework/markerLogic/SingleTapMarkerLogic.js"></script> 
+  <script src="./framework/markerLogic/ToggleRotationMarkerLogic.js"></script> 
+  <script src="./framework/markerLogic/SliderMarkerLogic.js"></script> 
+
+
   
 
   <script src="./bvselect/bvselect.js"></script>
@@ -49,6 +55,7 @@
 </head>
 
 <body class="main-body">
+
     <div class="overlay overlayCustomShortcutMenu" style="display: none">
         <div class="custom-shortcut-menu" id="custom-shortcut-menu">
             <!-- <div class="custom-shortcut-menu-title">
@@ -76,6 +83,7 @@
             </div> -->
         </div>
     </div>
+
     <div class="overlay overlayMarkerDetection" style="display: none" id="overlay">
         <div class="marker-detection-menu">
             <div class="marker-detection-menu-content">
@@ -86,139 +94,177 @@
             </div>
         </div>
     </div>
-    <div class="contain">
-        <div class="main-header" id="main-header">
-            <div class="logo top-left"><h2>AruControls</h2></div>
-            <div class="top-right" id="browse-templates">
-            </div>
-            <div class="bottom-left">
-                    <input id="titleField" class="input h1" type="text" value="Blender Control" onkeypress="this.style.width = ((this.value.length + 1) * 17) + 'px';">
-                        <!-- <button button-data="set-name"class="main-button"><span  class="fas fa-pencil-alt fa-1x icon"></span></button> -->
-                    </input>
-            </div>
 
-        </div>
-    <!-- Repeat Module Array -->
+    <div id="startPage" class="startPage">
+        <div class="main-content main-title">
 
-        <div id="controlPage">
-
-            <div class="bottom-right" id="add-module">
-                <button id="main-header-add-module" class="main-button" onclick="showModulesList()">Add Module</button>
-                <div class="module-select" id="module-select-dropdown">
-                    <ul>
-                        <li id="module-select-dropdown-0"></li>
-                        <li id="module-select-dropdown-1"></li>
-                        <li id="module-select-dropdown-2"></li>
-                        <li id="module-select-dropdown-3"></li>
-                        <li id="module-select-dropdown-4"></li>
-                        <li id="module-select-dropdown-5"></li>
-                        <li id="module-select-dropdown-6"></li>
-
-                        <!-- Invididual Modules Buttons-->
-                        <!--<li style="background-image: url(./img/preview.jpg)">
-                        <button class="full-button clear-button" button-data="add-module">
-                            <span><i class="fas fa-plus"></i></span>
-                        </button>
-                        </li>-->
-                        <!-- Individual Modules End-->
-                    </ul>
-                </div>
-            </div>
-
-            <div class="main-content main-module" id="main-module-container">
-                <div id="content-module-0"></div>
-                <div id="content-module-1"></div>
-                <div id="content-module-2"></div>
-                <div id="content-module-3"></div>
-                <div id="content-module-4"></div>
-                <div id="content-module-5"></div>
-                    
-                <!-- Individual Modules -->
-                    <!--<div class="content-module">
-                        <div class="content-module-img" style="background-image: url('./img/preview.jpg');">
-                                <div class="module-title"><h4>Button</h4></div>
-                                <button class="module-cross" button-data="delete-module" id="delete=module-${props.newNumber}">
-                                    <span class="fas fa-times fa-1x icon" style="color: black;"></span>
-                                </button>
-                        </div>
-                        <div class="content-module-bottom">
-                            <div>
-                            <select module-number="${props.newNumber}" select-data="digital-action" class="custom-select" id="module-type-${props.newNumber}">
-                            </select>
-                            </div>
-                            <button class="clear-button">
-                                <span class="fas fa-ellipsis-v fa-1x icon fa-rotate-90" style="font-size: 15px; color: white;"></span>
-                            </button>
-                        </div>-->
-                <!-- end of individual module -->
-                    </div>
-
-            
-        </div>
-
-
-
-        <div id="detectionDiv" class="active">
-
-            <canvas id="detection-canvas"></canvas>
-            <canvas id="detection-canvas-overlay"></canvas>
-        
-            <div id="parametersMenu">
-                <div class="parameterItem">
-                <span>Camera Feed ID</span>
-                <select name="CAMERA_INDEX" id="CAMERA_INDEX">
-                    <option value="0" label="0" selected></option>
-                </select>
-                </div>
-                <div class="parameterItem">
-                <span>Video Size</span>
-                <select name="VIDEO_SIZE_INDEX" id="VIDEO_SIZE_INDEX">
-                    <option value="0" label="320&times;240"></option>
-                    <option value="1" label="640&times;480" selected></option>
-                    <option value="2" label="1280&times;720"></option>
-                    <option value="2" label="1920&times;1080"></option>
-                </select>
-                </div>
-                <div class="parameterItem">
-                <span>Min Marker Distance</span>
-                <input id="MIN_MARKER_DISTANCE" type="number" name="MIN_MARKER_DISTANCE" min="1" max="50" value="1" step="1">
-                </div>
-                <div class="parameterItem">
-                <span>Min Marker Perimeter</span>
-                <input id="MIN_MARKER_PERIMETER" type="number" name="MIN_MARKER_PERIMETER" min="0.01" max="0.99" value="0.01" step="0.01">
-                </div>
-                <div class="parameterItem">
-                <span>Max Marker Perimeter</span>
-                <input id="MAX_MARKER_PERIMETER" type="number" name="MAX_MARKER_PERIMETER" min="0.01" max="0.99" value="0.99" step="0.01">
-                </div>
-                <div class="parameterItem">
-                <span>Size After Perspective Removal</span>
-                <input id="SIZE_AFTER_PERSPECTIVE_REMOVAL" type="number" name="SIZE_AFTER_PERSPECTIVE_REMOVAL" min="1" max="200" value="49" step="1">
-                </div>
-                <div class="parameterItem">
-                <span>Contrast</span>
-                <input id="IMAGE_CONTRAST" type="number" name="IMAGE_CONTRAST" min="-100" max="100" value="0" step="1">
-                </div>
-                <div class="parameterItem">
-                <span>Brightness</span>
-                <input id="IMAGE_BRIGHTNESS" type="number" name="IMAGE_BRIGHTNESS" min="-100" max="100" value="0" step="1">
-                </div>
-                <div class="parameterItem">
-                <span>Grayscale</span>
-                <input id="IMAGE_GRAYSCALE" type="number" name="IMAGE_GRAYSCALE" min="0" max="100" value="0" step="1">
-                </div>
-            </div>
-        
-                <button onclick="startDetection()">Detect me</button>
-        
-        
-            </div>
-
-
-        <div id="main-footer" class="main-gap main-footer">
-            <button id="confirm-module" class="main-button" onclick="confirmModulesButton()">Confirm Modules</button>
+            <h5 class="center-title fade-out-1">Make Your Own</h5>
+            <img id="center-logo" class="aruco-logo" src="./img/general/logo.png" alt="">
+            <button class="start-button fade-out-1" onclick="getStarted()">Get Started</button>
+      
+          </div>
+          
+          <div class="bg-animations">
+          <span><img id="background-emoji" class="bg-burst" src="./img/emoji1.png" alt=""></span>
+          <span><img id="background-emoji" class="bg-burst" src="./img/emoji2.png" alt=""></span>
+          <span><img id="background-emoji" class="bg-burst" src="./img/emoji3.png" alt=""></span>
+          <span><img id="background-emoji" class="bg-burst" src="./img/emoji4.png" alt=""></span>
+          <span><img id="background-emoji" class="bg-burst" src="./img/emoji5.png" alt=""></span>
+          <span><img id="background-emoji" class="bg-burst" src="./img/emoji6.png" alt=""></span>
+          <span><img id="background-emoji" class="bg-burst" src="./img/emoji7.png" alt=""></span>
+          <span><img id="background-emoji" class="bg-burst" src="./img/emoji8.png" alt=""></span>
+          <span><img id="background-emoji" class="bg-burst" src="./img/emoji9.png" alt=""></span>
+          <span><img id="background-emoji" class="bg-burst" src="./img/emoji10.png" alt=""></span>
+          <span><img id="background-emoji" class="bg-burst" src="./img/emoji11.png" alt=""></span>
+          <span><img id="background-emoji" class="bg-burst" src="./img/emoji12.png" alt=""></span>
+       
         </div>
     </div>
+
+    <div id="mainPage" class="mainPage"> 
+        <div class="contain">
+            <div class="main-header" id="main-header">
+                <div class="bottom-right" id="browse-templates">
+
+                    <div class="add-modules-container" >
+                        <button id="main-header-add-module" class="main-button add-modules-fade box selected add-modules-overlay" onclick="showModulesList()">Add Module</button>    
+
+                    </div>
+
+                </div>
+                <div class="bottom-left">
+                        <input id="titleField" class="input h1" type="text" value="My Board" onkeypress="this.style.width = ((this.value.length + 1) * 17) + 'px';">
+                            <!-- <button button-data="set-name"class="main-button"><span  class="fas fa-pencil-alt fa-1x icon"></span></button> -->
+                        </input>
+                </div>
+    
+            </div>
+        <!-- Repeat Module Array -->
+    
+            <div id="controlPage" >
+    
+                <div class="bottom-right" id="add-module">
+                    <div class="module-select" id="module-select-dropdown">
+                        <ul>
+                            <li id="module-select-dropdown-0"></li>
+                            <li id="module-select-dropdown-1"></li>
+                            <li id="module-select-dropdown-2"></li>
+                            <li id="module-select-dropdown-3"></li>
+                            <li id="module-select-dropdown-4"></li>
+                            <li id="module-select-dropdown-5"></li>
+                            <li id="module-select-dropdown-6"></li>
+    
+                            <!-- Invididual Modules Buttons-->
+                            <!--<li style="background-image: url(./img/preview.jpg)">
+                            <button class="full-button clear-button" button-data="add-module">
+                                <span><i class="fas fa-plus"></i></span>
+                            </button>
+                            </li>-->
+                            <!-- Individual Modules End-->
+                        </ul>
+                    </div>
+                </div>
+    
+                <div class="main-content main-module control-fade" id="main-module-container">
+                    <div id="content-module-0"></div>
+                    <div id="content-module-1"></div>
+                    <div id="content-module-2"></div>
+                    <div id="content-module-3"></div>
+                    <div id="content-module-4"></div>
+                    <div id="content-module-5"></div>
+                        
+                    <!-- Individual Modules -->
+                        <!--<div class="content-module">
+                            <div class="content-module-img" style="background-image: url('./img/preview.jpg');">
+                                    <div class="module-title"><h4>Button</h4></div>
+                                    <button class="module-cross" button-data="delete-module" id="delete=module-${props.newNumber}">
+                                        <span class="fas fa-times fa-1x icon" style="color: black;"></span>
+                                    </button>
+                            </div>
+                            <div class="content-module-bottom">
+                                <div>
+                                <select module-number="${props.newNumber}" select-data="digital-action" class="custom-select" id="module-type-${props.newNumber}">
+                                </select>
+                                </div>
+                                <button class="clear-button">
+                                    <span class="fas fa-ellipsis-v fa-1x icon fa-rotate-90" style="font-size: 15px; color: white;"></span>
+                                </button>
+                            </div>-->
+                    <!-- end of individual module -->
+                        </div>
+    
+                
+            </div>
+    
+            <div id="detectionDiv" class="active camera-fade">
+
+                <div class = "flex-container">
+
+                    <div class="cameraContainer flex-child" >
+                        <canvas id="detection-canvas" class="detection-canvas"></canvas>
+                        <canvas id="detection-canvas-overlay" class="detection-canvas-overlay"></canvas>
+                    </div>
+    
+                
+                    <div id="parametersMenu flex-child">
+                        <div class="parameterItem">
+                        <span>Camera Feed ID</span>
+                        <select name="CAMERA_INDEX" id="CAMERA_INDEX">
+                            <option value="0" label="0" selected></option>
+                        </select>
+                        </div>
+                        <div class="parameterItem">
+                        <span>Video Size</span>
+                        <select name="VIDEO_SIZE_INDEX" id="VIDEO_SIZE_INDEX">
+                            <option value="0" label="320&times;240"></option>
+                            <option value="1" label="640&times;480" selected></option>
+                            <option value="2" label="1280&times;720"></option>
+                            <option value="2" label="1920&times;1080"></option>
+                        </select>
+                        </div>
+                        <div class="parameterItem">
+                        <span>Min Marker Distance</span>
+                        <input id="MIN_MARKER_DISTANCE" type="number" name="MIN_MARKER_DISTANCE" min="1" max="50" value="1" step="1">
+                        </div>
+                        <div class="parameterItem">
+                        <span>Min Marker Perimeter</span>
+                        <input id="MIN_MARKER_PERIMETER" type="number" name="MIN_MARKER_PERIMETER" min="0.01" max="0.99" value="0.01" step="0.01">
+                        </div>
+                        <div class="parameterItem">
+                        <span>Max Marker Perimeter</span>
+                        <input id="MAX_MARKER_PERIMETER" type="number" name="MAX_MARKER_PERIMETER" min="0.01" max="0.99" value="0.99" step="0.01">
+                        </div>
+                        <div class="parameterItem">
+                        <span>Size After Perspective Removal</span>
+                        <input id="SIZE_AFTER_PERSPECTIVE_REMOVAL" type="number" name="SIZE_AFTER_PERSPECTIVE_REMOVAL" min="1" max="200" value="49" step="1">
+                        </div>
+                        <div class="parameterItem">
+                        <span>Contrast</span>
+                        <input id="IMAGE_CONTRAST" type="number" name="IMAGE_CONTRAST" min="-100" max="100" value="0" step="1">
+                        </div>
+                        <div class="parameterItem">
+                        <span>Brightness</span>
+                        <input id="IMAGE_BRIGHTNESS" type="number" name="IMAGE_BRIGHTNESS" min="-100" max="100" value="0" step="1">
+                        </div>
+                        <div class="parameterItem">
+                        <span>Grayscale</span>
+                        <input id="IMAGE_GRAYSCALE" type="number" name="IMAGE_GRAYSCALE" min="0" max="100" value="0" step="1">
+                        </div>
+                        <button onclick="startDetection()">Detect me</button>
+    
+                    </div>
+
+                </div>
+
+                </div>
+    
+    
+            <div id="main-footer" class="main-gap main-footer">
+                <button id="confirm-module" class="main-button confirm-modules-btn" onclick="confirmModulesButton()">Confirm Modules</button>
+            </div>
+        </div>
+    </div>
+
     </div>
 
 
