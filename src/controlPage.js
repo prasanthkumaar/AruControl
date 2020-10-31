@@ -222,9 +222,12 @@ document.addEventListener('click', ()=> {
 
     for (let customMenu of arrayOfCustomMenu) {
 
+        if (document.querySelector(customMenu) != null){
+
             if (document.querySelector(customMenu).style.opacity == 1) {
                 gsapDropdownUp(customMenu)
             }
+        }
     }
 
 
@@ -414,7 +417,9 @@ function update() {
 
 function getStarted() {
 
-    gsap.to(".fade-out-1",  {duration: .3, ease: "power4.out", opacity: 0});
+    gsap.to(".fade-out-1",  {duration: .3, ease: "power4.out", opacity: 0, onComplete: ()=> {
+        document.querySelector(".fade-out-1").style.display = "none"
+    } });
     gsap.to(".aruco-logo",  {duration: 2, ease: CustomEase.create("custom", "M0,0 C0.66,0 0.358,0.984 1,1 "), top:100, width:250, delay:.5}); //left:200
     gsap.to(".startPage",  {duration: .3, height:150});
 

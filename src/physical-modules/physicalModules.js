@@ -19,7 +19,7 @@ class ButtonHoldModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Keypress: ']
         this.numberOfMarkers = 1
-        this.detectionLogic = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*"
+        this.detectionLogic = "../src/img/detectionlogic/appear.gif"
         this.headerImagePng = "../src/img/modules_png/button.png"
 
         //For mapping
@@ -59,6 +59,7 @@ class ButtonTapModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Keypress: ']
         this.numberOfMarkers = 1
+        this.detectionLogic = "../src/img/detectionlogic/appear.gif"
         this.headerImagePng = "../src/img/modules_png/button.png"
 
         //For mapping
@@ -97,6 +98,7 @@ class SwitchModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Left Action: ', 'Right Action:']
         this.numberOfMarkers = 2
+        this.detectionLogic = "../src/img/detectionlogic/appear.gif"
         this.headerImagePng = "../src/img/modules_png/toggle.png"
 
 
@@ -138,6 +140,7 @@ class ToggleRotationModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Clockwise Action: ', 'Acticlockwise Action:']
         this.numberOfMarkers = 1
+        this.detectionLogic = "../src/img/detectionlogic/rotate.gif"
         this.headerImagePng = "../src/img/modules_png/knob.png"
 
 
@@ -178,6 +181,7 @@ class ContinuousSequenceScrollModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Clockwise Action: ', 'Acticlockwise Action:']
         this.numberOfMarkers = 3
+        this.detectionLogic = "../src/img/detectionlogic/continue.gif"
         this.headerImagePng = "../src/img/modules_png/scroll.png"
 
 
@@ -219,6 +223,7 @@ class ContinuousSequenceDialModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Clockwise Action: ', 'Acticlockwise Action:']
         this.numberOfMarkers = 3
+        this.detectionLogic = "../src/img/detectionlogic/continue.gif"
         this.headerImagePng = "../src/img/modules_png/dial.png"
 
 
@@ -259,6 +264,7 @@ class SliderModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = []
         this.numberOfMarkers = 2
+        this.detectionLogic = "../src/img/detectionlogic/displace.gif"
         this.headerImagePng = "../src/img/modules_png/slider.png"
 
 

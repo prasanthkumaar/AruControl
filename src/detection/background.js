@@ -171,16 +171,16 @@ window.onload = function() {
   beholder.init("#detection-canvas", "#detection-canvas-overlay");
 
   // Detection param field changes
-  document
-    .querySelector("#MIN_MARKER_DISTANCE")
-    .addEventListener("change", e => {
-      beholder.setParam("MIN_MARKER_DISTANCE", e.target.value);
-    });
-  document
-    .querySelector("#MIN_MARKER_PERIMETER")
-    .addEventListener("change", e => {
-      beholder.setParam("MIN_MARKER_PERIMETER", e.target.value);
-    });
+  // document
+  //   .querySelector("#MIN_MARKER_DISTANCE")
+  //   .addEventListener("change", e => {
+  //     beholder.setParam("MIN_MARKER_DISTANCE", e.target.value);
+  //   });
+  // document
+  //   .querySelector("#MIN_MARKER_PERIMETER")
+  //   .addEventListener("change", e => {
+  //     beholder.setParam("MIN_MARKER_PERIMETER", e.target.value);
+  //   });
   document
     .querySelector("#MAX_MARKER_PERIMETER")
     .addEventListener("change", e => {

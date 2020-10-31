@@ -4,7 +4,7 @@
     grid-template-rows: 1fr;
     grid-template-areas:  "a b c";
     grid-gap: 20px;
-    height: 200px;
+    height: auto;
 }
 
 .keyboard-base {

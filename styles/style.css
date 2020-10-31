@@ -7,6 +7,7 @@ body {
     
 }
 
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -515,7 +516,7 @@ button {
 }
 
 .custom-options-menu::-webkit-scrollbar-thumb {
-    background-color: #ff0000;
+    background-color: var(--accent2);
     border-radius: 15px;
 }
 
@@ -561,6 +562,16 @@ button {
     border-radius: 15px;
     color: white;
     overflow-y: scroll;
+}
+
+.custom-shortcut-menu::-webkit-scrollbar {
+    background-color: rgba(1, 1, 1, 0.1);
+    border-radius: 15px;
+}
+
+.custom-shortcut-menu::-webkit-scrollbar-thumb {
+    background-color: var(--accent2);
+    border-radius: 15px;
 }
 
 .marker-detection-menu {
@@ -735,6 +746,9 @@ button {
     height:0;
 }
 
+.detection-logic-gif {
+    margin-top: 50px;
+}
 
 /** Clement's styles **/
 
@@ -778,6 +792,7 @@ button {
     background: var(--accent);
     border-radius: 10px 10px 10px 10px;
     border-bottom: 4px solid #FFF;
+    z-index: 999;
   }
   
    #detectionDiv #parametersMenu .parameterItem {
@@ -834,7 +849,6 @@ button {
 }
 
 .flex-child {
-    flex: .60;
     background: var(--accent);
     margin-right: 40px;
     border-radius: 15px;
@@ -892,5 +906,6 @@ button {
 }
 
 .camera-feed {
-    min-width: 50vw;
+    width: auto;
+    overflow: hidden;
 }

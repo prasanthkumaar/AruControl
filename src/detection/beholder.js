@@ -11,9 +11,9 @@ const beholder = { updateCallbacks: [] };
 let detectionParams = {
   CAMERA_INFO: {},
   VIDEO_SIZE: { width: { exact: 640 }, height: { exact: 480 } },
-  MIN_MARKER_DISTANCE: 10,
-  MIN_MARKER_PERIMETER: 0.2,
-  MAX_MARKER_PERIMETER: 0.8,
+  MIN_MARKER_DISTANCE: 1,
+  MIN_MARKER_PERIMETER: 0.01,
+  MAX_MARKER_PERIMETER: 0.99,
   SIZE_AFTER_PERSPECTIVE_REMOVAL: 49,
   IMAGE_CONTRAST: 0,
   IMAGE_BRIGHTNESS: 0,
