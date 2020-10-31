@@ -1,5 +1,5 @@
 {
-  "name": "beholder-electron-example",
+  "name": "arucontrols",
   "version": "0.0.1",
   "description": "AruCool is a measure of how cool you are :)",
   "main": "app.js",
@@ -11,19 +11,19 @@
     "dist": "electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Beholder Example\"",
+    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"AruControls\"",
     "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/project-beholder/beholder-electron-example.git"
+    "url": "git+https://github.com/prasanthkumaar/AruControl"
   },
-  "author": "",
+  "author": "Carina, Yuan Jie, Pras",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/project-beholder/beholder-electron-example/issues"
+    "url": "https://github.com/prasanthkumaar/AruControl/issues"
   },
-  "homepage": "https://github.com/project-beholder/beholder-electron-example#readme",
+  "homepage": "https://github.com/prasanthkumaar/AruControl#readme",
   "dependencies": {
     "@nut-tree/nut-js": "^1.5.0",
     "loudness": "^0.4.1"
@@ -36,7 +36,7 @@
   },
   "build": {
     "appId": "com.beholder.aruCool",
-    "productName": "Electron Test App",
+    "productName": "AruControls",
     "target": "NSIS",
     "directories": {
       "output": "build"
