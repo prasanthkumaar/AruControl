@@ -1,8 +1,7 @@
 /*CSS Reset*/
 
 body {
-
-    min-width:1000px;        /* Suppose you want minimum width of 1000px */
+       /* Suppose you want minimum width of 1000px */
     width: auto !important;  /* Firefox will set width as auto */
     width:1000px;            /* As IE6 ignores !important it will set width as 1000px; */
     
@@ -364,6 +363,18 @@ button {
     border-style: solid;
     font-size: inherit;
     border-width: 0px;
+    text-align: left;
+    justify-content: left;
+}
+
+.clear-button i {
+    margin-left: 10px;
+}
+
+.add-module-title {
+    position: relative;
+    top: -45px;
+    left: 10px;
 }
 
 .clear-button a {
@@ -467,7 +478,7 @@ button {
 .custom-options-menu {
     z-index: 99;
     position: absolute;
-    margin-top: -272px;
+    margin-top: -274px;
     margin-left: -248px;
     display: block;
     padding: 20px;
@@ -475,7 +486,7 @@ button {
     background: white;
     height: 0px;
     opacity: 0;
-    width: 280px;
+    width: 285px;
     color: var(--secondary);
     overflow: hidden;
 }
@@ -818,9 +829,15 @@ button {
     margin-top: 20px;
 }
 
+.flex-container h3 {
+    color: var(--primary);
+}
+
 .flex-child {
-    flex: .33;
+    flex: .60;
     background: var(--accent);
+    margin-right: 40px;
+    border-radius: 15px;
 }  
 
 /* .flex-child:first-child {
@@ -838,3 +855,42 @@ button {
     box-shadow: 0 0 0 99999px rgba(0, 0, 0, .67);
 }
 
+.parameterItem {
+    margin: 10px 0 10px 0;
+}
+
+.parameterItem-slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 20px; /* Specified height */
+    margin: 10px 0px 10px 0;
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 15px;
+}
+
+.parameterItem-slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+
+.parameterItem-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 20px; /* Set a specific slider handle width */
+    height: 20px; /* Slider handle height */
+    background: var(--primary); /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 15px;
+  }
+
+.hide-option {
+    display: none;
+}
+
+.camera-feed {
+    min-width: 50vw;
+}

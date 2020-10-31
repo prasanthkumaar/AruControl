@@ -10,7 +10,7 @@ var anim = gsap.to(".bg-burst", {
   y: "random(400, -400, 5)",
   height: "auto",
   rotation: "random(0, 10, 3)",
-  duration:4,
+  duration: 4,
   ease: "power4.out",
   opacity: 1,
   repeatRefresh:false,

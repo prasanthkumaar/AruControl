@@ -103,6 +103,12 @@ function showModulesList() {
     }
 }
 
+function hideModulesList() {
+    isModuleListShown = false;
+    gsapDropdownUp("#module-select-dropdown")
+    addModuleButton.innerHTML = "Add Module";
+}
+
 let isAdvancedControlsShown = false;
 
 let generateArucoNumber = (markerNumber, moduleID, index) => {
@@ -190,19 +196,40 @@ function showAdvancedControls(e) {
     
 //     const outsideClickListener = event => {
 //         if (!element.contains(event.target) && isVisible(element)) { // or use: event.target.closest(selector) === null
-//             gsapDropdownUp("#module-select-dropdown")
+//             console.log('quality of life is shit')
 //           removeClickListener()
 //         }
 //     }
 
-//     const removeClickListener = () => {
-//         document.removeEventListener('click', outsideClickListener)
-//     }
-
-//     document.addEventListener('click', outsideClickListener)
 // }
 
+document.addEventListener('click', ()=> {
 
+    if (document.querySelector(".module-select").style.opacity == 1) {
+        console.log('YOOO')
+        gsapDropdownUp("#module-select-dropdown")
+        hideModulesList()  
+    };
+
+    let arrayOfCustomMenu = [
+        "#custom-options-dropdown-0",
+        "#custom-options-dropdown-1",
+        "#custom-options-dropdown-2",
+        "#custom-options-dropdown-3",
+        "#custom-options-dropdown-4",
+        "#custom-options-dropdown-5"
+    ]
+
+    for (let customMenu of arrayOfCustomMenu) {
+
+            if (document.querySelector(customMenu).style.opacity == 1) {
+                gsapDropdownUp(customMenu)
+            }
+    }
+
+
+
+})
 
 
 
