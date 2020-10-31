@@ -200,7 +200,7 @@
 
                 <div class = "flex-container">
 
-                    <div class="cameraContainer flex-child" >
+                    <div class="cameraContainer flex-child camera-feed" >
                         <canvas id="detection-canvas" class="detection-canvas"></canvas>
                         <canvas id="detection-canvas-overlay" class="detection-canvas-overlay"></canvas>
                     </div>
@@ -208,13 +208,13 @@
                 
                     <div id="parametersMenu flex-child">
                         <div class="parameterItem">
-                        <span>Camera Feed ID</span>
+                        <h3>Camera Feed ID</h3>
                         <select name="CAMERA_INDEX" id="CAMERA_INDEX">
                             <option value="0" label="0" selected></option>
                         </select>
                         </div>
                         <div class="parameterItem">
-                        <span>Video Size</span>
+                        <h3>Video Size</h3>
                         <select name="VIDEO_SIZE_INDEX" id="VIDEO_SIZE_INDEX">
                             <option value="0" label="320&times;240"></option>
                             <option value="1" label="640&times;480" selected></option>
@@ -222,35 +222,31 @@
                             <option value="2" label="1920&times;1080"></option>
                         </select>
                         </div>
-                        <div class="parameterItem">
-                        <span>Min Marker Distance</span>
-                        <input id="MIN_MARKER_DISTANCE" type="number" name="MIN_MARKER_DISTANCE" min="1" max="50" value="1" step="1">
+                        <div class="parameterItem hide-option">
+                        <h3>Min Marker Perimeter</h3>
+                        <input class="parameterItem-slider" id="MIN_MARKER_PERIMETER" type="range" name="MIN_MARKER_PERIMETER" min="0.01" max="0.99" value="0.01" step="0.01">
+                        </div>
+                        <div class="parameterItem hide-option">
+                        <h3>Max Marker Perimeter</h3>
+                        <input class="parameterItem-slider" id="MAX_MARKER_PERIMETER" type="range" name="MAX_MARKER_PERIMETER" min="0.01" max="0.99" value="0.99" step="0.01">
                         </div>
                         <div class="parameterItem">
-                        <span>Min Marker Perimeter</span>
-                        <input id="MIN_MARKER_PERIMETER" type="number" name="MIN_MARKER_PERIMETER" min="0.01" max="0.99" value="0.01" step="0.01">
+                        <h3>Size After Perspective Removal</h3>
+                        <input class="parameterItem-slider" id="SIZE_AFTER_PERSPECTIVE_REMOVAL" type="range" name="SIZE_AFTER_PERSPECTIVE_REMOVAL" min="1" max="200" value="49" step="1">
                         </div>
                         <div class="parameterItem">
-                        <span>Max Marker Perimeter</span>
-                        <input id="MAX_MARKER_PERIMETER" type="number" name="MAX_MARKER_PERIMETER" min="0.01" max="0.99" value="0.99" step="0.01">
+                        <h3>Contrast</h3>
+                        <input class="parameterItem-slider" id="IMAGE_CONTRAST" type="range" name="IMAGE_CONTRAST" min="-100" max="100" value="0" step="1">
                         </div>
                         <div class="parameterItem">
-                        <span>Size After Perspective Removal</span>
-                        <input id="SIZE_AFTER_PERSPECTIVE_REMOVAL" type="number" name="SIZE_AFTER_PERSPECTIVE_REMOVAL" min="1" max="200" value="49" step="1">
+                        <h3>Brightness</h3>
+                        <input class="parameterItem-slider" id="IMAGE_BRIGHTNESS" type="range" name="IMAGE_BRIGHTNESS" min="-100" max="100" value="0" step="1">
                         </div>
                         <div class="parameterItem">
-                        <span>Contrast</span>
-                        <input id="IMAGE_CONTRAST" type="number" name="IMAGE_CONTRAST" min="-100" max="100" value="0" step="1">
+                        <h3>Grayscale</h3>
+                        <input class="parameterItem-slider" id="IMAGE_GRAYSCALE" type="range" name="IMAGE_GRAYSCALE" min="0" max="100" value="0" step="1">
                         </div>
-                        <div class="parameterItem">
-                        <span>Brightness</span>
-                        <input id="IMAGE_BRIGHTNESS" type="number" name="IMAGE_BRIGHTNESS" min="-100" max="100" value="0" step="1">
-                        </div>
-                        <div class="parameterItem">
-                        <span>Grayscale</span>
-                        <input id="IMAGE_GRAYSCALE" type="number" name="IMAGE_GRAYSCALE" min="0" max="100" value="0" step="1">
-                        </div>
-                        <button onclick="startDetection()">Detect me</button>
+                        <button class="main-button" onclick="startDetection()">Detect me</button>
     
                     </div>
 

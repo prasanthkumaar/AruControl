@@ -24,7 +24,7 @@ function generateListOfModules() {
                 return `
                     <div id="button-${props.module.type}" class="full-button" style="background-image: url(${props.module.headerImagePng})">
                         <button button-data="add-module-${props.module.type}" class="full-button clear-button">
-                        <span>${props.module.name}<i class="fas fa-plus"></i></span>
+                        <span class="add-module-title">${props.module.name}</span>
                         </button>
                     </div>
                     `;
@@ -53,7 +53,7 @@ function addModuleToHtml(newModule) {
                     <div class="content-module">
                             <div class="content-module-img" style="background-image: url(${props.module.headerImagePng});">
                                     <div class="module-title"><h4>${props.module.name}</h4></div>
-                                    <button class="clear-button module-cross" button-data="delete-module-${props.module.id}" id="delete=module-${props.module.id}">
+                                    <button class="clear-button module-cross" button-data="delete-module-${props.module.id}" id="delete=module-${props.module.id}" style="display: none;">
                                         <span class="fas fa-times fa-1x icon" style="color: black;"></span>
                                     </button>
                             </div>
