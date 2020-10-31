@@ -19,7 +19,7 @@ class ButtonHoldModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Keypress: ']
         this.numberOfMarkers = 1
-        this.detectionLogic = "../src/img/detectionlogic/appear.gif"
+        this.detectionLogic = "../src/img/detectionlogic/LongHold.gif"
         this.headerImagePng = "../src/img/modules_png/button.png"
 
         //For mapping
@@ -98,7 +98,7 @@ class SwitchModule extends PhysicalModule {
         this.appShortcuts = null
         this.customInput = ['Left Action: ', 'Right Action:']
         this.numberOfMarkers = 2
-        this.detectionLogic = "../src/img/detectionlogic/appear.gif"
+        this.detectionLogic = "../src/img/detectionlogic/toggle.gif"
         this.headerImagePng = "../src/img/modules_png/toggle.png"
 
 
