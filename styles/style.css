@@ -928,7 +928,6 @@ button {
 }
 
 .flex-child {
-    background: var(--accent);
     margin-right: 40px;
     border-radius: 15px;
 }  
