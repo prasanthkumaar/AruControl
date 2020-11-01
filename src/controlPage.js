@@ -266,15 +266,28 @@ function clickHandler(event) {
 
                 if (selectedPhysicalModules.length == 1) {
 
-                    gsap.to(".box.selected", {
-                        boxShadow: " 0 0 0 99999px rgba(0, 0, 0, 0)",
-                        duration:1.5
+                    gsap.to(".black-overlay", {
+                        opacity: 0,
+                        duration: 1.5,
+                        onComplete: () => {
+                            gsap.to(".black-overlay", {
+                                height: 0,
+                                y: -10,
+                                duration: 0.5
+                            })
+                        }
                     })
 
                     gsap.to(".main-header-1", {
                         opacity:0,
                         duration:1.5,
-                        onComplete: ()=> {document.querySelector(".main-header-1").style.display = "none"}
+                        onComplete: ()=> {
+                            gsap.to(".main-header-1", {
+                                height: 0,
+                                y: -10,
+                                duration: 0.5
+                            })
+                        }
                     })
 
                     confirmModuleButton.style.display = "block"
@@ -430,6 +443,19 @@ function getStarted() {
     gsap.to(".startPage",  {duration: .3, height:150});
 
     mainPage.style.display = "block"
+    document.querySelector(".black-overlay").style.display = 'block';
+
+    gsap.to(".main-header-1", {
+        duration: 1,
+        opacity: 1,
+        delay: 2.5,
+    })
+
+    gsap.to(".black-overlay", {
+        duration: 1,
+        opacity: 1,
+        delay: 2.5,
+    })
 
     gsap.to(".mainPage",  {duration: 1, opacity:1, delay:2});
 

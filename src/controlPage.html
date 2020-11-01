@@ -84,6 +84,8 @@
         </div>
     </div>
 
+    <div class="black-overlay"></div>
+
     <div class="overlay overlayMarkerDetection" style="display: none" id="overlay">
         <div class="marker-detection-menu">
             <div class="marker-detection-menu-content">
@@ -125,11 +127,12 @@
 
     <div id="mainPage" class="mainPage"> 
         <div class="contain">
+
             <div class="main-header" id="main-header">
                 <div class="bottom-right" id="browse-templates">
 
                     <div class="add-modules-container" >
-                        <button id="main-header-add-module" class="main-button add-modules-fade box selected add-modules-overlay" onclick="showModulesList()">Add Module</button>    
+                        <button id="main-header-add-module" class="main-button add-modules-fade add-modules-overlay secondary-colour-bg" onclick="showModulesList()">Add Module</button>    
 
                     </div>
 
@@ -142,30 +145,11 @@
     
             </div>
 
-                        <div class="main-header-1">
-                <div class="header-1-center">
-
-                    <div class = "header-1-center-text">
-
-                        <h6>Click here to add</h2>
-                        <h6>your first module</h2>  
-
-                    </div>
-
-
-                </div>
-                <div class="header-1-right">
-
-                    <img class="onboard-arrow" src="./img/arrow/arrow.png" alt="">                   
-
-                </div>
-    
-            </div>
 
 
         <!-- Repeat Module Array -->
     
-            <div id="controlPage" >
+            <div id="controlPage" class="control-page" >
     
                 <div class="bottom-right" id="add-module">
                     <div class="module-select" id="module-select-dropdown">
@@ -186,6 +170,27 @@
                             </li>-->
                             <!-- Individual Modules End-->
                         </ul>
+                    </div>
+                </div>
+
+                <div id="arrow-div">
+                    <div class="main-header-1">
+                        <div class="header-1-center">
+        
+                            <div class = "header-1-center-text">
+        
+                                <h6>Click here to add</h2>
+                                <h6>your first module</h2>  
+        
+                            </div>
+        
+        
+                        </div>
+                        <div class="header-1-right">
+        
+                            <img class="onboard-arrow" src="./img/arrow/arrow.png" alt="">                   
+        
+                        </div>
                     </div>
                 </div>
     
