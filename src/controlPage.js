@@ -217,7 +217,11 @@ document.addEventListener('click', (evt)=> {
         "#custom-options-dropdown-2",
         "#custom-options-dropdown-3",
         "#custom-options-dropdown-4",
-        "#custom-options-dropdown-5"
+        "#custom-options-dropdown-5",
+        "#custom-options-dropdown-6",
+        "#custom-options-dropdown-7",
+        "#custom-options-dropdown-8",
+        "#custom-options-dropdown-9",
     ]
 
     for (let customMenu of arrayOfCustomMenu) {
@@ -273,7 +277,7 @@ function clickHandler(event) {
 
         if (action === 'add-module-'+ module.type) {
 
-            if (selectedPhysicalModules.length < 6) {
+            if (selectedPhysicalModules.length < 10) {
 
                 console.log('Adding Module '+ module.name)
 
@@ -324,7 +328,7 @@ function clickHandler(event) {
                 
             } else {
 
-                alert("Beta version of AruControl only allows for 6 modules at a time");
+                alert("Beta version of AruControl only allows for 10 modules at a time");
 
             }
 
