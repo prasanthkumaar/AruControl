@@ -23,9 +23,9 @@ let mainWindow;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1039, // Set these to whatever is convenient
+    width: 1050, // Set these to whatever is convenient
     height: 701,
-    minWidth: 1039,
+    minWidth: 1050,
     minHeight: 701,
 
 
@@ -38,7 +38,6 @@ function createWindow() {
   });
 
   mainWindow.setMenu(null);
-  // mainWindow.webContents.openDevTools(); // Uncomment to open the DevTools automatically
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -56,7 +55,7 @@ function createWindow() {
   });
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished

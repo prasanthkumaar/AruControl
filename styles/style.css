@@ -2,8 +2,9 @@
 
 body {
        /* Suppose you want minimum width of 1000px */
-    width: auto !important;  /* Firefox will set width as auto */
-    width:1000px;            /* As IE6 ignores !important it will set width as 1000px; */
+    width: 100% !important;  /* Firefox will set width as auto */       
+    max-width: 1200px;
+         /* As IE6 ignores !important it will set width as 1000px; */
     
 }
 
@@ -74,8 +75,7 @@ h2 { font-size: 18px; line-height: normal;}
 h3 { font-size: 18px; line-height: normal; color: var(--accent)}
 h4 { font-size: 1rem; line-height: normal;}
 h5 { font-size: 35px; line-height: normal;}
-h6 { font-size: 11px; line-height: normal;}
-h6 { font-size: 3vw; line-height: normal;}
+h6 { font-size: 2rem; line-height: normal;}
 
 
 .h1 {
@@ -116,8 +116,9 @@ h6 { font-size: 3vw; line-height: normal;}
     font-family: 'Poppins', sans-serif;
     color: var(--primary);
     z-index: 1;
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow-x: hidden;
+    margin: auto;
 }
 
 .contain {
@@ -606,6 +607,7 @@ button {
     width: 100vw;
     height: 100vh;
     top: 0px;
+    left: 0px;
 
 }
 
