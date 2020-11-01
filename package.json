@@ -35,28 +35,25 @@
     "electron-rebuild": "^2.0.1"
   },
   "build": {
-    "appId": "com.beholder.aruCool",
+    "appId": "com.aruCool",
     "productName": "AruControls",
-    "target": "NSIS",
+    "target": "mac",
     "directories": {
       "output": "build"
     },
     "nsis": {
       "allowToChangeInstallationDirectory": true,
-      "oneClick": false
+      "oneClick": false,
+      "installerIcon":"./assets/icons/win/icon.ico"
     },
     "mac": {
-      "category": "toolkit"
+      "category": "com.arucool.accessibility",
+      "target":"dmg",
+      "icon":"./assets/icons/mac/icon.icns"
     },
-    "files": [
-      "./app.js",
-      "./src/index.html",
-      "./src/index.js",
-      "./src/detection/background.js",
-      "./src/detection/beholder.js",
-      "./src/detection/math.min.js",
-      "build/**/*",
-      "styles/**/*"
-    ]
+    "win": {
+      "target": "portable",
+      "icon":"./assets/icons/win/icon.icns"
+    }
   }
 }
