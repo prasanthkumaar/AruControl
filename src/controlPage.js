@@ -169,6 +169,8 @@ function showMarkerDetectionLogic(moduleID) {
     let selectedGifDiv = document.querySelector('#detection-logic-gif-image')
     console.log(selectedGif)
     selectedGifDiv.src=selectedGif
+    let selectedTextDiv = document.querySelector('#detection-logic-text')
+    selectedTextDiv.innerHTML = selectedModule.detectionLogicText
 }
 
 function hideMarkerDetectionLogic() {

@@ -21,6 +21,7 @@ class ButtonHoldModule extends PhysicalModule {
         this.numberOfMarkers = 1
         this.detectionLogic = "../src/img/detectionlogic/LongHold.gif"
         this.headerImagePng = "../src/img/modules_png/button.png"
+        this.detectionLogicText = "Button activates action once when marker is present"
 
         //For mapping
         this.selectedMarkerId = 10
@@ -61,7 +62,9 @@ class ButtonTapModule extends PhysicalModule {
         this.numberOfMarkers = 1
         this.detectionLogic = "../src/img/detectionlogic/appear.gif"
         this.headerImagePng = "../src/img/modules_png/button.png"
+        this.detectionLogicText = "Button continually activates action when marker is present"
 
+        
         //For mapping
         this.selectedMarkerId = 5
         this.selectedActions = []
@@ -100,6 +103,7 @@ class SwitchModule extends PhysicalModule {
         this.numberOfMarkers = 2
         this.detectionLogic = "../src/img/detectionlogic/toggle.gif"
         this.headerImagePng = "../src/img/modules_png/toggle.png"
+        this.detectionLogicText = "Switch activates either action depending on marker shown"
 
 
         //For mapping
@@ -142,6 +146,7 @@ class ToggleRotationModule extends PhysicalModule {
         this.numberOfMarkers = 1
         this.detectionLogic = "../src/img/detectionlogic/rotate.gif"
         this.headerImagePng = "../src/img/modules_png/knob.png"
+        this.detectionLogicText = "Knob activates either action when marker rotation passes the threshold"
 
 
         //For mapping
@@ -183,6 +188,7 @@ class ContinuousSequenceScrollModule extends PhysicalModule {
         this.numberOfMarkers = 3
         this.detectionLogic = "../src/img/detectionlogic/continue.gif"
         this.headerImagePng = "../src/img/modules_png/scroll.png"
+        this.detectionLogicText = "Scroll activates action once, every time a marker is shown"
 
 
         //For mapping
@@ -225,6 +231,8 @@ class ContinuousSequenceDialModule extends PhysicalModule {
         this.numberOfMarkers = 3
         this.detectionLogic = "../src/img/detectionlogic/continue.gif"
         this.headerImagePng = "../src/img/modules_png/dial.png"
+        this.detectionLogicText = "Dial activates action once, every time a marker is shown"
+
 
 
         //For mapping
@@ -266,6 +274,8 @@ class SliderModule extends PhysicalModule {
         this.numberOfMarkers = 2
         this.detectionLogic = "../src/img/detectionlogic/displace.gif"
         this.headerImagePng = "../src/img/modules_png/slider.png"
+        this.detectionLogicText = "In the Slider, distance between the markers are mapped to the volume of the system"
+
 
 
         //For mapping
