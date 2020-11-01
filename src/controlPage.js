@@ -299,26 +299,25 @@ function clickHandler(event) {
 
                     gsap.to(".black-overlay", {
                         opacity: 0,
-                        duration: 1.5,
-                        onComplete: () => {
-                            gsap.to(".black-overlay", {
-                                height: 0,
-                                y: -10,
-                                duration: 0.5
-                            })
-                        }
+                        duration: .5,
+                    })
+
+                    gsap.to(".black-overlay", {
+                        height: 0,
+                        y: -10,
+                        duration: 1
                     })
 
                     gsap.to(".main-header-1", {
                         opacity:0,
-                        duration:1.5,
-                        onComplete: ()=> {
-                            gsap.to(".main-header-1", {
-                                height: 0,
-                                y: -10,
-                                duration: 0.5
-                            })
-                        }
+                        duration: .5,
+                
+                    })
+
+                    gsap.to(".main-header-1", {
+                        height: 0,
+                        y: -10,
+                        duration: 1
                     })
 
                     confirmModuleButton.style.display = "block"

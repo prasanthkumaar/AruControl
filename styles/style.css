@@ -263,7 +263,7 @@ h6 { font-size: 3vw; line-height: normal;}
 }
 
 .main-gap {
-    margin: 50px 0 0 0;
+    margin: 30px 0 0 0;
 }
 
 .main-footer {
@@ -278,7 +278,7 @@ h6 { font-size: 3vw; line-height: normal;}
     height: auto;
     align-content: flex-start;
     overflow-x: hidden;
-    height: 40vh;
+    height: 45vh;
     
 }
 

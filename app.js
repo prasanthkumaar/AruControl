@@ -12,7 +12,7 @@ const url = require('url');
 const startPage = '/src/startPage.html'
 const cameraPage = '/src/cameraPage.html'
 
-let loadingPage = '/src/controlPage.html'
+let index = '/src/controlPage.html'
 
 
 
@@ -23,8 +23,11 @@ let mainWindow;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1200, // Set these to whatever is convenient
-    height: 600,
+    width: 1039, // Set these to whatever is convenient
+    height: 701,
+    minWidth: 1039,
+    minHeight: 701,
+
 
 
 
@@ -39,7 +42,7 @@ function createWindow() {
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, loadingPage),
+    pathname: path.join(__dirname, index),
     protocol: 'file:',
     slashes: true,
   }));
