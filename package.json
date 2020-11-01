@@ -53,7 +53,8 @@
     },
     "win": {
       "target": "portable",
-      "icon":"./assets/icons/win/icon.icns"
+      "icon":"assets/icons/win/icon.ico"
+      
     }
   }
 }

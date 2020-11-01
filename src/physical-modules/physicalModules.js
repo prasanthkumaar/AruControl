@@ -294,7 +294,7 @@ class SliderModule extends PhysicalModule {
 
     map() {
 
-        return new SliderMarkerLogic("Volume", [1, 2]);
+        return new SliderMarkerLogic("Volume", this.selectedMarkerId);
         
     }
 

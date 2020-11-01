@@ -17,6 +17,10 @@ class SliderMarkerLogic extends MarkerLogic {
         super(action);
 
         this.markerIdArray = markerIdArray;
+
+        this.marker1Id;
+        this.marker2Id;
+
         this.marker1;
         this.marker2;
 
@@ -31,9 +35,26 @@ class SliderMarkerLogic extends MarkerLogic {
 
     initialise() {
 
-        super.initialise()
-        this.marker1 = getMarker(1)
-        this.marker2 = getMarker(2)
+        let initialiseMsg = "Initialising " + this.constructor.name + " Interface with volume control"
+        
+
+        initialiseMsg += " with markers " 
+        for (let a of this.markerIdArray) {
+            initialiseMsg += a + ", "
+        }
+
+        console.log(initialiseMsg)        
+
+        this.marker1Id = this.markerIdArray[0];
+        this.marker2Id = this.markerIdArray[1];
+
+
+
+        this.marker1 = getMarker(this.marker1Id)
+        this.marker2 = getMarker(this.marker2Id)
+
+        console.log(this.marker1)
+        console.log(this.marker2)
 
 
 
@@ -42,14 +63,16 @@ class SliderMarkerLogic extends MarkerLogic {
 
     }
 
-    track() {
+    async track() {
 
         if(!this.markersAreSeen) {
+
+            //set max distance
 
             if (this.marker1.present && this.marker2.present) {
                 
                 this.markersAreSeen = true
-                this.maxPixelDistance = getMarkerPair(1,2).distance
+                this.maxPixelDistance = getMarkerPair(this.marker1Id,this.marker2Id).distance
 
                 console.log('wohoo')
                 console.log('maxPixelDistance'+ this.maxPixelDistance)
@@ -58,7 +81,9 @@ class SliderMarkerLogic extends MarkerLogic {
         
         } else {
 
-            let currentDistance = getMarkerPair(1,2).distance;
+            //set 
+
+            let currentDistance = getMarkerPair(this.marker1Id,this.marker2Id).distance;
 
             console.log("current dist:" +currentDistance)
 
@@ -66,7 +91,7 @@ class SliderMarkerLogic extends MarkerLogic {
 
             console.log("volume: "+volume)
 
-            // await loudness.setVolume(45)
+            await loudness.setVolume(volume)
             // const vol = await loudness.getVolume()
             // console.log(vol);
 
