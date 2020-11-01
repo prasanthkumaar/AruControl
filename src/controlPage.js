@@ -465,7 +465,7 @@ function getStarted() {
         document.querySelector(".fade-out-1").style.display = "none"
     } });
     gsap.to(".aruco-logo",  {duration: 2, ease: CustomEase.create("custom", "M0,0 C0.66,0 0.358,0.984 1,1 "), top:100, width:250, delay:.5}); //left:200
-    gsap.to(".startPage",  {duration: .3, height:150});
+    gsap.to(".startPage",  {duration: .3, height:"15vh"});
 
     mainPage.style.display = "block"
     document.querySelector(".black-overlay").style.display = 'block';
