@@ -203,7 +203,7 @@ function showAdvancedControls(e) {
 
 // }
 
-document.addEventListener('click', ()=> {
+document.addEventListener('click', (evt)=> {
 
     if (document.querySelector(".module-select").style.opacity == 1) {
         console.log('YOOO')
@@ -222,11 +222,36 @@ document.addEventListener('click', ()=> {
 
     for (let customMenu of arrayOfCustomMenu) {
 
-        if (document.querySelector(customMenu) != null){
+        customMenuItem = document.querySelector(customMenu);
 
-            if (document.querySelector(customMenu).style.opacity == 1) {
+
+        if (customMenuItem != null){
+
+            let targetElement = evt.target; // clicked element
+        
+            do {
+                if (targetElement == customMenuItem) {
+                    // This is a click inside. Do nothing, just return.
+                    console.log('clicked inside')
+
+                    return;
+                }
+                // Go up the DOM
+                targetElement = targetElement.parentNode;
+            } while (targetElement);
+        
+            // This is a click outside.
+            console.log('clicked outside')
+
+            if (customMenuItem.style.opacity == 1) {
                 gsapDropdownUp(customMenu)
+                isAdvancedControlsShown = false
             }
+
+    
+            
+
+
         }
     }
 
