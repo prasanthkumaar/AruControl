@@ -132,7 +132,7 @@ function updateDetection() {
       const corners = m.corners;
       const angle = MARKER[m.id].rotation;
 
-      dctx.strokeStyle = "#FF00AA";
+      dctx.strokeStyle = "#01A0C6";
       dctx.beginPath();
 
       corners.forEach((c, i) => {
@@ -145,15 +145,15 @@ function updateDetection() {
       dctx.closePath();
 
       // draw first corner
-      dctx.strokeStyle = "blue";
+      dctx.strokeStyle = "#DC603C";
       dctx.strokeRect(corners[0].x - 2, corners[0].y - 2, 4, 4);
 
-      dctx.strokeStyle = "#FF00AA";
+      dctx.strokeStyle = "#01A0C6";
       dctx.strokeRect(center.x - 1, center.y - 1, 2, 2);
 
       dctx.font = "12px monospace";
       dctx.textAlign = "center";
-      dctx.fillStyle = "#FF55AA";
+      dctx.fillStyle = "#01A0C6";
       dctx.fillText(`ID=${m.id}`, center.x, center.y - 7);
       dctx.fillText(angle.toFixed(2), center.x, center.y + 15);
     }
