@@ -271,6 +271,12 @@ function clickHandler(event) {
                         duration:1.5
                     })
 
+                    gsap.to(".main-header-1", {
+                        opacity:0,
+                        duration:1.5,
+                        onComplete: ()=> {document.querySelector(".main-header-1").style.display = "none"}
+                    })
+
                     confirmModuleButton.style.display = "block"
                     gsap.to(".confirm-modules-btn",  {duration: 1, opacity:1});
 

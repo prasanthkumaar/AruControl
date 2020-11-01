@@ -75,6 +75,8 @@ h3 { font-size: 18px; line-height: normal; color: var(--accent)}
 h4 { font-size: 1rem; line-height: normal;}
 h5 { font-size: 35px; line-height: normal;}
 h6 { font-size: 11px; line-height: normal;}
+h6 { font-size: 3vw; line-height: normal; color: var(--primary)}
+
 
 .h1 {
     color: var(--accent);
@@ -130,6 +132,50 @@ h6 { font-size: 11px; line-height: normal;}
     grid-template-areas:
       "a b"
       "c d";
+  }
+
+  .main-header-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 9px;
+    grid-template-areas: "a b c";
+    align-items: end;
+    margin-top: 60px;
+  }
+
+  
+
+.header-1-center {
+    grid-area: b;
+    justify-content: center;
+    justify-self: center;
+    width: auto;
+}
+
+.header-1-center-text {
+    text-align: center;
+}
+
+
+
+.header-1-right {
+    text-align: right;
+    grid-area: c;
+    justify-content: right;
+    justify-self: end;
+}
+
+.onboard-arrow {
+    width: 70%;
+    margin-right: 100px;
+    margin-bottom: 30px;
+}
+
+  .content-module-background{
+      border-color: #222431;
+      width: 240px;
+      height: 240px;
   }
 
 .main-title {
@@ -909,3 +955,21 @@ button {
     width: auto;
     overflow: hidden;
 }
+
+/* .onboard-arrow {
+    position: absolute;
+    right: 178px;
+    width: 20%;
+    opacity: 1;
+    margin-top: 50px;
+
+}
+
+.onboard-arrow-text {
+    margin: 0 auto;
+    width: 200px;
+    background: black;
+    padding: 20px;
+    color: white;
+
+} */
