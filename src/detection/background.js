@@ -127,10 +127,11 @@ function updateDetection() {
       MARKER[m.id].updateMarker(m, timenow);
     }
 
-    if (!appMode) {
+    if (!appMode && MARKER[m.id] !== undefined) {
       const center = m.center;
       const corners = m.corners;
-      const angle = MARKER[m.id].rotation;
+      const angle = vecAngleBetween(vecSub(m.corners[0], m.corners[1]), {x: 1, y: 0});
+      // const angle = MARKER[m.id].rotation;
 
       dctx.strokeStyle = "#01A0C6";
       dctx.beginPath();

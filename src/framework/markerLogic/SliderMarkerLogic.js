@@ -53,13 +53,6 @@ class SliderMarkerLogic extends MarkerLogic {
         this.marker1 = getMarker(this.marker1Id)
         this.marker2 = getMarker(this.marker2Id)
 
-        console.log(this.marker1)
-        console.log(this.marker2)
-
-
-
-
-
 
     }
 
@@ -74,9 +67,6 @@ class SliderMarkerLogic extends MarkerLogic {
                 this.markersAreSeen = true
                 this.maxPixelDistance = getMarkerPair(this.marker1Id,this.marker2Id).distance
 
-                console.log('wohoo')
-                console.log('maxPixelDistance'+ this.maxPixelDistance)
-
             }
         
         } else {
@@ -84,12 +74,7 @@ class SliderMarkerLogic extends MarkerLogic {
             //set 
 
             let currentDistance = getMarkerPair(this.marker1Id,this.marker2Id).distance;
-
-            console.log("current dist:" +currentDistance)
-
             let volume = (this.maxPixelDistance - currentDistance) / this.maxPixelDistance * 100
-
-            console.log("volume: "+volume)
 
             await loudness.setVolume(volume)
             // const vol = await loudness.getVolume()

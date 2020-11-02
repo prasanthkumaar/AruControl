@@ -265,6 +265,93 @@ document.addEventListener('click', (evt)=> {
 
 })
 
+function afterEffects() {
+
+    let buttonTap = new ButtonTapModule()
+    let buttonHold = new ButtonHoldModule()
+    let toggleRotation = new ToggleRotationModule()
+    let contSeqScroll = new ContinuousSequenceScrollModule()
+    let contSeqDial = new ContinuousSequenceDialModule()
+    let slider = new SliderModule()
+    let switch1 = new SwitchModule()
+
+
+
+    let splitLayer = buttonTap.createNew(0, appChosen)
+    splitLayer.selectedMarkerId = 9
+    splitLayer.selectedActions = [DigitalAction.leftControlKey, DigitalAction.leftShiftKey, DigitalAction.dKey]
+
+    let precomp = buttonTap.createNew(1, appChosen)
+    precomp.selectedMarkerId = 10
+    precomp.selectedActions = [DigitalAction.leftControlKey, DigitalAction.leftShiftKey, DigitalAction.cKey]
+
+    let controlMask = buttonTap.createNew(2, appChosen)
+    controlMask.selectedMarkerId = 8
+    controlMask.selectedActions = [DigitalAction.mKey, DigitalAction.fKey]
+
+    let revealAll = buttonTap.createNew(3, appChosen)
+    revealAll.selectedMarkerId = 5
+    revealAll.selectedActions = [DigitalAction.uKey, DigitalAction.uKey]
+
+    let queueRender = buttonTap.createNew(4, appChosen)
+    queueRender.selectedMarkerId = 50
+    queueRender.selectedActions = [DigitalAction.leftControlKey, DigitalAction.mKey]
+
+    let timelineMove = switch1.createNew(5, appChosen)
+    timelineMove.selectedMarkerId = [15, 11]
+    timelineMove.selectedClockwiseActions = [DigitalAction.leftShiftKey, DigitalAction.pageUpKey]
+    timelineMove.selectedAnticlockwiseActions = [DigitalAction.leftShiftKey, DigitalAction.pageDownKey]
+
+    let volumeSlider = slider.createNew(6, appChosen)
+    volumeSlider.selectedMarkerId = [17, 0]
+
+    let timelineScrub = contSeqDial.createNew(7, appChosen)
+    timelineScrub.selectedMarkerId = [19, 16, 12]
+    timelineScrub.selectedClockwiseActions = [DigitalAction.minusKey]
+    timelineScrub.selectedAnticlockwiseActions = [DigitalAction.equalKey]
+
+    let keyframeScrub = toggleRotation.createNew(8, appChosen)
+    keyframeScrub.selectedMarkerId = 23
+    keyframeScrub.selectedClockwiseActions = [DigitalAction.leftControlKey, DigitalAction.leftShiftKey, DigitalAction.rightKey]
+    keyframeScrub.selectedAnticlockwiseActions = [DigitalAction.leftControlKey, DigitalAction.leftShiftKey, DigitalAction.leftKey]
+
+    afterEffectsModules = [splitLayer, precomp, controlMask, revealAll, queueRender, timelineMove, volumeSlider, timelineScrub]
+
+    for (let module of afterEffectsModules) {
+
+        selectedPhysicalModules.push(module)
+        addModuleToHtml(module)
+        generateListOfShortcuts(module)
+
+    }
+
+    gsap.to(".black-overlay", {
+        opacity: 0,
+        duration: .5,
+    })
+
+    gsap.to(".black-overlay", {
+        height: 0,
+        y: -10,
+        duration: 1
+    })
+
+    gsap.to(".main-header-1", {
+        opacity:0,
+        duration: .5,
+
+    })
+
+    gsap.to(".main-header-1", {
+        height: 0,
+        y: -10,
+        duration: 1
+    })
+
+    confirmModuleButton.style.display = "block"
+    gsap.to(".confirm-modules-btn",  {duration: 1, opacity:1});
+}
+
 
 
 // Clicking Events
@@ -286,7 +373,6 @@ function clickHandler(event) {
                 let newModule = module.createNew(selectedPhysicalModules.length, appChosen)
                 selectedPhysicalModules.push(newModule)
                 addModuleToHtml(newModule)
-
                 generateListOfShortcuts(newModule)
                 gsapDropdownUp("#module-select-dropdown")
 
@@ -397,7 +483,7 @@ function confirmModulesButton() {
         // let kHold = new SingleHoldMarkerLogic([DigitalAction.kKey], 4);
         // arrayOfInterfaces = [dHold, fHold, jHold, kHold]
 
-        // arrayOfInterfaces =[new ToggleRotationMarkerLogic([DigitalAction.aKey], [DigitalAction.sKey], 2, true, 25)];
+        // arrayOfInterfaces =[new ToggleRotationMarkerLogic([DigitalAction.aKey], [DigitalAction.sKey], 23, true, 25)];
 
         // let contSeq = new ContinuousSequenceMarkerLogic([DigitalAction.aKey], [DigitalAction.sKey], true, [1, 2, 3, 4]);
         // arrayOfInterfaces = [contSeq]
@@ -498,6 +584,9 @@ function getStarted() {
         delay: .5,
         height:0
       })
+
+
+      //afterEffects()
 
 
 

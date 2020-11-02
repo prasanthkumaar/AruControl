@@ -31,6 +31,13 @@ class ToggleRotationMarkerLogic extends MarkerLogic {
         this.antiClockwiseLimit;
         this.clockwiseLimit;
 
+        this.currentRotation;
+
+
+        this.clockwiseFunctionPerformed = false
+        this.antiClockwiseFunctionPerformed = false
+
+
 
         
 
@@ -54,6 +61,16 @@ class ToggleRotationMarkerLogic extends MarkerLogic {
         // }
     }
 
+    releaseFunction() {
+        for (let a of this.actions) {
+            a.sendUp();
+        }
+        for (let a of this.reverseActions) {
+            a.sendUp();
+        }
+
+    }
+
 
 
     initialise() {
@@ -68,12 +85,15 @@ class ToggleRotationMarkerLogic extends MarkerLogic {
         }
         console.log(initialiseMsg)
 
+        console.log(this.marker);
+
+
         this.antiClockwiseLimit = 0 - this.allowanceInRadians
         this.clockwiseLimit = 0 + this.allowanceInRadians
 
         this.mapClockwiseAntiClockwiseFunctions();
         
-        this.marker.timeout = 500;
+        this.marker.timeout = 10;
 
         console.log(this.allowanceInRadians* 180/Math.PI)
         console.log(this.antiClockwiseLimit * 180/Math.PI);
@@ -84,15 +104,49 @@ class ToggleRotationMarkerLogic extends MarkerLogic {
 
     track() {
 
-        console.log(this.marker.rotation * 180/Math.PI);
+
+        if(this.marker.present == true) {
+
+            this.currentRotation = this.marker.rotation;
+
+        } else {
+
+            this.currentRotation = 0;
+        }
+
+
+        console.log(this.currentRotation * 180/Math.PI);
+
+        
         // If current rotation passes either limits, perform the clockwise / anticlockwise actions respectively
-        if (this.marker.rotation < this.antiClockwiseLimit) {
+        if (this.currentRotation < this.antiClockwiseLimit) {
             this.antiClockwiseAction();
+            this.antiClockwiseFunctionPerformed = true
             //console.log('anticlockwise action');
-        } else if (this.marker.rotation > this.clockwiseLimit) {
+        } else if (this.currentRotation > this.clockwiseLimit) {
+            this.clockwiseFunctionPerformed = true
             this.clockwiseAction();
             //console.log('clockwise action');
+        } else if (this.antiClockwiseLimit <this.currentRotation && this.currentRotation  < this.clockwiseLimit) {
+
+            if (this.clockwiseFunctionPerformed == true) {
+                this.releaseFunction();
+                this.clockwiseFunctionPerformed = false
+
+            } else if (this.antiClockwiseFunctionPerformed == true) {
+                this.releaseFunction();
+                this.antiClockwiseFunctionPerformed = false
+
+
+            }
+
+
+
         }
+
+        
+
+      
         
     }
 
